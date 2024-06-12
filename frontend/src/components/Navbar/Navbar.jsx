@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import Logo from '../../assets/Logo.jpeg'
+import Logo from '../../assets/Logo2.png'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        <Link to="/" className="logo">Logo</Link>
+        <Link to="/" className="logo"><img src={Logo} alt="" className='logo' /></Link>
         <div className="nav-menu">
           <Link to="/" className="nav-item">Home</Link>
           <Link to="/services" className="nav-item">Services</Link>

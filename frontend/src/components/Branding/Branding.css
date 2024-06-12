@@ -1,4 +1,14 @@
-.container{
-   
-    margin-top: 5rem; 
- }
+.branding-container {
+    background-image: url('../../assets/Background1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 105vh;
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  

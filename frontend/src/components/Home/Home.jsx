@@ -4,7 +4,7 @@ import './Home.css'
 
 const Home = () => {
   return (
-    <div style={{ height: '200vh' }}>
+    <div >
        <Branding />
     </div >
   )
