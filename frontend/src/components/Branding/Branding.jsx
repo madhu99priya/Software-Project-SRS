@@ -5,11 +5,15 @@ import Background from '../../assets/Background1.jpg';
 const Branding = () => {
   return (
     <div className="branding-container">
-      <div className="Text">
-        <span>Meet the best Coaches</span>
-        <span>Elevate Your</span>
-        <span>Game</span>
-      </div>
+      <div className="brand-text">
+            <div>
+                <span>Meet the best coaches</span>
+            </div>
+
+            <div>
+                <span>Elevate Your Game</span>
+            </div>
+        </div>
     </div>
   );
 };
