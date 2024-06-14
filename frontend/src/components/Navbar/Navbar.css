@@ -43,5 +43,6 @@
   
   .nav-item:hover {
     color: #e61a1a;
+    cursor: pointer;
   }
   

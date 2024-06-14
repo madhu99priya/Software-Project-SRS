@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../axiosConfig.js';
+import axios from 'axios';
 import './Signin.css'; 
 
 const SignIn = () => {
@@ -18,7 +18,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/signin', formData);
+      const response = await axios.post('http://localhost:3000/api/users/signin', formData);
       console.log('User signed in:', response.data);
       localStorage.setItem('token', response.data.token); // Store token for authenticated requests
     } catch (error) {

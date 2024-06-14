@@ -13,7 +13,7 @@ const Join = () =>{
                 <br></br>
                 <p>We craft the perfect court for you! <br></br> Be hurry! Join Us!</p>
                 <br></br>
-                <button className="btn">LETS JOIN NOW</button>
+                <button className="btn">JOIN NOW</button>
             </div>
         </div>
     )
