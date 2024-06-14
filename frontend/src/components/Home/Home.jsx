@@ -3,6 +3,7 @@ import Branding from '../Branding/Branding.jsx'
 import Reasons from '../Reasons/Reasons.jsx'
 import './Home.css'
 import Plans from '../Plans/Plans.jsx'
+import OnlineReservations from '../OnlineReservations/Onlinereservations.jsx'
 
 const Home = () => {
   return (
@@ -19,6 +20,12 @@ const Home = () => {
       <section id='plans'>
       < Plans />
       </section> 
+
+      <section id='onlinereservations'>
+
+        <OnlineReservations />
+
+      </section>
        
     </div >
   )
