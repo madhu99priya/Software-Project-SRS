@@ -9,8 +9,9 @@ import {
 
 const router = express.Router();
 
+router.post('/signup', createUser);
+// router.post('/signin', loginUser);
 
-router.post('/', createUser);
 
 
 router.get('/', getAllUsers);

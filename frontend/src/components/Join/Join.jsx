@@ -1,6 +1,6 @@
 import React from "react";
 import './Join.css';
-import Join_us from '../../assets/join_now.png';
+import Join_us from '../../assets/Join_image.png';
 
 const Join = () =>{
     return (

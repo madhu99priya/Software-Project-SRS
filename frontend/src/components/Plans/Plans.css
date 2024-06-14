@@ -1,10 +1,10 @@
-
 .plans-container{
-    margin-top: 4rem;
+    margin-top: 0;
     padding: 0 2rem;
     display: flex;
     flex-direction: column;
     gap: 4rem;
+    background-color: #111;
     /* z-index: -1; */
 }
 
@@ -63,4 +63,32 @@
 
 .feature>:nth-child(1){
     width: 1.5rem;
+}
+
+.programs_header{
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.stroke-text{
+    color: red;
+}
+
+
+.button{
+    background-color: white;
+    color: black;
+    padding: 0.3rem;
+    font-weight: bold;
+    font-size: 18px;
+    border: 3.5px solid transparent;
+    transition: 300ms all;
+    text-align: center;
+
+}
+
+
+.feature.tic-img{
+    width: 1px;
 }

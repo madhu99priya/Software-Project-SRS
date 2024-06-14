@@ -10,11 +10,6 @@ import OnlineReservations from '../OnlineReservations/Onlinereservations.jsx'
 const Home = () => {
   return (
     <div>
-       <Branding />
-       < Reasons />
-       < Plans />
-       <Join />
-
       <section id='Branding'>
          <Branding />
       </section>
@@ -27,11 +22,18 @@ const Home = () => {
       < Plans />
       </section> 
 
+      <section id='join'>
+        <Join />
+      </section>
+
+
       <section id='onlinereservations'>
 
         <OnlineReservations />
 
       </section>
+
+     
        
     </div >
   )
