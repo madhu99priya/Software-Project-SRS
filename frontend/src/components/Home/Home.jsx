@@ -3,11 +3,17 @@ import Branding from '../Branding/Branding.jsx'
 import Reasons from '../Reasons/Reasons.jsx'
 import './Home.css'
 import Plans from '../Plans/Plans.jsx'
+import Join from '../Join/Join.jsx'
 import OnlineReservations from '../OnlineReservations/Onlinereservations.jsx'
+
 
 const Home = () => {
   return (
-    <div >
+    <div>
+       <Branding />
+       < Reasons />
+       < Plans />
+       <Join />
 
       <section id='Branding'>
          <Branding />
