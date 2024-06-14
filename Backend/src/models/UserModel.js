@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
-const memberSchema = new mongoose.Schema({
-  memberId: {
+const userSchema = new mongoose.Schema({
+  userId: {
     type: String,
     default: uuidv4,
     unique: true
@@ -43,14 +43,14 @@ const memberSchema = new mongoose.Schema({
   }
 });
 
-// Hash the password before saving the member
-memberSchema.pre('save', async function(next) {
+// Hash the password before saving the user
+userSchema.pre('save', async function(next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
 
-const Member = mongoose.model('Member', memberSchema);
+const user = mongoose.model('User', userSchema);
 
-export default Member;
+export default user;

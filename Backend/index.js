@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bookingRoutes from './src/routes/booking.js';
-import memberRoutes from './src/routes/member.js'
+import userRoutes from './src/routes/userroute.js'
 
 const app = express();
 
@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost:27017/sports-complex')
 
 
 app.use('/api/bookings', bookingRoutes);
-app.use('/api/members', memberRoutes);
+app.use('/api/users',userRoutes);
 
 
 const PORT = process.env.PORT || 3000;
