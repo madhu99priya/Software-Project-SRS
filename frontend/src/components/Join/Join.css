@@ -1,0 +1,33 @@
+.Join{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    text-align: center;   
+    background-color: #111; 
+}
+
+.image{
+    max-width: 90%;
+    height: auto;
+    margin-left: -100px;
+}
+
+.text{
+    margin-left: -500px;
+}
+
+.text p{
+    font-size: 20px;
+}
+
+.text h1{
+    color: red;
+}
+
+.text_w{
+    color: white;
+}
+
+.btn{
+    background-color: red;
+}

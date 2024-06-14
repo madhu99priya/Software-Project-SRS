@@ -11,7 +11,7 @@ const Plans = () => {
     <div className="plans-container">
         <div className="programs_header" style={{gap:' 2.4rem'}}>
             <span className='stroke-text'>LEVEL UP </span>
-            <span> YOUR JOURNEY</span>
+            <span> YOUR <br></br>JOURNEY</span>
             <span className='stroke-text'>  WITH US </span>
         </div>
 
