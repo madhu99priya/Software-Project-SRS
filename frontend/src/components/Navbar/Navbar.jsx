@@ -74,7 +74,7 @@ const Navbar = () => {
           <ScrollLink to="packages" smooth={true} duration={500} className="nav-item">Packages</ScrollLink>
           <ScrollLink to="online-reservations" smooth={true} duration={500} className="nav-item">Online Reservations</ScrollLink>
           <ScrollLink to="contact" smooth={true} duration={500} className="nav-item">Contact Us</ScrollLink>
-          <a href='/memberlogin' className='nav-item'>Members Area</a>
+          <a href='/memberlogin' className='nav-item'>Member's Area</a>
         </div>
       </div>
     </nav>
