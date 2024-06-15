@@ -5,6 +5,8 @@ import './Home.css'
 import Plans from '../Plans/Plans.jsx'
 import Join from '../Join/Join.jsx'
 import OnlineReservations from '../OnlineReservations/Onlinereservations.jsx'
+import ContactUs from '../ContactUs/ContactUs.jsx'
+import Footer from '../Footer/Footer.jsx'
 
 
 const Home = () => {
@@ -26,6 +28,13 @@ const Home = () => {
       <section id='onlinereservations'>
 
         <OnlineReservations />
+
+      </section>
+
+      <section id='contactus'>
+
+        <ContactUs />
+        <Footer />
 
       </section>
 
