@@ -27,7 +27,7 @@
     padding: 20px;
     color: black;
     font-weight: bold;
-    background-color: white; /* Add background to make it stand out */
+    background-color: white;
     margin: 0 20px; /* Adjust margins for better spacing */
     border-radius: 10px; /* Optional: Add some border-radius for smooth corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for better visibility */
