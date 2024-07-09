@@ -1,4 +1,4 @@
-.contact {
+/* .contact {
     width: 100%;
     display: flex;
     background-color: black;
@@ -29,9 +29,9 @@
     color: black;
     font-weight: bold;
     background-color: white;
-    margin: 0 20px; /* Adjust margins for better spacing */
-    border-radius: 10px; /* Optional: Add some border-radius for smooth corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for better visibility */
+    margin: 0 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .rightSide h1 {
@@ -91,4 +91,132 @@
     .image_left {
         margin-top: 0; 
     }
-}
+} */
+
+
+.contact-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 40px;
+    background-image: url('../../assets/ContactImage.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    color: black;
+    overflow: hidden; /* Hide overflow to prevent blur effect from leaking */
+  }
+  
+  .contact-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/ContactImage.jpg'); /* Same image as background */
+    background-size: cover;
+    background-position: center;
+    filter: contrast(50%) blur(8px);
+  }
+  
+  .contact-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative; /* Ensure the heading is positioned correctly */
+    z-index: 1; /* Ensure the text is above the overlay */
+  }
+  
+  .contact-content {
+    display: flex;
+    justify-content: space-between;
+    position: relative; /* Ensure positioning context */
+    z-index: 2; /* Ensure content is above the overlay */
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .contact-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #333;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .contact-info p {
+    font-family: sans-serif;
+  }
+  
+  .contact-label {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 5px;
+  }
+  
+  .contact-details {
+    max-width: 300px;
+  }
+  
+  .contact-details h3 {
+    margin-bottom: 10px;
+  }
+  
+  .contact-details p {
+    margin-bottom: 15px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    position: relative; /* Ensure positioning context */
+    z-index: 2; /* Ensure form content is above the overlay */
+  }
+  
+  .contact-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .contact-form input, 
+  .contact-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(233, 233, 233);
+    color: black;
+  }
+  
+  .contact-form input {
+    height: 10px; /* Adjust input height as needed */
+  }
+  
+  .contact-form button {
+    padding: 10px;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 200px;
+  }
+  
+  .contact-form button:hover {
+    background-color: rgb(219, 0, 0);
+  }
+  

@@ -1,87 +1,64 @@
-/* 
-.online-reservations {
-    background-color: #f5f5f5;
+   /* .online-reservations {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 8px;
-    font-family: 'Arial', sans-serif;
   }
   
-  .online-reservations h1 {
-    text-align: center;
-    color: #ff0000;
-    margin-bottom: 20px;
-  }
-  
-  .date-picker {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .date-picker input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .courts {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .courts-header {
-    display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    color: #333;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .court-title {
-    flex: 1;
+  h2 {
     text-align: center;
   }
   
-  .time-slots {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  input[type="date"] {
+    display: block;
+    margin: 0 auto 20px;
   }
   
+  .slots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .slot-header,
   .time-slot {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    width: 100%;
+  }
+  
+  .time,
+  .court {
+    flex: 1;
+    text-align: center;
     padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
   }
   
-  .time-slot-title {
-    flex: 1;
-    text-align: center;
-    font-weight: bold;
-    color: #333;
+  .time-slot .court {
+    cursor: pointer;
   }
   
-  .court-reservation {
-    flex: 1;
-    text-align: center;
+  .court.booked {
+    background-color: #f44336;
     color: #fff;
-    background-color: #ff0000; 
-    border-radius: 4px;
-    padding: 5px;
+    cursor: not-allowed;
   }
   
-  .court-reservation.empty {
-    background-color: #ddd;
-    color: #666;
+  .court.available {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .confirmation {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .confirmation button {
+    margin: 0 10px;
+  }
+  
+  .confirm_btn{
+    margin-right: 20px;
   }
    */
 
@@ -145,7 +122,7 @@
     margin: 0 10px;
   }
   
-  .confirm_btn{
+  .confirm_btn {
     margin-right: 20px;
   }
   
