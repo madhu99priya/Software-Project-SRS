@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import './Signuporin.css'
+import './Signuporin.css';
+import Logo from '../../assets/Logo2.png'
 
 const Signuporin = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -40,76 +41,83 @@ const Signuporin = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
-      <form onSubmit={handleSubmit}>
-        {isSignUp && (
-          <>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="number"
-              name="age"
-              placeholder="Age"
-              value={formData.age}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-            />
-            <select
-              name="membershipType"
-              value={formData.membershipType}
-              onChange={handleChange}
-              required
-            >
-              <option value="BRONZE SHUTTLE">BRONZE SHUTTLE</option>
-              <option value="SILVER SHUTTLE">SILVER SHUTTLE</option>
-              <option value="GOLD SHUTTLE">GOLD SHUTTLE</option>
-            </select>
-          </>
-        )}
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">{isSignUp ? 'Sign Up' : 'Sign In'}</button>
-      </form>
-      <button onClick={toggleAuthMode}>
-        {isSignUp ? 'Switch to Sign In' : 'Switch to Sign Up'}
-      </button>
+    <div className="auth-wrapper">
+      <div className="auth-container">
+      <img src={Logo} alt="Logo" className="auth-logo" />
+        <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
+        <form onSubmit={handleSubmit}>
+          {isSignUp && (
+            <>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                value={formData.age}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={formData.address}
+                onChange={handleChange}
+                required
+              />
+              <select
+                name="membershipType"
+                value={formData.membershipType}
+                onChange={handleChange}
+                required
+              >
+                <option value="BRONZE SHUTTLE">BRONZE SHUTTLE</option>
+                <option value="SILVER SHUTTLE">SILVER SHUTTLE</option>
+                <option value="GOLD SHUTTLE">GOLD SHUTTLE</option>
+              </select>
+            </>
+          )}
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">{isSignUp ? 'Sign Up' : 'Sign In'}</button>
+
+          <button onClick={toggleAuthMode} className="toggle-button">
+          {isSignUp ? 'Switch to Sign In' : 'Switch to Sign Up'}
+        </button>
+        </form>
+        {/* <button onClick={toggleAuthMode} className="toggle-button">
+          {isSignUp ? 'Switch to Sign In' : 'Switch to Sign Up'}
+        </button> */}
+      </div>
     </div>
   );
 };

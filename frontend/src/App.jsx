@@ -35,14 +35,9 @@ import Reasons from './components/Reasons/Reasons.jsx';
 import Signuporin from './components/Signuporin/Signuporin.jsx';
 
 const App = () => {
-  const location = useLocation();
-
-  // List of paths where the Navbar should not be displayed
-  const hideNavbarPaths = ['/memerlogin'];
 
   return (
     <div>
-      {!hideNavbarPaths.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/memberlogin' element={<Signuporin />} />
