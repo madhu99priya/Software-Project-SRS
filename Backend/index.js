@@ -2,8 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bookingRoutes from './src/routes/booking.js';
 import userRoutes from './src/routes/userroute.js'
-import cors from 'cors'
+import adminRoutes from './src/routes/admin.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 app.use(cors());
@@ -21,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/sports-complex')
 
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/users',userRoutes);
+app.use('/api/admin', adminRoutes);
 
 
 const PORT = process.env.PORT || 3000;
