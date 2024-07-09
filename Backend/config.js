@@ -1,2 +1,6 @@
 export const PORT  = 5556;
 
+export const STRIPE_PUBLISHABLE_KEY =
+  "pk_test_51PTjV9RqS0h1kxCG8z1pZfcqtYe8bGFXA3efr60IpRIExmleUH2CM1hN0POSZmCKJf8jDKcRPqYuRm8RLHi33P1k00iE6bCWby";
+export const STRIPE_SECRET_KEY =
+  "sk_test_51PTjV9RqS0h1kxCGk6LiPuH4axs68rLFY6JsCTl0QP4eN3dVZbQUUTh27cWR8uvYnqwMu2AgqOubpHgEtY598UHN00uRPwbwcx";

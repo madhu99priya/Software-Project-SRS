@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 100px;
-  background-color: #111;
+  /* background-color: #111; */
 }
 
 .reason-card {
