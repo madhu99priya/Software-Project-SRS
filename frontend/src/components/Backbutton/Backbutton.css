@@ -1,0 +1,22 @@
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-color: #bde0f2; 
+    color: blue;
+    padding: 0.25rem 1rem; 
+    border-radius: 0.5rem;
+    width: fit-content;
+    transition: background-color 0.3s ease; 
+  }
+  
+  .button-container .icon {
+    margin: 0;
+    color: blue; 
+  }
+  
+  .button-container:hover {
+    background-color: #a1d0e6;
+    cursor: pointer; 
+  }
+  

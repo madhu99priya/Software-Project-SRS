@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import './Signuporin.css';
+import Backbutton from '../Backbutton/Backbutton.jsx';
 import Logo from '../../assets/Logo2.png'
 
 const Signuporin = () => {
@@ -42,6 +43,9 @@ const Signuporin = () => {
 
   return (
     <div className="auth-wrapper">
+      <div className='backbutton-container'>
+        <Backbutton />
+      </div>
       <div className="auth-container">
       <img src={Logo} alt="Logo" className="auth-logo" />
         <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>

@@ -5,7 +5,7 @@
   height: 100vh;
   width: 100vw;
   background-color: #333; 
-  background: url('../../assets/Background1.png') no-repeat center center fixed;
+  background: url('../../assets/background_login.jpg') no-repeat center center fixed;
 }
 
 .auth-container {
@@ -71,4 +71,12 @@
   max-width: 160px;
   display: block;
   margin: 0 auto 1rem auto;
+}
+
+
+.backbutton-container{
+
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
