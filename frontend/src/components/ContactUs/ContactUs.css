@@ -101,12 +101,12 @@
     margin-top: 100px;
     margin-bottom: 100px;
     padding: 40px;
-    background-image: url('../../assets/ContactImage.jpg'); /* Replace with your image path */
+    background-image: url('../../assets/ContactImage.jpg'); 
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     color: black;
-    overflow: hidden; /* Hide overflow to prevent blur effect from leaking */
+    overflow: hidden; 
   }
   
   .contact-container::before {
@@ -116,7 +116,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../assets/ContactImage.jpg'); /* Same image as background */
+    background-image: url('../../assets/ContactImage.jpg'); 
     background-size: cover;
     background-position: center;
     filter: contrast(50%) blur(8px);
@@ -125,15 +125,15 @@
   .contact-container h1 {
     text-align: center;
     margin-bottom: 40px;
-    position: relative; /* Ensure the heading is positioned correctly */
-    z-index: 1; /* Ensure the text is above the overlay */
+    position: relative; 
+    z-index: 1; 
   }
   
   .contact-content {
     display: flex;
     justify-content: space-between;
-    position: relative; /* Ensure positioning context */
-    z-index: 2; /* Ensure content is above the overlay */
+    position: relative; 
+    z-index: 2; 
   }
   
   .contact-item {
@@ -181,8 +181,8 @@
     flex-direction: column;
     width: 100%;
     max-width: 450px;
-    position: relative; /* Ensure positioning context */
-    z-index: 2; /* Ensure form content is above the overlay */
+    position: relative;
+    z-index: 2; 
   }
   
   .contact-form label {

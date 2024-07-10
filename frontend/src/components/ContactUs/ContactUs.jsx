@@ -55,9 +55,7 @@ const ContactUs = () => {
   };
 
   return (
-    
-    <div className="background">
-    <div className="contact-container">
+        <div className="contact-container">
       <h1>Contact Us</h1>
       <div className="contact-content">
         <div className="contact-details">
@@ -99,7 +97,6 @@ const ContactUs = () => {
           <button type="submit">Send Message</button>
         </form>
       </div>
-    </div>
     </div>
   );
 };

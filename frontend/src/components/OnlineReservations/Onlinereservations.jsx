@@ -107,7 +107,7 @@ const OnlineReservations = () => {
 
   return (
     <div className="online-reservations">
-      <h2>Online Reservations</h2>
+      <h1>Online Reservations</h1>
       <input type="date" value={selectedDate} onChange={handleDateChange} />
       <div className="slots">
         <div className="slot-header">

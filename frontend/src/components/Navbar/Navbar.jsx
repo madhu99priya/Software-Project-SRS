@@ -44,6 +44,7 @@ import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import './Navbar.css';
 import Logo from '../../assets/Logo2.png';
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -75,6 +76,7 @@ const Navbar = () => {
           <ScrollLink to="online-reservations" smooth={true} duration={500} className="nav-item">Online Reservations</ScrollLink>
           <ScrollLink to="contact-container" smooth={true} duration={500} className="nav-item">Contact Us</ScrollLink>
           <a href='/memberlogin' className='nav-item'>Member's Area</a>
+          <a href="/adminpanel" className='admin'><MdAdminPanelSettings size={33} color='black'/> </a>
         </div>
       </div>
     </nav>

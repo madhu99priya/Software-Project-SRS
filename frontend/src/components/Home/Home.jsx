@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer.jsx'
 
 const Home = () => {
   return (
-    <div className='background'>
+    <div>
       <section id='home'>
          <Branding />
       </section>
