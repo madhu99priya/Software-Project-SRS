@@ -164,7 +164,7 @@ const Signuporin = () => {
       console.log(`${isSignUp ? 'User created' : 'User signed in'}:`, response.data);
       if (!isSignUp) {
         localStorage.setItem('token', response.data.token); 
-        navigate('/'); // Navigate to the home page
+        navigate('/'); 
       }
     } catch (error) {
       console.error(`Error ${isSignUp ? 'creating user' : 'signing in'}:`, error);
