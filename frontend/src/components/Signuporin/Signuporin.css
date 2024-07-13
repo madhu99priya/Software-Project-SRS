@@ -4,9 +4,11 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: #333; 
-  background: url('../../assets/background_login.jpg') no-repeat center center fixed;
+  background-color: #333;
+  background: url('../../assets/background_sign.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
+
 
 .auth-container {
   max-width: 400px;
