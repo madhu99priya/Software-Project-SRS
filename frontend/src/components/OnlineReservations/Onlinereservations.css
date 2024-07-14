@@ -1,75 +1,3 @@
-/* 
- .online-reservations {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  input[type="date"] {
-    display: block;
-    margin: 0 auto 20px;
-    padding: 0.7rem;
-    font-size: 1.2rem;
-
-  }
-  
-  .slots {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .slot-header,
-  .time-slot {
-    display: flex;
-    width: 100%;
-  }
-  
-  .time,
-  .court {
-    flex: 1;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #ddd;
-  }
-  
-  .time-slot .court {
-    cursor: pointer;
-  }
-  
-  .court.booked {
-    background-color: #f44336;
-    color: #fff;
-    cursor: not-allowed;
-  }
-  
-  .court.available {
-    background-color:gray;
-    color: #fff;
-  }
-  
-  .confirmation {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .confirmation button {
-    margin: 0 10px;
-  }
-  
-  .confirm_btn {
-    margin-right: 20px;
-  }
-   */ 
-
-
-
-
-
 
    .online-reservations {
     max-width: 800px;
@@ -78,7 +6,7 @@
     background-color:#111;
   }
   
-  h2 {
+  h1 {
     text-align: center;
   }
   
