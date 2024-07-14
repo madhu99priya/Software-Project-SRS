@@ -1,5 +1,6 @@
- /* .online-reservations {
-    max-width: 1000px;
+/* 
+ .online-reservations {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
   }
@@ -11,6 +12,9 @@
   input[type="date"] {
     display: block;
     margin: 0 auto 20px;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+
   }
   
   .slots {
@@ -60,11 +64,7 @@
   .confirm_btn {
     margin-right: 20px;
   }
-   */
-
-
-
-
+   */ */
 
 
 

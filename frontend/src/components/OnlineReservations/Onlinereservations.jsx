@@ -149,6 +149,7 @@ import Modal from "../../components/Modal/Modal.jsx";
 import Payment from "./Payment.jsx";
 
 const OnlineReservations = () => {
+
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -158,6 +159,8 @@ const OnlineReservations = () => {
   };
 
   const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+
+//   const [selectedDate, setSelectedDate] = useState(""); // Initialize with an empty string
   const [bookings, setBookings] = useState([]);
   const [confirmation, setConfirmation] = useState({
     court: null,
@@ -166,8 +169,13 @@ const OnlineReservations = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetchBookings();
-  }, [selectedDate]);
+    // Initialize selectedDate state with today's date when the component mounts
+    const today = new Date();
+    const isoDate = today.toISOString().split("T")[0]; // Get today's date in ISO format
+    setSelectedDate(isoDate);
+    fetchBookings(isoDate); // Fetch bookings for today's date initially
+  }, []);
+
 
   const fetchBookings = async () => {
     try {
@@ -178,13 +186,35 @@ const OnlineReservations = () => {
       );
       console.log("Filtered bookings:", filteredBookings);
       setBookings(filteredBookings);
+//   useEffect(() => {
+//     // Save bookings to localStorage whenever bookings state changes
+//     localStorage.setItem("bookings", JSON.stringify(bookings));
+//   }, [bookings]);
+
+//   const fetchBookings = async (date) => {
+//     try {
+//       const response = await axios.get(`http://localhost:3000/api/bookings?date=${date}`);
+//       setBookings(response.data);
+
     } catch (error) {
       console.error("Error fetching bookings", error);
     }
   };
 
   const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
+    const selected = new Date(e.target.value);
+    const currentDate = new Date();
+
+    // Allow selection only for future dates or today
+    if (selected >= currentDate) {
+      const isoDate = selected.toISOString().split("T")[0];
+      setSelectedDate(isoDate);
+      fetchBookings(isoDate); // Fetch bookings for the selected date
+    } else {
+      alert("Please select a future date or today.");
+      setSelectedDate(new Date().toISOString().split("T")[0]); // Reset selected date to today
+      fetchBookings(new Date().toISOString().split("T")[0]); // Fetch bookings for today's date
+    }
   };
 
   const handleSlotClick = (court, timeSlot) => {
@@ -250,12 +280,13 @@ const OnlineReservations = () => {
 
   return (
     <div className="online-reservations">
-      <h2>Online Reservations</h2>
+      <h1>Online Reservations</h1>
       <input
         type="date"
         value={selectedDate}
         onChange={handleDateChange}
         className="date-selector"
+        min={new Date().toISOString().split("T")[0]} // Set min date to today's date
       />
       <div className="slots">
         <div className="slot-header">
