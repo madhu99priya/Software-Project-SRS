@@ -13,10 +13,10 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  // timeSlot: {
-  //   type: String,
-  //   required: true
-  // },
+  timeSlot: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
