@@ -149,7 +149,18 @@ import Modal from "../../components/Modal/Modal.jsx";
 import Payment from "./Payment.jsx";
 
 const OnlineReservations = () => {
-  const [selectedDate, setSelectedDate] = useState(""); // Initialize with an empty string
+
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+
+//   const [selectedDate, setSelectedDate] = useState(""); // Initialize with an empty string
   const [bookings, setBookings] = useState([]);
   const [confirmation, setConfirmation] = useState({
     court: null,
@@ -165,15 +176,26 @@ const OnlineReservations = () => {
     fetchBookings(isoDate); // Fetch bookings for today's date initially
   }, []);
 
-  useEffect(() => {
-    // Save bookings to localStorage whenever bookings state changes
-    localStorage.setItem("bookings", JSON.stringify(bookings));
-  }, [bookings]);
 
-  const fetchBookings = async (date) => {
+  const fetchBookings = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/bookings?date=${date}`);
-      setBookings(response.data);
+      const response = await axios.get("http://localhost:3000/api/bookings");
+      const filteredBookings = response.data.filter(
+        (booking) =>
+          new Date(booking.date).toISOString().split("T")[0] === selectedDate
+      );
+      console.log("Filtered bookings:", filteredBookings);
+      setBookings(filteredBookings);
+//   useEffect(() => {
+//     // Save bookings to localStorage whenever bookings state changes
+//     localStorage.setItem("bookings", JSON.stringify(bookings));
+//   }, [bookings]);
+
+//   const fetchBookings = async (date) => {
+//     try {
+//       const response = await axios.get(`http://localhost:3000/api/bookings?date=${date}`);
+//       setBookings(response.data);
+
     } catch (error) {
       console.error("Error fetching bookings", error);
     }
@@ -202,20 +224,14 @@ const OnlineReservations = () => {
 
   const confirmBooking = async () => {
     try {
-      await axios.post("http://localhost:3000/api/bookings", {
-        user: "UserID",
-        facility: `Court ${confirmation.court}`,
-        date: selectedDate,
-        timeSlot: confirmation.timeSlot,
-      });
-
-      // Update bookings state to include the new booking
       const newBooking = {
         user: "UserID",
         facility: `Court ${confirmation.court}`,
         date: selectedDate,
         timeSlot: confirmation.timeSlot,
       };
+      await axios.post("http://localhost:3000/api/bookings", newBooking);
+
       setBookings([...bookings, newBooking]);
 
       setShowModal(false);
@@ -269,6 +285,7 @@ const OnlineReservations = () => {
         type="date"
         value={selectedDate}
         onChange={handleDateChange}
+        className="date-selector"
         min={new Date().toISOString().split("T")[0]} // Set min date to today's date
       />
       <div className="slots">
