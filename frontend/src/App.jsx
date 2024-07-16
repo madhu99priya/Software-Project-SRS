@@ -5,10 +5,11 @@ import Home from '../src/components/Home/Home.jsx';
 import Signuporin from './components/Signuporin/Signuporin.jsx';
 import Admin from './components/Admin/Admin.jsx';
 import OnlineReservations from './components/OnlineReservations/Onlinereservations.jsx';
+import Member_account from './components/Member_account/Member_account.jsx';
 
 const App = () => {
   const location = useLocation();
-  const hideNavbarPaths = ['/memberlogin', '/online-reservations']; 
+  const hideNavbarPaths = ['/memberlogin', '/online-reservations', '/memberaccount']; 
 
   return (
     <div>
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/memberlogin" element={<Signuporin />} />
         <Route path='/adminpanel' element = {<Admin />} />
         <Route path='/online-reservations' element = {<OnlineReservations />} />
+        < Route path='/memberaccount' element = {<Member_account/>} />
 
       </Routes>
     </div>
