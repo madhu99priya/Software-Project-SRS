@@ -164,7 +164,8 @@ const Signuporin = () => {
       console.log(`${isSignUp ? 'User created' : 'User signed in'}:`, response.data);
       if (!isSignUp) {
         localStorage.setItem('token', response.data.token); 
-        navigate('/online-reservations'); 
+        // navigate('/online-reservations'); 
+        navigate('/memberaccount'); 
       }
     } catch (error) {
       console.error(`Error ${isSignUp ? 'creating user' : 'signing in'}:`, error);
