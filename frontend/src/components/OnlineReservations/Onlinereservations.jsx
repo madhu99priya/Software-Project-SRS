@@ -149,7 +149,6 @@ import Modal from "../../components/Modal/Modal.jsx";
 import Payment from "./Payment.jsx";
 
 const OnlineReservations = () => {
-
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -160,7 +159,7 @@ const OnlineReservations = () => {
 
   const [selectedDate, setSelectedDate] = useState(getCurrentDate());
 
-//   const [selectedDate, setSelectedDate] = useState(""); // Initialize with an empty string
+  //   const [selectedDate, setSelectedDate] = useState(""); // Initialize with an empty string
   const [bookings, setBookings] = useState([]);
   const [confirmation, setConfirmation] = useState({
     court: null,
@@ -176,7 +175,6 @@ const OnlineReservations = () => {
     fetchBookings(isoDate); // Fetch bookings for today's date initially
   }, []);
 
-
   const fetchBookings = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/bookings");
@@ -186,16 +184,15 @@ const OnlineReservations = () => {
       );
       console.log("Filtered bookings:", filteredBookings);
       setBookings(filteredBookings);
-//   useEffect(() => {
-//     // Save bookings to localStorage whenever bookings state changes
-//     localStorage.setItem("bookings", JSON.stringify(bookings));
-//   }, [bookings]);
+      //   useEffect(() => {
+      //     // Save bookings to localStorage whenever bookings state changes
+      //     localStorage.setItem("bookings", JSON.stringify(bookings));
+      //   }, [bookings]);
 
-//   const fetchBookings = async (date) => {
-//     try {
-//       const response = await axios.get(`http://localhost:3000/api/bookings?date=${date}`);
-//       setBookings(response.data);
-
+      //   const fetchBookings = async (date) => {
+      //     try {
+      //       const response = await axios.get(`http://localhost:3000/api/bookings?date=${date}`);
+      //       setBookings(response.data);
     } catch (error) {
       console.error("Error fetching bookings", error);
     }
@@ -280,7 +277,9 @@ const OnlineReservations = () => {
 
   return (
     <div className="online-reservations">
-      <h1>Online Reservations</h1>
+      <h1>
+        Online <span className="res_h">Reservations</span>
+      </h1>
       <input
         type="date"
         value={selectedDate}
