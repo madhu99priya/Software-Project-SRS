@@ -22,15 +22,8 @@ const OnlineReservations = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-//     // Initialize selectedDate state with today's date when the component mounts
-//     const today = new Date();
-//     const isoDate = today.toISOString().split("T")[0]; // Get today's date in ISO format
-//     setSelectedDate(isoDate);
-//     fetchBookings(isoDate); // Fetch bookings for today's date initially
-//   }, []);
     fetchBookings();
   }, [selectedDate]);
-
 
   const fetchBookings = async () => {
     try {
@@ -121,6 +114,7 @@ const OnlineReservations = () => {
         value={selectedDate}
         onChange={handleDateChange}
         className="date-selector"
+        min={getCurrentDate()} // Set minimum date to today
       />
       <div className="slots">
         <div className="slot-header">
@@ -151,4 +145,3 @@ const OnlineReservations = () => {
 };
 
 export default OnlineReservations;
-
