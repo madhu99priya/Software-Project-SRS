@@ -1,28 +1,28 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
   user: {
     type: String,
-    required: true
+    required: true,
   },
   facility: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    required: true
+    required: true,
   },
   timeSlot: {
     type: String,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const Booking = mongoose.model('Booking', bookingSchema);
+const Booking = mongoose.model("Booking", bookingSchema);
 
 export default Booking;

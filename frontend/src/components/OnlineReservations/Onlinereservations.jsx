@@ -22,8 +22,15 @@ const OnlineReservations = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+//     // Initialize selectedDate state with today's date when the component mounts
+//     const today = new Date();
+//     const isoDate = today.toISOString().split("T")[0]; // Get today's date in ISO format
+//     setSelectedDate(isoDate);
+//     fetchBookings(isoDate); // Fetch bookings for today's date initially
+//   }, []);
     fetchBookings();
   }, [selectedDate]);
+
 
   const fetchBookings = async () => {
     try {
@@ -106,7 +113,9 @@ const OnlineReservations = () => {
 
   return (
     <div className="online-reservations">
-      <h1>Online Reservations</h1>
+      <h1>
+        Online <span className="res_h">Reservations</span>
+      </h1>
       <input
         type="date"
         value={selectedDate}

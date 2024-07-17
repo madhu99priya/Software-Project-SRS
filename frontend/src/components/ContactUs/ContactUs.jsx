@@ -26,11 +26,15 @@
 
 // export default ContactUs;
 
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
-import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhone,
+  FaPaperPlane,
+} from "react-icons/fa";
 import "./ContactUs.css";
 
 const ContactUs = () => {
@@ -55,7 +59,7 @@ const ContactUs = () => {
   };
 
   return (
-        <div className="contact-container">
+    <div className="contact-container">
       <h1>Contact Us</h1>
       <div className="contact-content">
         <div className="contact-details">
@@ -90,11 +94,14 @@ const ContactUs = () => {
 
           <label>Message:</label>
           <textarea
+            className="msg"
             rows="6"
             {...register("message", { required: true })}
           ></textarea>
 
-          <button type="submit">Send Message</button>
+          <button type="submit">
+            Send <FaPaperPlane className="send-icon" />
+          </button>
         </form>
       </div>
     </div>
