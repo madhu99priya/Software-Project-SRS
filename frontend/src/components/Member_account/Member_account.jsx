@@ -1,11 +1,10 @@
 import React from 'react'
+import Sidebar from './Sidebar.jsx'
 
 function Member_account() {
   return (
     <div>
-        
-        <h1>Member account</h1>
-      
+        <Sidebar />   
     </div>
   )
 }
