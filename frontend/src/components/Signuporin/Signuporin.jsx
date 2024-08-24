@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import './Signuporin.css';
 // import Backbutton from '../Backbutton/Backbutton.jsx';
 import Logo from '../../assets/Logo2.png';
+import { enqueueSnackbar, useSnackbar } from 'notistack';
 
 const Signuporin = () => {
   const [isSignUp, setIsSignUp] = useState(true);
+  const {enqueueSnackbar} = useSnackbar();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,13 +34,17 @@ const Signuporin = () => {
     try {
       const response = await axios.post(url, formData); 
       console.log(`${isSignUp ? 'User created' : 'User signed in'}:`, response.data);
+      navigate('/memberaccount'); 
+      enqueueSnackbar('You have signed up successfully.',{variant: 'success', autoHideDuration: 1000});
       if (!isSignUp) {
         localStorage.setItem('token', response.data.token); 
         // navigate('/online-reservations'); 
         navigate('/memberaccount'); 
+        // enqueueSnackbar('You have logged in successfully.',{variant: 'success', autoHideDuration: 1000});
       }
     } catch (error) {
       console.error(`Error ${isSignUp ? 'creating user' : 'signing in'}:`, error);
+      enqueueSnackbar('Your Username or Password is incorrect, try again', {variant: 'error', autoHideDuration: 1000});
     }
   };
 

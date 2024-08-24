@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import homeLogo from "../../assets/Logo.jpeg";
 import "./Sidebar_Member.css";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   ProductOutlined,
   LogoutOutlined,
@@ -11,6 +12,7 @@ import {
   SettingOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
+import { MdMargin } from "react-icons/md";
 
 const { Sider } = Layout;
 
@@ -56,15 +58,26 @@ const Sidebar_Member = () => {
           <Menu.Item key="dashboard" icon={<HomeOutlined />}>
             Dashboard
           </Menu.Item>
+
+          
           <Menu.Item key="new_bookings" icon={<BookOutlined />}>
+          <Link to='/online-reservations'>
             New Bookings
+            </Link>
           </Menu.Item>
+          
+
           <Menu.Item key="prev_bookings" icon={<CarryOutOutlined />}>
             Previous Bookings
           </Menu.Item>
+
           <Menu.Item key="packages" icon={<ProductOutlined />}>
+
+          <Link to = '/packages'>
             Packages
+            </Link>
           </Menu.Item>
+          
           <Menu.Item key="notifications" icon={<NotificationOutlined />}>
             Notifications
           </Menu.Item>
