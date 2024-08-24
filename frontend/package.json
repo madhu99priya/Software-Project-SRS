@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.7",
     "@radix-ui/react-label": "^2.1.0",
     "@stripe/react-stripe-js": "^2.7.3",
     "@tabler/icons-react": "^3.12.0",
