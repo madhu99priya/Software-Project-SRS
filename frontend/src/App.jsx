@@ -6,6 +6,7 @@ import Signuporin from './components/Signuporin/Signuporin.jsx';
 import Admin from './components/Admin/Admin.jsx';
 import OnlineReservations from './components/OnlineReservations/Onlinereservations.jsx';
 import Member_account from './components/Member_account/Member_account.jsx';
+//import Signup from './components/SignUp/Signupprebuilt.tsx'
 
 const App = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/memberlogin" element={<Signuporin />} />
+        {/* <Route path="/memberlogin" element={< Signup/>} /> */}
         <Route path='/adminpanel' element = {<Admin />} />
         <Route path='/online-reservations' element = {<OnlineReservations />} />
         < Route path='/memberaccount' element = {<Member_account/>} />
