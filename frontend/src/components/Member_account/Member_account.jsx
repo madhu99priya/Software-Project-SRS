@@ -1,12 +1,15 @@
+
 // MemberDashboard.js
 import React from "react";
 import { Layout } from "antd";
 import Sidebar from "./Sidebar_Member";
 
+
 const { Header, Content } = Layout;
 
 const Member_account = () => {
   return (
+
     <Layout>
       <Sidebar />
       <Layout className="site-layout">
