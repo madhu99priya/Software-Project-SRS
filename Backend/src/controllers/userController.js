@@ -1,7 +1,6 @@
-import User from '../models/UserModel.js';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-
+import User from "../models/UserModel.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (req, res) => {
   try {
@@ -13,19 +12,18 @@ export const createUser = async (req, res) => {
   }
 };
 
-
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).send({ error: 'User not found' });
+      return res.status(404).send({ error: "User not found" });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).send({ error: 'Invalid credentials' });
+      return res.status(400).send({ error: "Invalid credentials" });
     }
-    const token = jwt.sign({ userId: user.userId }, 'secret_key'); // we have to use variable for the secret key
+    const token = jwt.sign({ userId: user.userId }, "secret_key"); // we have to use variable for the secret key
     res.status(200).send({ user, token });
   } catch (error) {
     res.status(500).send(error);
@@ -41,7 +39,6 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-
 export const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -54,13 +51,15 @@ export const getUserById = async (req, res) => {
   }
 };
 
-
 export const updateUser = async (req, res) => {
   try {
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, 10);
     }
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!user) {
       return res.status(404).send();
     }
@@ -69,7 +68,6 @@ export const updateUser = async (req, res) => {
     res.status(400).send(error);
   }
 };
-
 
 export const deleteUser = async (req, res) => {
   try {

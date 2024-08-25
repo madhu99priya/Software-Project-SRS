@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom';
-import './Signuporin.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Signuporin.css";
 // import Backbutton from '../Backbutton/Backbutton.jsx';
-import Logo from '../../assets/Logo2.png';
+import Logo from "../../assets/Logo2.png";
 
 const Signuporin = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    phone: '',
-    age: '',
-    address: '',
-    membershipType: 'BRONZE SHUTTLE'
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    age: "",
+    address: "",
+    membershipType: "BRONZE SHUTTLE",
   });
 
   const navigate = useNavigate();
@@ -22,23 +22,32 @@ const Signuporin = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isSignUp ? 'http://localhost:3000/api/users/signup' : 'http://localhost:3000/api/users/signin';
+    const url = isSignUp
+      ? "http://localhost:3000/api/users/signup"
+      : "http://localhost:3000/api/users/signin";
     try {
-      const response = await axios.post(url, formData); 
-      console.log(`${isSignUp ? 'User created' : 'User signed in'}:`, response.data);
+      const response = await axios.post(url, formData);
+      console.log(
+        `${isSignUp ? "User created" : "User signed in"}:`,
+        response.data
+      );
       if (!isSignUp) {
-        localStorage.setItem('token', response.data.token); 
-        // navigate('/online-reservations'); 
-        navigate('/memberaccount'); 
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userName", response.data.user.name);
+        // navigate('/online-reservations');
+        navigate("/memberaccount");
       }
     } catch (error) {
-      console.error(`Error ${isSignUp ? 'creating user' : 'signing in'}:`, error);
+      console.error(
+        `Error ${isSignUp ? "creating user" : "signing in"}:`,
+        error
+      );
     }
   };
 
@@ -48,12 +57,10 @@ const Signuporin = () => {
 
   return (
     <div className="auth-wrapper">
-      <div className='backbutton-container'>
-        {/* <Backbutton /> */}
-      </div>
+      <div className="backbutton-container">{/* <Backbutton /> */}</div>
       <div className="auth-container">
         <img src={Logo} alt="Logo" className="auth-logo" />
-        <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
+        <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
         <form onSubmit={handleSubmit}>
           {isSignUp && (
             <>
@@ -81,7 +88,6 @@ const Signuporin = () => {
                 onChange={handleChange}
                 inputProps={{ min: 1 }}
                 required
-                
               />
               <input
                 type="text"
@@ -119,9 +125,9 @@ const Signuporin = () => {
             onChange={handleChange}
             required
           />
-          <button type="submit">{isSignUp ? 'Sign Up' : 'Sign In'}</button>
+          <button type="submit">{isSignUp ? "Sign Up" : "Sign In"}</button>
           <button onClick={toggleAuthMode} className="toggle-button">
-            {isSignUp ? 'Switch to Sign In' : 'Switch to Sign Up'}
+            {isSignUp ? "Switch to Sign In" : "Switch to Sign Up"}
           </button>
         </form>
       </div>
@@ -130,4 +136,3 @@ const Signuporin = () => {
 };
 
 export default Signuporin;
-
