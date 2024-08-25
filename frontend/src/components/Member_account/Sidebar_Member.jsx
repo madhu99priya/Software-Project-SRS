@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import homeLogo from "../../assets/Logo.jpeg";
 import "./Sidebar_Member.css";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import {
   ProductOutlined,
   LogoutOutlined,
@@ -18,23 +18,24 @@ const { Sider } = Layout;
 
 const Sidebar_Member = ({ setActiveComponent }) => {
   const [selectedKey, setSelectedKey] = useState("dashboard");
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
-  const handleMouseEnter = () => {
-    setCollapsed(false);
-  };
+  // const handleMouseEnter = () => {
+  //   setCollapsed(false);
+  // };
 
-  const handleMouseLeave = () => {
-    setCollapsed(true);
-  };
+  // const handleMouseLeave = () => {
+  //   setCollapsed(true);
+  // };
 
   return (
     <Sider
       collapsible
       collapsed={collapsed}
-      trigger={null}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onCollapse={(collapsed) => setCollapsed(collapsed)}
+      // trigger={null}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
       style={{ minHeight: "100vh" }}
     >
       <div className="logo-container">
@@ -60,25 +61,18 @@ const Sidebar_Member = ({ setActiveComponent }) => {
             Dashboard
           </Menu.Item>
 
-          
           <Menu.Item key="new_bookings" icon={<BookOutlined />}>
-          <Link to='/online-reservations'>
             New Bookings
-            </Link>
           </Menu.Item>
-          
 
           <Menu.Item key="prev_bookings" icon={<CarryOutOutlined />}>
             Previous Bookings
           </Menu.Item>
 
           <Menu.Item key="packages" icon={<ProductOutlined />}>
-
-          <Link to = '/packages'>
-            Packages
-            </Link>
+            <Link to="/packages">Packages</Link>
           </Menu.Item>
-          
+
           <Menu.Item key="notifications" icon={<NotificationOutlined />}>
             Notifications
           </Menu.Item>

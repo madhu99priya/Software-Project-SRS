@@ -26,7 +26,7 @@
   
   .menu-wrapper {
     margin-top: 20px;
-    min-height: 400px;
+    min-height: 350px;
   }
   
   .logout-wrapper {
@@ -35,7 +35,7 @@
     border-top: 1px solid darkblue;
   }
   
-  .ant-layout-sider {
-    transition: all 0.2s ease-in-out; /* Smooth transition for collapse/expand */
-  }
+  /* .ant-layout-sider {
+    transition: all 0.2s ease-in-out; Smooth transition for collapse/expand 
+  }*/
   

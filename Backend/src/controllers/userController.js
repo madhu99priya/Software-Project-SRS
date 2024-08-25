@@ -80,3 +80,20 @@ export const deleteUser = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+// userController.js
+
+export const getUserByUserId = async (req, res) => {
+  console.log("Received userId:", req.params.userId); // Debugging line
+  try {
+    const user = await User.findOne({ userId: req.params.userId });
+    console.log("User found:", user); // Debugging line
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error fetching user:", error); // Debugging line
+    res.status(500).send(error);
+  }
+};

@@ -32,14 +32,17 @@
 // export default Member_account;
 
 import React, { useState } from "react";
-import Sidebar_Member from "./Sidebar_Member";
-import Dashboard from "./Dashboard";
-// import NewBookings from './components/NewBookings';
+import { Layout } from "antd";
+import Sidebar_Member from "./Sidebar_Member.jsx";
+import Dashboard from "./Dashboard.jsx";
+import NewBookings from "./NewBookings.jsx";
 // import PreviousBookings from './components/PreviousBookings';
 // import Packages from './components/Packages';
 // import Notifications from './components/Notifications';
 // import Settings from './components/Settings';
 // import Logout from './components/Logout';
+
+const { Content } = Layout;
 
 const Member_account = () => {
   // State to keep track of the active component
@@ -50,8 +53,8 @@ const Member_account = () => {
     switch (activeComponent) {
       case "dashboard":
         return <Dashboard />;
-      // case 'new_bookings':
-      //   return <NewBookings />;
+      case "new_bookings":
+        return <NewBookings />;
       // case 'prev_bookings':
       //   return <PreviousBookings />;
       // case 'packages':
@@ -68,15 +71,23 @@ const Member_account = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      {/* Sidebar on the left */}
+    <Layout style={{ height: "100vh", minWidth: "100vw" }}>
+      {/* Sidebar Component */}
       <Sidebar_Member setActiveComponent={setActiveComponent} />
 
-      {/* Main content on the right */}
-      <div style={{ flex: 1, padding: "20px", background: "#f0f2f5" }}>
-        {renderComponent()}
-      </div>
-    </div>
+      {/* Main Content Area */}
+      <Layout>
+        <Content
+          style={{
+            padding: "20px",
+            background: "#111", // Black background
+            overflow: "auto",
+          }}
+        >
+          {renderComponent()}
+        </Content>
+      </Layout>
+    </Layout>
   );
 };
 
