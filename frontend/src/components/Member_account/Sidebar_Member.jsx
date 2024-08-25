@@ -70,7 +70,8 @@ const Sidebar_Member = ({ setActiveComponent }) => {
           </Menu.Item>
 
           <Menu.Item key="packages" icon={<ProductOutlined />}>
-            <Link to="/packages">Packages</Link>
+            {/* <Link to="/packages">Packages</Link> */}
+            Packages
           </Menu.Item>
 
           <Menu.Item key="notifications" icon={<NotificationOutlined />}>

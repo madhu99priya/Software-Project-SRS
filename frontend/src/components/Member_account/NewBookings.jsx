@@ -105,7 +105,7 @@ const NewBookings = () => {
   };
 
   return (
-    <div className="online-reservations">
+    <div className="online-reservations-n">
       <h1>
         Online <span className="res_h">Reservations</span>
       </h1>

@@ -36,6 +36,7 @@ import { Layout } from "antd";
 import Sidebar_Member from "./Sidebar_Member.jsx";
 import Dashboard from "./Dashboard.jsx";
 import NewBookings from "./NewBookings.jsx";
+import Memberplans from '../../components/memberplans/Memberplans.jsx'
 // import PreviousBookings from './components/PreviousBookings';
 // import Packages from './components/Packages';
 // import Notifications from './components/Notifications';
@@ -57,8 +58,8 @@ const Member_account = () => {
         return <NewBookings />;
       // case 'prev_bookings':
       //   return <PreviousBookings />;
-      // case 'packages':
-      //   return <Packages />;
+      case 'packages':
+        return <Memberplans />;
       // case 'notifications':
       //   return <Notifications />;
       // case 'settings':

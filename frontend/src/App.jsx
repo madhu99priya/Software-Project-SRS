@@ -41,8 +41,8 @@ const App = () => {
         <Route path="/online-reservations" element={<OnlineReservations />} />
         <Route path="/memberaccount" element={<Member_account />} />
         <Route path="/packages" element={<Plans />} />
-//         <Route path='/online-reservations' element = {<Member_reservation/>} />
-//         <Route path='/packages' element = {<Memberplans />} />
+        {/* <Route path='/online-reservations' element = {<Member_reservation/>} />
+        <Route path='/packages' element = {<Memberplans />} /> */}
 
       </Routes>
     </div>
