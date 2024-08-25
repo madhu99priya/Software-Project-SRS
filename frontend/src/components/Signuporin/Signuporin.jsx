@@ -5,6 +5,7 @@ import './Signuporin.css';
 import Logo from '../../assets/Logo2.png';
 import { enqueueSnackbar, useSnackbar } from 'notistack';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import backgroundPattern from '../../assets/stacked-waves-haikei.svg'
 
 const Signuporin = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -66,7 +67,11 @@ const Signuporin = () => {
   };
 
   return (
-    <div className="auth-wrapper">
+    <div className="auth-wrapper"style={{
+      backgroundImage: `url(${backgroundPattern}), linear-gradient(to right, #f8f9fa, #e9ecef)`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    }}>
 
       <div className='backbutton-container'></div>
       <div className="auth-container">

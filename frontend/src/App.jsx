@@ -13,7 +13,9 @@ import OnlineReservations from "./components/OnlineReservations/Onlinereservatio
 import Member_account from "./components/Member_account/Member_account.jsx";
 import Dashboard from "./components/Member_account/Dashboard.jsx";
 //import Signup from './components/SignUp/Signupprebuilt.tsx'
-import Plans from './components/Plans/Plans.jsx';
+import Memberplans from './components/memberplans/Memberplans.jsx';
+import Member_reservation from './components/Memberreservation/Member_reservation.jsx'
+
 
 const App = () => {
   const location = useLocation();
@@ -29,9 +31,9 @@ const App = () => {
         {/* <Route path="/memberlogin" element={< Signup/>} /> */}
 
         <Route path='/adminpanel' element = {<Admin />} />
-        <Route path='/online-reservations' element = {<OnlineReservations />} />
+        <Route path='/online-reservations' element = {<Member_reservation/>} />
         < Route path='/memberaccount' element = {<Member_account/>} />
-        <Route path='/packages' element = {<Plans />} />
+        <Route path='/packages' element = {<Memberplans />} />
       </Routes>
     </div>
   );

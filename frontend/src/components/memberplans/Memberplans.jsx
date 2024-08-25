@@ -1,20 +1,19 @@
-
 import React from 'react'
-import './Plans.css'
+import './Memberplans.css'
 import { plansData } from '../../../data/plansData.jsx'
 import whiteTick from '../../assets/whiteTick.png'
 import { Link } from 'react-router-dom'
-import { MdWidthFull } from 'react-icons/md'
+
 
 const Plans = () => {
   return (
     
     <div className="plans-container">
-        <div className="programs_header" style={{gap:' 2.4rem'}}>
+        {/* <div className="programs_header" style={{gap:' 2.4rem'}}>
             <span className='stroke-text'>LEVEL UP </span>
             <span> YOUR <br></br>JOURNEY</span>
             <span className='stroke-text'>  WITH US </span>
-        </div>
+        </div> */}
 
         <div className="plans">
            { plansData.map((plan) => (
@@ -31,7 +30,7 @@ const Plans = () => {
                         </div>
                     ))}
                 </div>
-                <Link to = '/memberlogin' className='button'>Membership Details</Link>
+                <Link to = '/memberaccount' className='button'>Subscribe</Link>
             </div>
            ))}
 
