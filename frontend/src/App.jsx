@@ -13,14 +13,12 @@ import OnlineReservations from "./components/OnlineReservations/Onlinereservatio
 import Member_account from "./components/Member_account/Member_account.jsx";
 import Dashboard from "./components/Member_account/Dashboard.jsx";
 //import Signup from './components/SignUp/Signupprebuilt.tsx'
+import Plans from './components/Plans/Plans.jsx';
 
 const App = () => {
   const location = useLocation();
-  const hideNavbarPaths = [
-    "/memberlogin",
-    "/online-reservations",
-    "/memberaccount",
-  ];
+
+  const hideNavbarPaths = ['/memberlogin', '/online-reservations', '/memberaccount', '/packages']; 
 
   return (
     <div>
@@ -29,10 +27,11 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/memberlogin" element={<Signuporin />} />
         {/* <Route path="/memberlogin" element={< Signup/>} /> */}
-        <Route path="/adminpanel" element={<Admin />} />
-        <Route path="/online-reservations" element={<OnlineReservations />} />
-        <Route path="/memberaccount" element={<Member_account />} />
-        <Route path="dashboard" element={<Dashboard />} />
+
+        <Route path='/adminpanel' element = {<Admin />} />
+        <Route path='/online-reservations' element = {<OnlineReservations />} />
+        < Route path='/memberaccount' element = {<Member_account/>} />
+        <Route path='/packages' element = {<Plans />} />
       </Routes>
     </div>
   );
