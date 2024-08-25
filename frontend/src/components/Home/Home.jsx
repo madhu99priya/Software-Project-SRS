@@ -22,7 +22,7 @@ const Home = () => {
        
       <section id='packages'>
       < Plans />
-      <Join />
+      {/* <Join /> */}
       </section> 
 
       <section id='onlinereservations'>
