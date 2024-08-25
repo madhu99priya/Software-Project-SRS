@@ -16,16 +16,14 @@ import { MdMargin } from "react-icons/md";
 
 const { Sider } = Layout;
 
-const Sidebar_Member = () => {
+const Sidebar_Member = ({ setActiveComponent }) => {
   const [selectedKey, setSelectedKey] = useState("dashboard");
-  const [collapsed, setCollapsed] = useState(true); // Start with the sidebar collapsed
+  const [collapsed, setCollapsed] = useState(true);
 
-  // Expand sidebar when the mouse enters
   const handleMouseEnter = () => {
     setCollapsed(false);
   };
 
-  // Collapse sidebar when the mouse leaves
   const handleMouseLeave = () => {
     setCollapsed(true);
   };
@@ -35,14 +33,14 @@ const Sidebar_Member = () => {
       collapsible
       collapsed={collapsed}
       trigger={null}
-      onMouseEnter={handleMouseEnter} // Expand on hover
-      onMouseLeave={handleMouseLeave} // Collapse on mouse leave
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       style={{ minHeight: "100vh" }}
     >
       <div className="logo-container">
         <img src={homeLogo} alt="Company Logo" className="logo-image" />
       </div>
-      {!collapsed && ( // Only show brand name when sidebar is not collapsed
+      {!collapsed && (
         <div className="brand-name">
           <p>SRS</p>
           <p>BADMINTON</p>
@@ -52,7 +50,10 @@ const Sidebar_Member = () => {
         <Menu
           mode="inline"
           selectedKeys={[selectedKey]}
-          onClick={({ key }) => setSelectedKey(key)}
+          onClick={({ key }) => {
+            setSelectedKey(key);
+            setActiveComponent(key);
+          }}
           theme="dark"
         >
           <Menu.Item key="dashboard" icon={<HomeOutlined />}>
@@ -87,7 +88,10 @@ const Sidebar_Member = () => {
         <Menu
           mode="inline"
           selectedKeys={[selectedKey]}
-          onClick={({ key }) => setSelectedKey(key)}
+          onClick={({ key }) => {
+            setSelectedKey(key);
+            setActiveComponent(key);
+          }}
           theme="dark"
         >
           <Menu.Item key="settings" icon={<SettingOutlined />}>
