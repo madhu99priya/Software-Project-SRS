@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom';
-import './Signuporin.css';
-import Logo from '../../assets/Logo2.png';
-import { enqueueSnackbar, useSnackbar } from 'notistack';
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Signuporin.css";
+import Logo from "../../assets/Logo2.png";
+import { enqueueSnackbar, useSnackbar } from "notistack";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const Signuporin = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({
-
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '', 
-    phone: '',
-    age: '',
-    address: '',
-    membershipType: 'BRONZE SHUTTLE'
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    age: "",
+    address: "",
+    membershipType: "BRONZE SHUTTLE",
   });
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,26 +33,43 @@ const Signuporin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     if (isSignUp && formData.password !== formData.confirmPassword) {
-      enqueueSnackbar('Passwords do not match', { variant: 'error', autoHideDuration: 1000 });
+      enqueueSnackbar("Passwords do not match", {
+        variant: "error",
+        autoHideDuration: 1000,
+      });
       return;
     }
-    
-    const url = isSignUp ? 'http://localhost:3000/api/users/signup' : 'http://localhost:3000/api/users/signin';
+
+    const url = isSignUp
+      ? "http://localhost:3000/api/users/signup"
+      : "http://localhost:3000/api/users/signin";
     try {
-      const response = await axios.post(url, formData); 
-      console.log(`${isSignUp ? 'User created' : 'User signed in'}:`, response.data);
-      navigate('/memberaccount'); 
-      enqueueSnackbar('You have signed up successfully.',{variant: 'success', autoHideDuration: 1000});
+      const response = await axios.post(url, formData);
+      console.log(
+        `${isSignUp ? "User created" : "User signed in"}:`,
+        response.data
+      );
+      navigate("/memberaccount");
+      enqueueSnackbar("You have signed up successfully.", {
+        variant: "success",
+        autoHideDuration: 1000,
+      });
       if (!isSignUp) {
-         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.user.name);
-        navigate('/memberaccount'); 
+        localStorage.setItem("userId", response.data.user.userId);
+        navigate("/memberaccount");
       }
     } catch (error) {
-      console.error(`Error ${isSignUp ? 'creating user' : 'signing in'}:`, error);
-      enqueueSnackbar('Your Username or Password is incorrect, try again', {variant: 'error', autoHideDuration: 1000});
+      console.error(
+        `Error ${isSignUp ? "creating user" : "signing in"}:`,
+        error
+      );
+      enqueueSnackbar("Your Username or Password is incorrect, try again", {
+        variant: "error",
+        autoHideDuration: 1000,
+      });
     }
   };
 
@@ -67,8 +83,7 @@ const Signuporin = () => {
 
   return (
     <div className="auth-wrapper">
-
-      <div className='backbutton-container'></div>
+      <div className="backbutton-container"></div>
       <div className="auth-container">
         <img src={Logo} alt="Logo" className="auth-logo" />
         <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
@@ -157,7 +172,7 @@ const Signuporin = () => {
               </span>
             </div>
           )}
-          <button type="submit">{isSignUp ? 'Sign Up' : 'Sign In'}</button>
+          <button type="submit">{isSignUp ? "Sign Up" : "Sign In"}</button>
           <button onClick={toggleAuthMode} className="toggle-button">
             {isSignUp ? "Switch to Sign In" : "Switch to Sign Up"}
           </button>
