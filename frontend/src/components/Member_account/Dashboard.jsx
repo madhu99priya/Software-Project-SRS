@@ -17,6 +17,7 @@ const Dashboard = () => {
     "GOLD SHUTTLE": 360,
   };
 
+
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
     const storedUserId = localStorage.getItem("userId");
@@ -44,6 +45,18 @@ const Dashboard = () => {
         })
         .catch((error) => {
           console.error("There was an error fetching the user data!", error);
+        });
+
+      axios
+        .get(`http://localhost:3000/api/users/userId/${storedUserId}`)
+        .then((response) => {
+          setTotalBookedHours(response.data.totalBookedHours);
+        })
+        .catch((error) => {
+          console.error(
+            "There was an error fetching the total booked hours!",
+            error
+          );
         });
     }
   }, []);
@@ -81,6 +94,10 @@ const Dashboard = () => {
             "100%": "blue", // End color (e.g., green)
           }}
         />
+      </Card>
+      <Card className="hours-card">
+        <h2>Total Booked Hours</h2>
+        <p>{totalBookedHours} hours</p>
       </Card>
     </div>
   );

@@ -77,32 +77,41 @@ const OnlineReservations = () => {
 
   const renderSlots = () => {
     const timeSlots = [];
+    const now = new Date(); // Get the current date and time
+    const currentHour = now.getHours(); // Get the current hour
+    const currentMinutes = now.getMinutes(); // Get the current minutes
+  
     for (let hour = 8; hour <= 20; hour++) {
-      timeSlots.push(`${hour}:00-${hour + 1}:00`);
+      const timeSlot = `${hour}:00-${hour + 1}:00`;
+      const isPast = selectedDate === getCurrentDate() && (hour < currentHour || (hour === currentHour && currentMinutes >= 0));
+      timeSlots.push({ timeSlot, isPast });
     }
-
-    return timeSlots.map((timeSlot, index) => (
+  
+    return timeSlots.map(({ timeSlot, isPast }, index) => (
       <div key={index} className="time-slot">
         <div className="time">{timeSlot}</div>
         {[1, 2, 3, 4].map((court) => {
           const isSlotCurrentlyBooked = isSlotBooked(court, timeSlot);
+          const isDisabled = isPast || isSlotCurrentlyBooked; // Disable past or currently in-progress time slots
+  
           return (
             <div
               key={court}
               className={`court ${
-                isSlotCurrentlyBooked ? "booked" : "available"
+                isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
               }`}
               onClick={() =>
-                !isSlotCurrentlyBooked && handleSlotClick(court, timeSlot)
+                !isDisabled && handleSlotClick(court, timeSlot)
               }
             >
-              {isSlotCurrentlyBooked ? "Booked" : "Available"}
+              {isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
             </div>
           );
         })}
       </div>
     ));
   };
+  
 
   return (
     <div className="online-reservations">
