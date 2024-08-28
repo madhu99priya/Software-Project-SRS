@@ -8,12 +8,11 @@ import { Link } from 'react-router-dom'
 const Plans = () => {
   return (
     
-    <div className="plans-container">
-        {/* <div className="programs_header" style={{gap:' 2.4rem'}}>
-            <span className='stroke-text'>LEVEL UP </span>
-            <span> YOUR <br></br>JOURNEY</span>
-            <span className='stroke-text'>  WITH US </span>
-        </div> */}
+    <div className="plans-container-n">
+        <div className="programs_header" style={{gap:' 2.4rem'}}>
+            <span >Plans for</span>
+            <span className='stroke-text'>  Badminton </span>
+        </div>
 
         <div className="plans">
            { plansData.map((plan) => (

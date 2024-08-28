@@ -67,7 +67,8 @@
   }
    */ 
 
-   .online-reservations-m {
+   .online-reservations-n {
+
     max-width: 90vw;
     max-height: 60vh;
     margin: 0 auto;
@@ -77,7 +78,7 @@
     color: white
   }
   
-  h1 {
+  .online-reservations-n h1 {
     text-align: center;
     margin-top: 0;
   }

@@ -1,10 +1,8 @@
-
 import React from 'react'
 import './Plans.css'
 import { plansData } from '../../../data/plansData.jsx'
 import whiteTick from '../../assets/whiteTick.png'
 import { Link } from 'react-router-dom'
-import { MdWidthFull } from 'react-icons/md'
 
 const Plans = () => {
   return (
