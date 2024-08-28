@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import homeLogo from "../../assets/Logo.jpeg";
 import "./Sidebar_Member.css";
+import LogoutPopup from "./LogoutPopup.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ProductOutlined,
@@ -12,13 +13,30 @@ import {
   SettingOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
-import { MdMargin } from "react-icons/md";
+
 
 const { Sider } = Layout;
 
 const Sidebar_Member = ({ setActiveComponent }) => {
   const [selectedKey, setSelectedKey] = useState("dashboard");
   const [collapsed, setCollapsed] = useState(false);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setShowLogoutPopup(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutPopup(false);
+    localStorage.clear();// In order to clear the local storage
+    navigate('/');
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutPopup(false);
+  };
 
   // const handleMouseEnter = () => {
   //   setCollapsed(false);
@@ -92,10 +110,13 @@ const Sidebar_Member = ({ setActiveComponent }) => {
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             Settings
           </Menu.Item>
-          <Menu.Item key="logout" icon={<LogoutOutlined />}>
+          <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout} className="logout-button">
             Logout
           </Menu.Item>
         </Menu>
+        {showLogoutPopup && (
+        <LogoutPopup onConfirm={handleConfirmLogout} onCancel={handleCancelLogout} />
+      )}
       </div>
     </Sider>
   );

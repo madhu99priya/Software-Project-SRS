@@ -95,10 +95,7 @@ const Dashboard = () => {
           }}
         />
       </Card>
-      <Card className="hours-card">
-        <h2>Total Booked Hours</h2>
-        <p>{totalBookedHours} hours</p>
-      </Card>
+     
     </div>
   );
 };
