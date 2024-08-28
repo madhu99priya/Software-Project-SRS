@@ -51,7 +51,7 @@ const OnlineReservations = () => {
   const confirmBooking = async () => {
     try {
       const newBooking = {
-        user: "UserID",
+        user: "Guest", // Set this as "Guest" for guest bookings
         facility: `Court ${confirmation.court}`,
         date: selectedDate,
         timeSlot: confirmation.timeSlot,

@@ -48,10 +48,12 @@ const NewBookings = () => {
     setShowModal(true);
   };
 
+  const storedUserId = localStorage.getItem("userId");
+
   const confirmBooking = async () => {
     try {
       const newBooking = {
-        user: "UserID",
+        user: storedUserId, // Ensure you pass the correct userId here
         facility: `Court ${confirmation.court}`,
         date: selectedDate,
         timeSlot: confirmation.timeSlot,
@@ -105,6 +107,7 @@ const NewBookings = () => {
   };
 
   return (
+
     <div className="online-reservations-n">
       <h1>
         Online <span className="res_h">Reservations</span>
