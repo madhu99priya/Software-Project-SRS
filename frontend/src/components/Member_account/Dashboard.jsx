@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import axios from "axios";
-import "./Dashboard.css"; // You can style the card using a CSS file
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [userName, setUserName] = useState("");
   const [membershipType, setMembershipType] = useState("");
+  const [totalBookedHours, setTotalBookedHours] = useState(0);
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
@@ -25,6 +26,18 @@ const Dashboard = () => {
         .catch((error) => {
           console.error("There was an error fetching the user data!", error);
         });
+
+      axios
+        .get(`http://localhost:3000/api/users/userId/${storedUserId}`)
+        .then((response) => {
+          setTotalBookedHours(response.data.totalBookedHours);
+        })
+        .catch((error) => {
+          console.error(
+            "There was an error fetching the total booked hours!",
+            error
+          );
+        });
     }
   }, []);
 
@@ -37,6 +50,10 @@ const Dashboard = () => {
       <Card className="package-card">
         <h2>Your Package</h2>
         <p>{membershipType}!</p>
+      </Card>
+      <Card className="hours-card">
+        <h2>Total Booked Hours</h2>
+        <p>{totalBookedHours} hours</p>
       </Card>
     </div>
   );

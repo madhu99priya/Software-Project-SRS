@@ -67,8 +67,9 @@
   }
    */ 
 
-   .online-reservations {
-    min-width: 90vw;
+   .online-reservations-m {
+    max-width: 90vw;
+    max-height: 60vh;
     margin: 0 auto;
     padding-bottom: 50px;
     padding-top: 0;
@@ -78,6 +79,7 @@
   
   h1 {
     text-align: center;
+    margin-top: 0;
   }
   
   .res_h{
