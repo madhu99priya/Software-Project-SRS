@@ -1,56 +1,60 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import { v4 as uuidv4 } from 'uuid';
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import { v4 as uuidv4 } from "uuid";
 
 const userSchema = new mongoose.Schema({
   userId: {
     type: String,
     default: uuidv4,
-    unique: true
+    unique: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   phone: {
     type: String,
-    required: true
+    required: true,
   },
   age: {
     type: Number,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   joinDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   membershipType: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+  totalBookedHours: {
+    type: Number,
+    default: 0, // initialize to 0 for new users
+  },
 });
 
 // Hash the password before saving the user
-userSchema.pre('save', async function(next) {
-  if (this.isModified('password')) {
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
 
-const user = mongoose.model('User', userSchema);
+const user = mongoose.model("User", userSchema);
 
 export default user;
