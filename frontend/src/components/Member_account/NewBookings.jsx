@@ -116,6 +116,7 @@ const NewBookings = () => {
   
 
   return (
+
     <div className="online-reservations-m">
       <h1>
         Online <span className="res_h">Reservations</span>
