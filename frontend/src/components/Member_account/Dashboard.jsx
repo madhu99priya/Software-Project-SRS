@@ -128,6 +128,7 @@ const Dashboard = () => {
             </div>
           </div>
         </Card>
+
       </div>
 
       <div className="memberdash_content">
@@ -177,6 +178,7 @@ const Dashboard = () => {
             </div>
           </Card>
         </div>
+
       </div>
 
       {/* <Card className="welcome-card">
