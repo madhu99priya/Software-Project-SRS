@@ -1,6 +1,9 @@
-/* Dashboard.css */
+/* Dashboard Container */
 .dashboard-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -8,14 +11,78 @@
   max-height: 60vh;
 }
 
-.welcome-card {
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  background-color: #f0f2f5;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* React Calendar Navigation */
+.react-calendar__navigation button {
+  color: #000; /* Ensures the text and arrows are black */
+  background: transparent; /* Transparent background for buttons */
+  font-weight: bold; /* Make the text bold */
 }
 
+/* Card Styles */
+.welcome-card,
+.package-card,
+.hours-card,
+.remaining-hours-card,
+.calendar-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 30vw;
+  margin: 20px;
+}
+
+/* Calendar Card takes up two columns */
+/* .calendar-card {
+  grid-column: span 2;
+} */
+
+.react-calendar {
+  border: 2px solid #1E3799; /* Navy blue border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Optional padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional box shadow */
+}
+
+/* Highlighted Upcoming Booked Dates */
+.highlight {
+  background-color: red !important; /* Navy blue background for upcoming booked dates */
+  color: white !important; /* White text for better contrast */
+  border-radius: 50%; /* Circular highlight for booked dates */
+}
+
+/* General Tile Styles */
+.react-calendar__tile {
+  color: black; /* Black text for regular dates */
+  font-size: 14px; /* Standard font size for dates */
+  padding: 10px; /* Padding for better spacing */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+  border-radius: 50%
+}
+
+/* Previous Days Styling */
+.react-calendar__tile--previous {
+  color: #bfbfbf; /* Ash color for previous days */
+  background-color: #f7f7f7; /* Light background for previous days */
+}
+
+/* Active Date Tile */
+.react-calendar__tile--active {
+  background: #f0f0f0; /* Light gray background for the selected date */
+  color: #333; /* Darker text color for the selected date */
+  border-radius: 50%; /* Keep the active date circular */
+}
+
+/* Hover Effect */
+.react-calendar__tile:hover {
+  color: red; /* White text on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Disabled Dates */
+.react-calendar__tile--now {
+  background: #1E3799 ; 
+  color: white !important; 
+  border-radius: 50%; 
+}
 

@@ -6,6 +6,7 @@ import {
   updateBooking,
   deleteBooking,
   getTotalBookedHours,
+  getAllBookingsForUser,
 } from "../controllers/bookingController.js";
 
 const router = express.Router();
@@ -27,5 +28,7 @@ router.delete("/:id", deleteBooking);
 
 // Get tot booked hours
 router.get("/totalHours/:userId", getTotalBookedHours);
+
+router.get("/user/:userId/bookings", getAllBookingsForUser);
 
 export default router;
