@@ -38,22 +38,11 @@ const Sidebar_Member = ({ setActiveComponent }) => {
     setShowLogoutPopup(false);
   };
 
-  // const handleMouseEnter = () => {
-  //   setCollapsed(false);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setCollapsed(true);
-  // };
-
   return (
     <Sider
       collapsible
       collapsed={collapsed}
       onCollapse={(collapsed) => setCollapsed(collapsed)}
-      // trigger={null}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
       style={{ minHeight: "100vh" }}
     >
       <div className="logo-container">
@@ -110,9 +99,13 @@ const Sidebar_Member = ({ setActiveComponent }) => {
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             Settings
           </Menu.Item>
-          <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout} className="logout-button">
-            Logout
-          </Menu.Item>
+
+           
+          <button onClick={handleLogout} className="logout-button">
+          <span className="icon"><LogoutOutlined /></span>
+            <span>Log Out</span>
+          </button>
+          
         </Menu>
         {showLogoutPopup && (
         <LogoutPopup onConfirm={handleConfirmLogout} onCancel={handleCancelLogout} />

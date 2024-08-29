@@ -22,10 +22,10 @@ const PopupWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 2rem;
   border-radius: 8px;
-  width: 300px;
+  width: 350px;
   max-width: 80%;
   text-align: center;
   z-index: 13;

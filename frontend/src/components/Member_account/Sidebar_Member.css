@@ -36,7 +36,15 @@
   }
 
  
+  .logout-button{
+    color: red;
+    margin-left: 1.2rem;
+  }
 
+
+  .icon{
+    margin-left: 0rem;
+  }
 
   /* .ant-layout-sider {
     transition: all 0.2s ease-in-out; Smooth transition for collapse/expand 
