@@ -1,14 +1,43 @@
-/* Dashboard Container */
 .dashboard-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
   padding: 20px;
+  min-height: 100vh; /* Ensures the container takes up at least the full viewport height */
+  background-image: url('../../assets/member_dashboard.jpg'); /* Path to your image */
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-height: 800px) {
+  .dashboard-container {
+    justify-content: flex-start; /* For shorter viewports, align items at the top */
+  }
+}
+
+.dashboard-container h2 {
+  font-size: xx-large;
+}
+
+.dashboard-container p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Content Area */
+.memberdash_content {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  max-width: 90vw;
-  max-height: 60vh;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Ensures the content wraps on smaller screens */
+}
+
+.memberdash_userinfo {
+  margin-right: 45px;
+  flex: 1 1 300px; /* Flex-grow: 1, Flex-shrink: 1, Flex-basis: 300px */
 }
 
 /* React Calendar Navigation */
@@ -21,21 +50,50 @@
 /* Card Styles */
 .welcome-card,
 .package-card,
-.hours-card,
+/* .hours-card, */
 .remaining-hours-card,
 .calendar-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
   border-radius: 8px;
-  padding: 20px;
+  padding: 0 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 30vw;
   margin: 20px;
 }
 
+.welcome-card {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.package-card {
+  margin-bottom: 50px;
+  max-height: 65vh;
+}
+
 /* Calendar Card takes up two columns */
-/* .calendar-card {
-  grid-column: span 2;
-} */
+.calendar-card {
+  max-height: 100vh;
+  flex: 2 1 500px; /* Allows more space for the calendar on larger screens */
+}
+
+.remaining-hours-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Ensures the heading is also centered */
+}
+
+.progress-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
 .react-calendar {
   border: 2px solid #1E3799; /* Navy blue border */
@@ -57,7 +115,7 @@
   font-size: 14px; /* Standard font size for dates */
   padding: 10px; /* Padding for better spacing */
   transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 /* Previous Days Styling */
@@ -81,8 +139,62 @@
 
 /* Disabled Dates */
 .react-calendar__tile--now {
-  background: #1E3799 ; 
-  color: white !important; 
-  border-radius: 50%; 
+  background: #1E3799;
+  color: white !important;
+  border-radius: 50%;
 }
 
+/* Welcome Content */
+.welcome-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows elements to wrap on smaller screens */
+}
+
+.animation-container {
+  margin-left: 100px; /* Pushes the animation to the right */
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin-top: 10vh; /* Adjusts the top margin on smaller screens */
+  }
+
+  .dashboard-container h2 {
+    font-size: large; /* Adjusts font size on smaller screens */
+  }
+
+  .dashboard-container p {
+    font-size: 1rem;
+  }
+
+  .memberdash_content {
+    flex-direction: column; /* Stacks the content vertically on small screens */
+    align-items: stretch; /* Stretches content to full width */
+  }
+
+  .memberdash_userinfo {
+    margin-right: 0; /* Removes right margin */
+  }
+
+  .package-card {
+    margin-bottom: 20px; /* Reduces bottom margin */
+    max-height: auto; /* Allows card to expand naturally */
+  }
+
+  .calendar-card {
+    flex: 1 1 100%; /* Ensures the calendar takes up full width on smaller screens */
+  }
+
+  .welcome-content {
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: flex-start; /* Aligns elements to the left */
+  }
+
+  .animation-container {
+    margin-left: 0; /* Removes left margin */
+    margin-top: 20px; /* Adds top margin */
+  }
+}

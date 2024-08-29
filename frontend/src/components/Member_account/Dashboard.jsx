@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Progress } from "antd";
 import axios from "axios";
 import Lottie from "react-lottie";
+import animationPackage from "../../assets/Animation_Racket.json";
 import animationWelcome from "../../assets/Animation_Welcome_3.json";
 import animationCalendar from "../../assets/Animation_Calendar.json";
 import { Calendar } from "react-calendar";
@@ -76,6 +77,15 @@ const Dashboard = () => {
     },
   };
 
+  const defaultOptionsPackage = {
+    loop: true,
+    autoplay: true,
+    animationData: animationPackage, // Animation data from the JSON file
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const defaultOptionsCalendar = {
     loop: true,
     autoplay: true,
@@ -106,53 +116,72 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-
-      <div>
+      <div className="memberdash_header">
         <Card className="welcome-card">
-          <Lottie options={defaultOptionsWelcome} height={45} width={120} />
-          <h2>Welcome, {userName}!</h2>
-          <p>We are glad to see you back.</p>
+          <div className="welcome-content">
+            <div>
+              <h2>Welcome, {userName}!</h2>
+              <p>We are glad to see you back.</p>
+            </div>
+            <div className="animation-container">
+              <Lottie options={defaultOptionsWelcome} height={80} width={200} />
+            </div>
+          </div>
         </Card>
-        <Card className="package-card">
-          <h2>Your Package</h2>
-          <p>{membershipType}!</p>
-          <p>Allowable Total Hours: {allowableHours} hours</p>
-        </Card>
-        {/* <Card className="hours-card">
+
+      </div>
+
+      <div className="memberdash_content">
+        <div className="memberdash_userinfo">
+          <Card className="package-card">
+            <h2>Your Package</h2>
+            <p style={{ color: "red" }}>{membershipType}!</p>
+            <p>Allowable Total Hours: {allowableHours} hours</p>
+            <Lottie options={defaultOptionsPackage} height={120} width={120} />
+          </Card>
+          {/* <Card className="hours-card">
           <h2>Total Booked Hours</h2>
           <p>{totalBookedHours} hours</p>
         </Card> */}
-        <Card className="remaining-hours-card">
-          <h2>Remaining Hours</h2>
-          <Progress
-            type="circle"
-            percent={percentage}
-            format={() => (
-              <>
-                {`${remainingHours}/${allowableHours}`}
-                <br />
-                hrs
-              </>
-            )}
-            width={120}
-            strokeColor={{
-              "0%": "red", // Start color (e.g., red)
-              "100%": "blue", // End color (e.g., green)
-            }}
-          />
-        </Card>
-      </div>
-      <div>
-        <Card className="calendar-card">
-          <h2>Upcoming Bookings</h2>
-          <div className="calendar-lottie-container">
-            <Calendar tileClassName={tileClassName} />
-            <Lottie options={defaultOptionsCalendar} height={250} width={250} />
-          </div>
-        </Card>
+          <Card className="remaining-hours-card">
+            <h2>Remaining Hours</h2>
+            <div className="progress-container">
+              <Progress
+                type="circle"
+                percent={percentage}
+                format={() => (
+                  <>
+                    {`${remainingHours}/${allowableHours}`}
+                    <br />
+                    hrs
+                  </>
+                )}
+                width={120}
+                strokeColor={{
+                  "0%": "red", // Start color (e.g., red)
+                  "100%": "blue", // End color (e.g., green)
+                }}
+              />
+            </div>
+          </Card>
+        </div>
+        <div className="memberdash_calendar">
+          <Card className="calendar-card">
+            <h2>Your Bookings</h2>
+            <div className="calendar-lottie-container">
+              <Calendar tileClassName={tileClassName} />
+              <Lottie
+                options={defaultOptionsCalendar}
+                height={250}
+                width={250}
+              />
+            </div>
+          </Card>
+        </div>
+
       </div>
 
-   {/* <Card className="welcome-card">
+      {/* <Card className="welcome-card">
         <h2>Welcome, {userName}!</h2>
         <p>We are glad to see you back.</p>
       </Card>
@@ -183,9 +212,7 @@ const Dashboard = () => {
             "100%": "blue", // End color (e.g., green)
           }}
         />
-      </Card>*/ }
-     
-
+      </Card>*/}
     </div>
   );
 };
