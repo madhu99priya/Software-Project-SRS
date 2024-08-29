@@ -33,7 +33,7 @@ const Reasons = () => {
         <br></br>
           <br></br>
             <h1>
-                WHY <span className='highlight'> CHOOSE US</span>
+                WHY <span className='highlight-n'> CHOOSE US</span>
             </h1>
             <p1>To deliver world class indoor sports experience to people with safe, <br></br>high quality service and focusing on teaching kids how to move forward with <br></br>sports-specific training to empower our community.</p1>
         </div>

@@ -152,7 +152,7 @@ const Dashboard = () => {
         </Card>
       </div>
 
-  /*    <Card className="welcome-card">
+   {/* <Card className="welcome-card">
         <h2>Welcome, {userName}!</h2>
         <p>We are glad to see you back.</p>
       </Card>
@@ -183,7 +183,7 @@ const Dashboard = () => {
             "100%": "blue", // End color (e.g., green)
           }}
         />
-      </Card>*/
+      </Card>*/ }
      
 
     </div>
