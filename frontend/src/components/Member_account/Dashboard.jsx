@@ -118,10 +118,10 @@ const Dashboard = () => {
           <p>{membershipType}!</p>
           <p>Allowable Total Hours: {allowableHours} hours</p>
         </Card>
-        <Card className="hours-card">
+        {/* <Card className="hours-card">
           <h2>Total Booked Hours</h2>
           <p>{totalBookedHours} hours</p>
-        </Card>
+        </Card> */}
         <Card className="remaining-hours-card">
           <h2>Remaining Hours</h2>
           <Progress
@@ -144,7 +144,7 @@ const Dashboard = () => {
       </div>
       <div>
         <Card className="calendar-card">
-          <h2>Your Bookings</h2>
+          <h2>Upcoming Bookings</h2>
           <div className="calendar-lottie-container">
             <Calendar tileClassName={tileClassName} />
             <Lottie options={defaultOptionsCalendar} height={250} width={250} />
