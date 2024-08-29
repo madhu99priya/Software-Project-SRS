@@ -106,6 +106,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+
       <div>
         <Card className="welcome-card">
           <Lottie options={defaultOptionsWelcome} height={45} width={120} />
@@ -150,6 +151,41 @@ const Dashboard = () => {
           </div>
         </Card>
       </div>
+
+  /*    <Card className="welcome-card">
+        <h2>Welcome, {userName}!</h2>
+        <p>We are glad to see you back.</p>
+      </Card>
+      <Card className="package-card">
+        <h2>Your Package</h2>
+        <p>{membershipType}!</p>
+        <p>Allowable Total Hours: {allowableHours} hours</p>
+      </Card>
+      <Card className="hours-card">
+        <h2>Total Booked Hours</h2>
+        <p>{totalBookedHours} hours</p>
+      </Card>
+      <Card className="remaining-hours-card">
+        <h2>Remaining Hours</h2>
+        <Progress
+          type="circle"
+          percent={percentage}
+          format={() => (
+            <>
+              {`${remainingHours}/${allowableHours}`}
+              <br />
+              hrs
+            </>
+          )}
+          width={120}
+          strokeColor={{
+            "0%": "red", // Start color (e.g., red)
+            "100%": "blue", // End color (e.g., green)
+          }}
+        />
+      </Card>*/
+     
+
     </div>
   );
 };
