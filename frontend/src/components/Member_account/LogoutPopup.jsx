@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const LogoutPopup = ({ onConfirm, onCancel }) => {
   return (
@@ -32,6 +32,37 @@ const PopupWrapper = styled.div`
   border: 2px solid #ffffff; /* Initial border color */
   animation: borderPulse 2s infinite; /* Apply the animation */
 
+/*
+  .log-button {
+    background-color: #f56565;
+    color: #ffffff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+  }
+
+  .log-button:hover {
+    background-color: #e53e3e;
+  }
+
+  .cancle-button {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+  }
+
+  .cancle-button:hover {
+    background-color: #cbd5e0;
+*/
   @keyframes borderPulse {
     0% {
       border-color: #ffffff;
@@ -75,6 +106,7 @@ const PopupWrapper = styled.div`
 
   .cancle-button:hover {
     background-color: #cbd5e0; 
+
   }
 `;
 

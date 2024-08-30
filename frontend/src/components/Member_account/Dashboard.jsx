@@ -128,7 +128,6 @@ const Dashboard = () => {
             </div>
           </div>
         </Card>
-
       </div>
 
       <div className="memberdash_content">
@@ -167,7 +166,7 @@ const Dashboard = () => {
         </div>
         <div className="memberdash_calendar">
           <Card className="calendar-card">
-            <h2>Your Bookings</h2>
+            <h2>Upcoming Bookings</h2>
             <div className="calendar-lottie-container">
               <Calendar tileClassName={tileClassName} />
               <Lottie
@@ -178,41 +177,7 @@ const Dashboard = () => {
             </div>
           </Card>
         </div>
-
       </div>
-
-      {/* <Card className="welcome-card">
-        <h2>Welcome, {userName}!</h2>
-        <p>We are glad to see you back.</p>
-      </Card>
-      <Card className="package-card">
-        <h2>Your Package</h2>
-        <p>{membershipType}!</p>
-        <p>Allowable Total Hours: {allowableHours} hours</p>
-      </Card>
-      <Card className="hours-card">
-        <h2>Total Booked Hours</h2>
-        <p>{totalBookedHours} hours</p>
-      </Card>
-      <Card className="remaining-hours-card">
-        <h2>Remaining Hours</h2>
-        <Progress
-          type="circle"
-          percent={percentage}
-          format={() => (
-            <>
-              {`${remainingHours}/${allowableHours}`}
-              <br />
-              hrs
-            </>
-          )}
-          width={120}
-          strokeColor={{
-            "0%": "red", // Start color (e.g., red)
-            "100%": "blue", // End color (e.g., green)
-          }}
-        />
-      </Card>*/}
     </div>
   );
 };

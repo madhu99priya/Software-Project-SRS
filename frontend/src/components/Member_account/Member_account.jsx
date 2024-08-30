@@ -3,8 +3,14 @@ import { Layout } from "antd";
 import Sidebar_Member from "./Sidebar_Member.jsx";
 import Dashboard from "./Dashboard.jsx";
 import NewBookings from "./NewBookings.jsx";
+
+import Notifications from "./Notifications.jsx";
+// import Settings from './components/Settings';
+// import Logout from './components/Logout';
+
 import Memberplans from '../../components/memberplans/Memberplans.jsx'
 import Previous_Bookings from "./Previous_Bookings/Previous_Bookings.jsx";
+
 
 
 const { Content } = Layout;
@@ -20,12 +26,14 @@ const Member_account = () => {
         return <Dashboard />;
       case "new_bookings":
         return <NewBookings />;
+
       case 'prev_bookings':
         return <Previous_Bookings />;
       case 'packages':
+
         return <Memberplans />;
-      // case 'notifications':
-      //   return <Notifications />;
+      case "notifications":
+        return <Notifications />;
       // case 'settings':
       //   return <Settings />;
       // case 'logout':
