@@ -46,7 +46,9 @@ export const getAllBookings = async (req, res) => {
 export const getAllBookingsForUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const bookings = await Booking.find({ user: userId }).select("date -_id");
+    const bookings = await Booking.find({ user: userId })
+      .select("facility date timeSlot -_id") // Select the necessary fields
+      .sort({ date: -1 }); // Sort by date, most recent first
     res.status(200).send(bookings);
   } catch (error) {
     res.status(500).send(error);

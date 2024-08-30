@@ -35,10 +35,8 @@
     border-top: 1px solid darkblue;
   }
 
- 
+.ant-badge {
+  color: inherit; 
+}
 
 
-  /* .ant-layout-sider {
-    transition: all 0.2s ease-in-out; Smooth transition for collapse/expand 
-  }*/
-  

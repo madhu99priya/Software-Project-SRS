@@ -1,0 +1,47 @@
+.notifications-container {
+    padding: 20px;
+    background-image: url('../../assets/memberdash_Notification.jpeg');
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  }
+  
+  .card {
+    /* margin-bottom: 20px; */
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .booking-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-auto-rows: auto; /* Adjust row height automatically */
+    gap: 10px; /* Space between the cards */
+    max-height: 69vh; /* Adjust this to fit your design */
+    overflow-y: auto; /* Enables scrolling if content overflows */
+  }
+  
+  .booking-card {
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensures it takes up the full width of the grid cell */
+  }
+  
+  .card .ant-card-head-title {
+    font-size: 2rem; /* Change the font size */
+    font-weight: bold; /* Make the title bold */
+    color:white; /* Change the text color */
+    text-align: center; /* Center align the title */
+  }
+
+  .not-card{
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  

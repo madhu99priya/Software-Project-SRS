@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const LogoutPopup = ({ onConfirm, onCancel }) => {
   return (
@@ -30,39 +30,36 @@ const PopupWrapper = styled.div`
   text-align: center;
   z-index: 13;
 
-  .log-button{
-
-  background-color: #f56565; 
-  color: #ffffff; 
-  padding-left: 1rem; 
-  padding-right: 1rem; 
-  padding-top: 0.5rem;  
-  padding-bottom: 0.5rem; 
-  margin-right: 0.5rem; 
-  border-radius: 0.25rem; 
-  transition: background-color 0.3s; 
+  .log-button {
+    background-color: #f56565;
+    color: #ffffff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
   }
 
-  .log-button:hover{
-  background-color: #e53e3e;
-  
+  .log-button:hover {
+    background-color: #e53e3e;
   }
 
-  .cancle-button{
-  background-color: #e2e8f0; 
-  color: #2d3748; 
-  padding-left: 1rem; 
-  padding-right: 1rem; 
-  padding-top: 0.5rem;  
-  padding-bottom: 0.5rem; 
-  border-radius: 0.25rem; 
-  transition: background-color 0.3s; 
+  .cancle-button {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
   }
 
-
-.cancle-button:hover {
-  background-color: #cbd5e0; 
-}
+  .cancle-button:hover {
+    background-color: #cbd5e0;
+  }
 `;
 
 export default LogoutPopup;

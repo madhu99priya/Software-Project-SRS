@@ -1,11 +1,11 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centers content vertically */
-  align-items: center; /* Centers content horizontally */
+  justify-content: center; 
+  align-items: center;
   padding: 20px;
-  min-height: 100vh; /* Ensures the container takes up at least the full viewport height */
-  background-image: url('../../assets/member_dashboard.jpg'); /* Path to your image */
+  min-height: 100vh; 
+  background-image: url('../../assets/member_dashboard.jpg');
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 
 @media (max-height: 800px) {
   .dashboard-container {
-    justify-content: flex-start; /* For shorter viewports, align items at the top */
+    justify-content: flex-start;
   }
 }
 
@@ -26,7 +26,6 @@
   font-weight: 500;
 }
 
-/* Content Area */
 .memberdash_content {
   display: flex;
   flex-direction: row;
@@ -40,20 +39,19 @@
   flex: 1 1 300px; /* Flex-grow: 1, Flex-shrink: 1, Flex-basis: 300px */
 }
 
-/* React Calendar Navigation */
 .react-calendar__navigation button {
-  color: #000; /* Ensures the text and arrows are black */
-  background: transparent; /* Transparent background for buttons */
-  font-weight: bold; /* Make the text bold */
+  color: #000; 
+  background: transparent;
+  font-weight: bold; 
 }
 
-/* Card Styles */
+
 .welcome-card,
 .package-card,
 /* .hours-card, */
 .remaining-hours-card,
 .calendar-card {
-  background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+  background: rgba(255, 255, 255, 0.8); 
   border-radius: 8px;
   padding: 0 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,7 +72,6 @@
   max-height: 65vh;
 }
 
-/* Calendar Card takes up two columns */
 .calendar-card {
   max-height: 100vh;
   flex: 2 1 500px; /* Allows more space for the calendar on larger screens */
@@ -85,7 +82,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center; /* Ensures the heading is also centered */
+  text-align: center; 
 }
 
 .progress-container {
@@ -96,74 +93,70 @@
 }
 
 .react-calendar {
-  border: 2px solid #1E3799; /* Navy blue border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px; /* Optional padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional box shadow */
+  border: 2px solid #1E3799; 
+  border-radius: 8px; 
+  padding: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Highlighted Upcoming Booked Dates */
 .highlight {
-  background-color: red !important; /* Navy blue background for upcoming booked dates */
-  color: white !important; /* White text for better contrast */
-  border-radius: 50%; /* Circular highlight for booked dates */
+  background-color: red !important;
+  color: white !important; 
+  border-radius: 50%; 
 }
 
-/* General Tile Styles */
 .react-calendar__tile {
-  color: black; /* Black text for regular dates */
-  font-size: 14px; /* Standard font size for dates */
-  padding: 10px; /* Padding for better spacing */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+  color: black; 
+  font-size: 14px;
+  padding: 10px; 
+  transition: background-color 0.3s, color 0.3s; 
   border-radius: 50%;
 }
 
-/* Previous Days Styling */
 .react-calendar__tile--previous {
-  color: #bfbfbf; /* Ash color for previous days */
-  background-color: #f7f7f7; /* Light background for previous days */
+  cursor: default; 
+  color: #bfbfbf; 
+  background-color: #f7f7f7; 
+  pointer-events: none; 
 }
 
-/* Active Date Tile */
+
 .react-calendar__tile--active {
-  background: #f0f0f0; /* Light gray background for the selected date */
-  color: #333; /* Darker text color for the selected date */
-  border-radius: 50%; /* Keep the active date circular */
+  background: #f0f0f0; 
+  color: #333;
+  border-radius: 50%; 
 }
 
-/* Hover Effect */
 .react-calendar__tile:hover {
-  color: red; /* White text on hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  color: red; 
+  cursor: pointer; 
 }
 
-/* Disabled Dates */
 .react-calendar__tile--now {
   background: #1E3799;
   color: white !important;
   border-radius: 50%;
 }
 
-/* Welcome Content */
 .welcome-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap; /* Allows elements to wrap on smaller screens */
+  flex-wrap: wrap; 
 }
 
 .animation-container {
-  margin-left: 100px; /* Pushes the animation to the right */
+  margin-left: 100px; 
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
-    margin-top: 10vh; /* Adjusts the top margin on smaller screens */
+    margin-top: 10vh; 
   }
 
   .dashboard-container h2 {
-    font-size: large; /* Adjusts font size on smaller screens */
+    font-size: large; 
   }
 
   .dashboard-container p {
@@ -171,30 +164,30 @@
   }
 
   .memberdash_content {
-    flex-direction: column; /* Stacks the content vertically on small screens */
-    align-items: stretch; /* Stretches content to full width */
+    flex-direction: column; 
+    align-items: stretch; 
   }
 
   .memberdash_userinfo {
-    margin-right: 0; /* Removes right margin */
+    margin-right: 0;
   }
 
   .package-card {
-    margin-bottom: 20px; /* Reduces bottom margin */
-    max-height: auto; /* Allows card to expand naturally */
+    margin-bottom: 20px; 
+    max-height: auto; 
   }
 
   .calendar-card {
-    flex: 1 1 100%; /* Ensures the calendar takes up full width on smaller screens */
+    flex: 1 1 100%; 
   }
 
   .welcome-content {
-    flex-direction: column; /* Stacks elements vertically */
-    align-items: flex-start; /* Aligns elements to the left */
+    flex-direction: column; 
+    align-items: flex-start;
   }
 
   .animation-container {
-    margin-left: 0; /* Removes left margin */
-    margin-top: 20px; /* Adds top margin */
+    margin-left: 0; 
+    margin-top: 20px; 
   }
 }
