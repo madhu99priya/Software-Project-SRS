@@ -101,10 +101,13 @@ const Sidebar_Member = ({ setActiveComponent }) => {
           </Menu.Item>
 
            
+          <div className="logout-wrapper">
           <button onClick={handleLogout} className="logout-button">
-          <span className="icon"><LogoutOutlined /></span>
+            <span className="icon"><LogoutOutlined /></span>
             <span>Log Out</span>
           </button>
+          </div>
+
           
         </Menu>
         {showLogoutPopup && (

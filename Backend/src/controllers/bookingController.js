@@ -42,16 +42,20 @@ export const getAllBookings = async (req, res) => {
   }
 };
 
+// controllers/bookingController.js
+
 // Get all bookings for a user
 export const getAllBookingsForUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const bookings = await Booking.find({ user: userId }).select("date -_id");
+    const bookings = await Booking.find({ user: userId })
+      .select('date timeSlot createdAt facility'); 
     res.status(200).send(bookings);
   } catch (error) {
     res.status(500).send(error);
   }
 };
+
 
 // Get a booking by ID
 export const getBookingById = async (req, res) => {

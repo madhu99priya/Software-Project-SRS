@@ -29,40 +29,54 @@ const PopupWrapper = styled.div`
   max-width: 80%;
   text-align: center;
   z-index: 13;
+  border: 2px solid #ffffff; /* Initial border color */
+  animation: borderPulse 2s infinite; /* Apply the animation */
 
-  .log-button{
-
-  background-color: #f56565; 
-  color: #ffffff; 
-  padding-left: 1rem; 
-  padding-right: 1rem; 
-  padding-top: 0.5rem;  
-  padding-bottom: 0.5rem; 
-  margin-right: 0.5rem; 
-  border-radius: 0.25rem; 
-  transition: background-color 0.3s; 
+  @keyframes borderPulse {
+    0% {
+      border-color: #ffffff;
+    }
+    50% {
+      border-color: #ff0000; 
+    }
+    100% {
+      border-color: #ffffff;
+    }
   }
 
-  .log-button:hover{
-  background-color: #e53e3e;
-  
+  .log-button {
+    background-color: #f56565; 
+    color: #ffffff; 
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+    padding-top: 0.5rem;  
+    padding-bottom: 0.5rem; 
+    margin-right: 0.5rem; 
+    border-radius: 0.25rem; 
+    transition: background-color 0.3s; 
   }
 
-  .cancle-button{
-  background-color: #e2e8f0; 
-  color: #2d3748; 
-  padding-left: 1rem; 
-  padding-right: 1rem; 
-  padding-top: 0.5rem;  
-  padding-bottom: 0.5rem; 
-  border-radius: 0.25rem; 
-  transition: background-color 0.3s; 
+  .log-button:hover {
+    background-color: #e53e3e;
+    outline: none;
   }
 
+  .cancle-button {
+    background-color: #e2e8f0; 
+    color: #2d3748; 
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+    padding-top: 0.5rem;  
+    padding-bottom: 0.5rem; 
+    border-radius: 0.25rem; 
+    transition: background-color 0.3s; 
+    outline: none;
+  }
 
-.cancle-button:hover {
-  background-color: #cbd5e0; 
-}
+  .cancle-button:hover {
+    background-color: #cbd5e0; 
+  }
 `;
+
 
 export default LogoutPopup;
