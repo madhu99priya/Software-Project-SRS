@@ -78,6 +78,7 @@ const Sidebar_Member = ({ setActiveComponent }) => {
     setActiveComponent("notifications");
   };
 
+
   return (
     <Sider
       collapsible
@@ -152,14 +153,27 @@ const Sidebar_Member = ({ setActiveComponent }) => {
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             Settings
           </Menu.Item>
-          <Menu.Item
-            key="logout"
-            icon={<LogoutOutlined />}
-            onClick={handleLogout}
-            className="logout-button"
-          >
-            Logout
-          </Menu.Item>
+
+//           <Menu.Item
+//             key="logout"
+//             icon={<LogoutOutlined />}
+//             onClick={handleLogout}
+//             className="logout-button"
+//           >
+//             Logout
+//           </Menu.Item>
+
+
+           
+          <div className="logout-wrapper">
+          <button onClick={handleLogout} className="logout-button">
+            <span className="icon"><LogoutOutlined /></span>
+            <span>Log Out</span>
+          </button>
+          </div>
+
+          
+
         </Menu>
         {showLogoutPopup && (
           <LogoutPopup

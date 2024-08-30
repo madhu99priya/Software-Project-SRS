@@ -85,6 +85,15 @@ input[type="date"]:focus {
   pointer-events: none;
 }
 
+
+.past-booked {
+  background-color: #e2aaa8; 
+  color: white; 
+  cursor:  not-allowed !important; 
+  opacity: 0.6; 
+}
+
+
 .court.booked {
   background-color: #ff4081; 
   color: #ffffff;
