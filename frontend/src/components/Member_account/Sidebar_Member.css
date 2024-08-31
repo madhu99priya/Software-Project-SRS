@@ -1,4 +1,3 @@
-/* Logo Container */
 .logo-container {
     display: flex;
     align-items: center;
@@ -29,46 +28,14 @@
     margin-top: 20px;
     min-height: 350px;
   }
-/*   
-  .logout-wrapper {
-    margin-top: auto;
-    padding-bottom: 20px;
-    border-top: 1px solid darkblue;
-  } */
+  
 
 .ant-badge {
   color: inherit; 
 }
 
 
-/* Logo Image */
-/* .logo-image {
-  max-width: 40%;
-  border-radius: 1rem;
-} */
 
-/* Brand Name */
-/* .brand-name {
-  text-align: center;
-  font-weight: bolder;
-  padding-bottom: 20px;
-  font-size: 20px;
-  color: #fff;
-  margin-left: 10px;
-} */
-
-/* .brand-name p {
-  margin-top: -5px;
-  margin-bottom: 0;
-}
- */
-/* Menu Wrapper */
-/* .menu-wrapper {
-  margin-top: 20px;
-  min-height: 350px;
-} */
-
-/* Logout Wrapper */
 .logout-wrapper {
   margin-top: auto;
   padding-bottom: 20px;
@@ -76,14 +43,14 @@
   background-color: #001529;
 }
 
-/* Logout Button */
-.logout-button {
+
+ .logout-button {
   width: 100%;
   padding: 8px 20px;
   color: red;
   background-color: transparent;
   border: none;
-  outline: none; /* Removes the border that appears on click */
+  outline: none; 
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -91,45 +58,45 @@
   transition: background-color 0.3s ease;
 }
 
-/* Logout Button Icon */
+
 .logout-button .icon {
-  font-size: 16px;
   margin-left: 0.5rem;
-  margin-right: 1.5rem;
+  margin-right: 0.7rem;
 }
 
-/* Collapsed Sidebar: Logout Button */
-.ant-layout-sider-collapsed .logout-button {
-  justify-content: center; /* Center the icon when collapsed */
+
+/* .ant-layout-sider-collapsed .logout-button {
+  justify-content: center; 
   padding: 10px 0;
 }
 
 
-.ant-layout-sider-collapsed .logout-button span {
-  display: none;
-}
 
-/* Sidebar Menu Items */
+
+
 .ant-menu-item {
   display: flex;
   align-items: center;
-  font-size: 16px;
   padding: 0 20px;
 }
 
 
 .ant-menu-item .anticon {
-  font-size: 18px;
+
   margin-right: 16px;
 }
 
-/* Sidebar Menu Item Hover */
+
 .ant-menu-item:hover {
   background-color: #40a9ff !important;
-}
+} */
+
+/* .ant-layout-sider-collapsed .logout-button span {
+  display: none;
+} */
 
 
 .logout-button:focus {
   outline: none;
-}
-
+} 
+ 

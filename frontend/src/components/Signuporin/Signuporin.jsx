@@ -51,17 +51,22 @@ const Signuporin = () => {
         `${isSignUp ? "User created" : "User signed in"}:`,
         response.data
       );
-      navigate("/memberaccount");
+
+      // Store necessary fields in local storage upon successful signup
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userName", response.data.user.name);
+      localStorage.setItem("userId", response.data.user.userId);
+      localStorage.setItem("email", response.data.user.email);
+      localStorage.setItem("phone", response.data.user.phone);
+      localStorage.setItem("age", response.data.user.age);
+      localStorage.setItem("address", response.data.user.address);
+      localStorage.setItem("membershipType", response.data.user.membershipType);
+
       enqueueSnackbar("You have signed up successfully.", {
         variant: "success",
         autoHideDuration: 1000,
       });
-      if (!isSignUp) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userName", response.data.user.name);
-        localStorage.setItem("userId", response.data.user.userId);
-        navigate("/memberaccount");
-      }
+      navigate("/memberaccount");
     } catch (error) {
       console.error(
         `Error ${isSignUp ? "creating user" : "signing in"}:`,
@@ -73,6 +78,7 @@ const Signuporin = () => {
       });
     }
   };
+
 
   const toggleAuthMode = () => {
     setIsSignUp(!isSignUp);

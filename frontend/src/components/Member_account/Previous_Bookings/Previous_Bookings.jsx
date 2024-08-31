@@ -101,6 +101,7 @@ const Section = styled.section`
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color: black;
   }
 
   .table_header h1 {

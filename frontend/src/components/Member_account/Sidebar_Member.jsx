@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Menu, Badge } from "antd";
+import { Layout, Menu } from "antd";
 import homeLogo from "../../assets/Logo.jpeg";
 import "./Sidebar_Member.css";
 import LogoutPopup from "./LogoutPopup.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   ProductOutlined,
   LogoutOutlined,
@@ -78,7 +78,6 @@ const Sidebar_Member = ({ setActiveComponent }) => {
     setActiveComponent("notifications");
   };
 
-
   return (
     <Sider
       collapsible
@@ -141,40 +140,19 @@ const Sidebar_Member = ({ setActiveComponent }) => {
         </Menu>
       </div>
       <div className="logout-wrapper">
-        <Menu
-          mode="inline"
-          selectedKeys={[selectedKey]}
-          onClick={({ key }) => {
-            setSelectedKey(key);
-            setActiveComponent(key);
-          }}
-          theme="dark"
-        >
+        <Menu mode="inline" theme="dark">
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             Settings
           </Menu.Item>
-
-//           <Menu.Item
-//             key="logout"
-//             icon={<LogoutOutlined />}
-//             onClick={handleLogout}
-//             className="logout-button"
-//           >
-//             Logout
-//           </Menu.Item>
-
-
-           
-          <div className="logout-wrapper">
-          <button onClick={handleLogout} className="logout-button">
-            <span className="icon"><LogoutOutlined /></span>
-            <span>Log Out</span>
-          </button>
-          </div>
-
-          
-
         </Menu>
+        <div className="logout-button-wrapper">
+          <button onClick={handleLogout} className="logout-button">
+            <span className="icon">
+              <LogoutOutlined />
+            </span>
+            {!collapsed && <span>Log Out</span>}
+          </button>
+        </div>
         {showLogoutPopup && (
           <LogoutPopup
             onConfirm={handleConfirmLogout}
