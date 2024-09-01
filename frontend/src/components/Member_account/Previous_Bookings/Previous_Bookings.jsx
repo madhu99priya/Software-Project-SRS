@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Background from '../../../assets/background_bookings.jpg';
+import Background from '../../../assets/prevv_bookings.jpg';
 
 const PreviousBookings = () => {
   const [bookings, setBookings] = useState([]);
