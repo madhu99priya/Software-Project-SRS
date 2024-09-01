@@ -6,7 +6,7 @@ import Background from '../../../assets/background_bookings.jpg';
 const PreviousBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [userId, setUserId] = useState(null); 
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const fetchUserId = () => {
@@ -38,31 +38,38 @@ const PreviousBookings = () => {
     <Section>
       <div className="table-container">
         <section className="table_header">
-          <h1>Previous Bookings</h1>
+          <h1>
+            <span className="previous">Previous</span>
+            <span className="bookings"> Bookings</span>
+          </h1>
         </section>
         <section className="table_body">
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Booking Date</th>
-                <th>Court No</th>
-                <th>Time Slot</th>
-                <th>Created Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((booking, index) => (
-                <tr key={booking._id}>
-                  <td>{index + 1}</td>
-                  <td>{new Date(booking.date).toLocaleDateString()}</td>
-                  <td>{booking.facility}</td>
-                  <td>{booking.timeSlot}</td>
-                  <td>{new Date(booking.createdAt).toLocaleDateString()}</td> 
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Booking Date</th>
+                  <th>Court No</th>
+                  <th>Time Slot</th>
+                  <th>Created Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {bookings.map((booking, index) => (
+                  <tr key={booking._id}>
+                    <td>{index + 1}</td>
+                    <td>{new Date(booking.date).toLocaleDateString()}</td>
+                    <td>{booking.facility}</td>
+                    <td>{booking.timeSlot}</td>
+                    <td>{new Date(booking.createdAt).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </section>
       </div>
     </Section>
@@ -81,64 +88,79 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 
   .table-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 65vw;
-    max-height: 90vh;
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent */
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 70vw;
+    max-height: 80vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
-    overflow: hidden;
-    padding: 1rem;
+    padding: 2rem;
+    overflow-y: auto;
   }
 
   .table_header {
     width: 100%;
-    padding: 1rem;
+    padding-bottom: 1rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: black;
+    border-bottom: 2px solid #ccc;
   }
 
   .table_header h1 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: bold;
     margin: 0;
   }
 
+  .table_header h1 .previous {
+    color: black;
+  }
+
+  .table_header h1 .bookings {
+    color: red;
+  }
+
   .table_body {
     width: 100%;
-    height: 100%;
-    overflow: auto;
+    overflow-x: auto;
   }
 
   .table_body table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    font-size: 1rem;
   }
 
   table,
   th,
   td {
-    padding: 1rem;
+    padding: 0.8rem;
     border: 1px solid #ddd;
-  }
+    font-size : bold;
+
+}
+  
+
+
 
   thead th {
     position: sticky;
     top: 0;
-    background-color: #f8f9fa;
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: bold;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
   }
 
   tbody tr:nth-child(even) {
-    background-color: rgba(250, 250, 250, 0.5);
+    background-color: rgba(248, 249, 250, 0.7);
   }
 
   tbody tr:hover {
@@ -150,8 +172,12 @@ const Section = styled.section`
     border-top: 1px solid #ddd;
   }
 
+  .table_body::-webkit-scrollbar {
+    width: 8px;
+  }
+
   .table_body::-webkit-scrollbar-thumb {
-    border-radius: 0.5rem;
-    background-color: #0004;
+    background-color: #ced4da;
+    border-radius: 4px;
   }
 `;
