@@ -96,23 +96,25 @@ const NewBookings = () => {
         <div className="time">{timeSlot}</div>
         {[1, 2, 3, 4].map((court) => {
           const isSlotCurrentlyBooked = isSlotBooked(court, timeSlot);
+          const isPastBooked = isSlotCurrentlyBooked && isPast; // Check if slot is both booked and past
           const isDisabled = isPast || isSlotCurrentlyBooked; // Disable past or currently in-progress time slots
 
           return (
             <div
               key={court}
               className={`court ${
-                isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
+                isPastBooked ? "past-booked" : isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
               }`}
               onClick={() => !isDisabled && handleSlotClick(court, timeSlot)}
             >
-              {isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
+              {isPastBooked ? "Booked" : isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
             </div>
           );
         })}
       </div>
     ));
   };
+
 
   return (
     <div className="newBookings_background">

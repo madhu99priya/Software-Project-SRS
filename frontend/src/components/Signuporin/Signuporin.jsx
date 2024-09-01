@@ -46,6 +46,7 @@ const Signuporin = () => {
     const signinUrl = "http://localhost:3000/api/users/signin";
 
     try {
+
       if (isSignUp) {
         // Signup process
         await axios.post(signupUrl, formData);
@@ -82,6 +83,7 @@ const Signuporin = () => {
 
         navigate("/memberaccount");
       }
+
     } catch (error) {
       console.error(
         `Error ${isSignUp ? "creating user" : "signing in"}:`,
@@ -93,6 +95,7 @@ const Signuporin = () => {
       });
     }
   };
+
 
   const toggleAuthMode = () => {
     setIsSignUp(!isSignUp);

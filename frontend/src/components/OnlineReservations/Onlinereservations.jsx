@@ -51,7 +51,7 @@ const OnlineReservations = () => {
   const confirmBooking = async () => {
     try {
       const newBooking = {
-        user: "Guest", // Set this as "Guest" for guest bookings
+        user: "Guest", 
         facility: `Court ${confirmation.court}`,
         date: selectedDate,
         timeSlot: confirmation.timeSlot,
@@ -94,17 +94,18 @@ const OnlineReservations = () => {
         <div className="time">{timeSlot}</div>
         {[1, 2, 3, 4].map((court) => {
           const isSlotCurrentlyBooked = isSlotBooked(court, timeSlot);
+          const isPastBooked = isSlotCurrentlyBooked && isPast; // Check if slot is both booked and past
           const isDisabled = isPast || isSlotCurrentlyBooked; // Disable past or currently in-progress time slots
 
           return (
             <div
               key={court}
               className={`court ${
-                isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
+                isPastBooked ? "past-booked" : isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
               }`}
               onClick={() => !isDisabled && handleSlotClick(court, timeSlot)}
             >
-              {isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
+              {isPastBooked ? "Booked" : isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
             </div>
           );
         })}
