@@ -8,11 +8,13 @@ function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-// Function to calculate remaining days
 function calculateRemainingDays(dateString) {
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset today's time to 00:00:00 to compare only dates
   const bookingDate = new Date(dateString);
+  bookingDate.setHours(0, 0, 0, 0); // Reset booking time to 00:00:00 to compare only dates
   const differenceInTime = bookingDate - today;
+
   return Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
 }
 

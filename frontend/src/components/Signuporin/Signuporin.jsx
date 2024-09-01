@@ -42,24 +42,44 @@ const Signuporin = () => {
       return;
     }
 
-    const url = isSignUp
-      ? "http://localhost:3000/api/users/signup"
-      : "http://localhost:3000/api/users/signin";
+    const signupUrl = "http://localhost:3000/api/users/signup";
+    const signinUrl = "http://localhost:3000/api/users/signin";
+
     try {
-      const response = await axios.post(url, formData);
-      console.log(
-        `${isSignUp ? "User created" : "User signed in"}:`,
-        response.data
-      );
-      navigate("/memberaccount");
-      enqueueSnackbar("You have signed up successfully.", {
-        variant: "success",
-        autoHideDuration: 1000,
-      });
-      if (!isSignUp) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userName", response.data.user.name);
-        localStorage.setItem("userId", response.data.user.userId);
+      if (isSignUp) {
+        // Signup process
+        await axios.post(signupUrl, formData);
+        enqueueSnackbar("You have signed up successfully.", {
+          variant: "success",
+          autoHideDuration: 1000,
+        });
+
+        // Sign in automatically after signup
+        const signinResponse = await axios.post(signinUrl, {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        // Save token, userName, and userId in local storage
+        localStorage.setItem("token", signinResponse.data.token);
+        localStorage.setItem("userName", signinResponse.data.user.name);
+        localStorage.setItem("userId", signinResponse.data.user.userId);
+
+        navigate("/memberaccount");
+      } else {
+        // Sign in process
+        const signinResponse = await axios.post(signinUrl, formData);
+
+        enqueueSnackbar("You have signed in successfully.", {
+          variant: "success",
+          autoHideDuration: 1000,
+        });
+
+        // Save token, userName, and userId in local storage
+        localStorage.setItem("token", signinResponse.data.token);
+        localStorage.setItem("userName", signinResponse.data.user.name);
+        localStorage.setItem("userId", signinResponse.data.user.userId);
+
         navigate("/memberaccount");
       }
     } catch (error) {

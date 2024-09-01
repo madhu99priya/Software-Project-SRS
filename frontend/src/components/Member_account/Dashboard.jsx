@@ -97,8 +97,10 @@ const Dashboard = () => {
 
   const tileClassName = ({ date, view }) => {
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ensure only date is compared, ignoring time
+
     if (view === "month") {
-      // Highlight upcoming booked dates
+      // Check if the date is today and a booked day
       if (
         bookedDates.find(
           (d) => d.toDateString() === date.toDateString() && date >= today
