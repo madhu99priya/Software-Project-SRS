@@ -101,7 +101,7 @@ input[type="date"]:focus {
 }
 
 .court.available {
-  background-color: #3f51b5;
+  background-color: #7182e1;
   color: #ffffff;
   cursor: pointer;
 }
