@@ -42,31 +42,48 @@ const Signuporin = () => {
       return;
     }
 
-    const url = isSignUp
-      ? "http://localhost:3000/api/users/signup"
-      : "http://localhost:3000/api/users/signin";
+    const signupUrl = "http://localhost:3000/api/users/signup";
+    const signinUrl = "http://localhost:3000/api/users/signin";
+
     try {
-      const response = await axios.post(url, formData);
-      console.log(
-        `${isSignUp ? "User created" : "User signed in"}:`,
-        response.data
-      );
 
-      // Store necessary fields in local storage upon successful signup
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("userName", response.data.user.name);
-      localStorage.setItem("userId", response.data.user.userId);
-      localStorage.setItem("email", response.data.user.email);
-      localStorage.setItem("phone", response.data.user.phone);
-      localStorage.setItem("age", response.data.user.age);
-      localStorage.setItem("address", response.data.user.address);
-      localStorage.setItem("membershipType", response.data.user.membershipType);
+      if (isSignUp) {
+        // Signup process
+        await axios.post(signupUrl, formData);
+        enqueueSnackbar("You have signed up successfully.", {
+          variant: "success",
+          autoHideDuration: 1000,
+        });
 
-      enqueueSnackbar("You have signed up successfully.", {
-        variant: "success",
-        autoHideDuration: 1000,
-      });
-      navigate("/memberaccount");
+        // Sign in automatically after signup
+        const signinResponse = await axios.post(signinUrl, {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        // Save token, userName, and userId in local storage
+        localStorage.setItem("token", signinResponse.data.token);
+        localStorage.setItem("userName", signinResponse.data.user.name);
+        localStorage.setItem("userId", signinResponse.data.user.userId);
+
+        navigate("/memberaccount");
+      } else {
+        // Sign in process
+        const signinResponse = await axios.post(signinUrl, formData);
+
+        enqueueSnackbar("You have signed in successfully.", {
+          variant: "success",
+          autoHideDuration: 1000,
+        });
+
+        // Save token, userName, and userId in local storage
+        localStorage.setItem("token", signinResponse.data.token);
+        localStorage.setItem("userName", signinResponse.data.user.name);
+        localStorage.setItem("userId", signinResponse.data.user.userId);
+
+        navigate("/memberaccount");
+      }
+
     } catch (error) {
       console.error(
         `Error ${isSignUp ? "creating user" : "signing in"}:`,

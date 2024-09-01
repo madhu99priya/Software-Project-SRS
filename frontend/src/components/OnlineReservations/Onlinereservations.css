@@ -30,7 +30,7 @@ input[type="date"] {
 }
 
 input[type="date"]:focus {
-  border-color: #ff4081;
+  border-color: red;
 }
 
 .slots {
@@ -95,7 +95,7 @@ input[type="date"]:focus {
 
 
 .court.booked {
-  background-color: #ff4081; 
+  background-color: red; 
   color: #ffffff;
   cursor: not-allowed !important;
 }

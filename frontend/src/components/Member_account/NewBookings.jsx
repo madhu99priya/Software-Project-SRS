@@ -82,13 +82,15 @@ const NewBookings = () => {
     const now = new Date(); // Get the current date and time
     const currentHour = now.getHours(); // Get the current hour
     const currentMinutes = now.getMinutes(); // Get the current minutes
-  
+
     for (let hour = 8; hour <= 20; hour++) {
       const timeSlot = `${hour}:00-${hour + 1}:00`;
-      const isPast = selectedDate === getCurrentDate() && (hour < currentHour || (hour === currentHour && currentMinutes >= 0));
+      const isPast =
+        selectedDate === getCurrentDate() &&
+        (hour < currentHour || (hour === currentHour && currentMinutes >= 0));
       timeSlots.push({ timeSlot, isPast });
     }
-  
+
     return timeSlots.map(({ timeSlot, isPast }, index) => (
       <div key={index} className="time-slot">
         <div className="time">{timeSlot}</div>
@@ -96,16 +98,14 @@ const NewBookings = () => {
           const isSlotCurrentlyBooked = isSlotBooked(court, timeSlot);
           const isPastBooked = isSlotCurrentlyBooked && isPast; // Check if slot is both booked and past
           const isDisabled = isPast || isSlotCurrentlyBooked; // Disable past or currently in-progress time slots
-  
+
           return (
             <div
               key={court}
               className={`court ${
                 isPastBooked ? "past-booked" : isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
               }`}
-              onClick={() =>
-                !isDisabled && handleSlotClick(court, timeSlot)
-              }
+              onClick={() => !isDisabled && handleSlotClick(court, timeSlot)}
             >
               {isPastBooked ? "Booked" : isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
             </div>
@@ -114,46 +114,46 @@ const NewBookings = () => {
       </div>
     ));
   };
-  
-  
+
 
   return (
-
-    <div className="online-reservations-m">
-      <h1>
-        Online <span className="res_h">Reservations</span>
-      </h1>
-      <input
-        type="date"
-        value={selectedDate}
-        onChange={handleDateChange}
-        className="date-selector"
-        min={getCurrentDate()} // Set minimum date to today
-      />
-      <div className="slots">
-        <div className="slot-header">
-          <div className="time">Time Slot</div>
-          <div className="court">Court 1</div>
-          <div className="court">Court 2</div>
-          <div className="court">Court 3</div>
-          <div className="court">Court 4</div>
+    <div className="newBookings_background">
+      <div className="online-reservations-m">
+        <h1>
+          Online <span className="res_h">Reservations</span>
+        </h1>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={handleDateChange}
+          className="date-selector"
+          min={getCurrentDate()} // Set minimum date to today
+        />
+        <div className="slots">
+          <div className="slot-header">
+            <div className="time">Time Slot</div>
+            <div className="court">Court 1</div>
+            <div className="court">Court 2</div>
+            <div className="court">Court 3</div>
+            <div className="court">Court 4</div>
+          </div>
+          {renderSlots()}
         </div>
-        {renderSlots()}
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <p>
+              Confirm booking for Court {confirmation.court} at{" "}
+              {confirmation.timeSlot}?
+            </p>
+            <Payment
+              setShowModal={() => {
+                setShowModal(false);
+              }}
+              confirmBooking={confirmBooking}
+            />
+          </Modal>
+        )}
       </div>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <p>
-            Confirm booking for Court {confirmation.court} at{" "}
-            {confirmation.timeSlot}?
-          </p>
-          <Payment
-            setShowModal={() => {
-              setShowModal(false);
-            }}
-            confirmBooking={confirmBooking}
-          />
-        </Modal>
-      )}
     </div>
   );
 };
