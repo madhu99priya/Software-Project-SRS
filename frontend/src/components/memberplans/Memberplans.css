@@ -1,18 +1,17 @@
 .plans-container-n{
     padding: 0 2rem;
     max-width: 90vw;
-    height: 120vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 4rem;
     position: relative;
     color: white;
     background-color: #111;
-    background-image: url('../../assets//packages.jpg');
+    background-image: url('../../assets/newPackages.jpg');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    /* z-index: -1; */
 }
 
 .plans{
@@ -20,13 +19,14 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
+    margin-top: -1rem;
 }
 
 .plan{
     display: flex;
     flex-direction: column;
     background-color: rgba(102, 100, 100, 0.8);
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 1.5rem;
     width: 18rem;
     border-radius: 1rem;
