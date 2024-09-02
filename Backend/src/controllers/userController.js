@@ -72,6 +72,33 @@ export const updateUser = async (req, res) => {
   }
 };
 
+export const updateUserByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const updateFields = { ...req.body };
+
+    // If password is being updated, hash it
+    if (updateFields.password) {
+      updateFields.password = await bcrypt.hash(updateFields.password, 10);
+    }
+
+    // Find and update the user by userId
+    const updatedUser = await User.findOneAndUpdate(
+      { userId }, // Ensure userId is unique in your schema
+      updateFields,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).json({ error: "Failed to update user" });
+  }
+};
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);

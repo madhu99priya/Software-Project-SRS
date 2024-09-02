@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Background from "../../../assets/background_login.jpg";
-
 
 const PreviousBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -50,7 +48,7 @@ const PreviousBookings = () => {
         <section className="table_body">
           {loading ? (
             <p>Loading...</p>
-          ) : (
+          ) : bookings.length > 0 ? (
             <table>
               <thead>
                 <tr>
@@ -73,6 +71,8 @@ const PreviousBookings = () => {
                 ))}
               </tbody>
             </table>
+          ) : (
+            <p>No previous bookings found..</p>
           )}
         </section>
       </div>
@@ -146,7 +146,7 @@ const Section = styled.section`
   td {
     padding: 0.8rem;
     border: 1px solid #ddd;
-    font-size: bold;
+    font-weight: bold;
   }
 
   thead th {
@@ -170,6 +170,13 @@ const Section = styled.section`
   tbody td {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
+  }
+
+  .table_body p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #495057;
   }
 
   .table_body::-webkit-scrollbar {

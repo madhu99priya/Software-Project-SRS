@@ -19,6 +19,7 @@ import {
   HomeOutlined,
   IdcardOutlined,
   EditOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
 
 const Settings = ({ onUpgradePackage }) => {
@@ -36,9 +37,17 @@ const Settings = ({ onUpgradePackage }) => {
           `http://localhost:3000/api/users/userId/${userId}`
         );
         setUserData(response.data);
-        form.setFieldsValue(response.data);
+        form.setFieldsValue({
+          name: response.data.name,
+          email: response.data.email,
+          phone: response.data.phone,
+          age: response.data.age,
+          address: response.data.address,
+          membershipType: response.data.membershipType,
+        });
         setDataLoading(false);
       } catch (error) {
+        console.error("Fetch error:", error);
         message.error("Failed to load user data");
         setDataLoading(false);
       }
@@ -50,12 +59,36 @@ const Settings = ({ onUpgradePackage }) => {
   const onFinish = async (values) => {
     setLoading(true);
     const userId = localStorage.getItem("userId");
-
-    const { _id, ...updatedData } = values;
-
+    console.log("Updating user with userId:", userId);
+  
     try {
-      await axios.put(`http://localhost:3000/api/users/${userId}`, updatedData);
+      const response = await axios.put(
+        `http://localhost:3000/api/users/userId/${userId}`,
+        values
+      );
       message.success("Profile updated successfully");
+      
+      // Update local state with the response data
+      setUserData(response.data); 
+      
+      // Update form fields
+      form.setFieldsValue({
+        name: response.data.name,
+        email: response.data.email,
+        phone: response.data.phone,
+        age: response.data.age,
+        address: response.data.address,
+        membershipType: response.data.membershipType,
+      });
+  
+      // Update localStorage with the new user data
+      localStorage.setItem("userName", response.data.name);
+      localStorage.setItem("userEmail", response.data.email);
+      localStorage.setItem("userPhone", response.data.phone);
+      localStorage.setItem("userAge", response.data.age);
+      localStorage.setItem("userAddress", response.data.address);
+      localStorage.setItem("userMembershipType", response.data.membershipType);
+  
       setEditing(false);
     } catch (error) {
       console.error(
@@ -67,6 +100,7 @@ const Settings = ({ onUpgradePackage }) => {
       setLoading(false);
     }
   };
+  
 
   const columns = [
     {
@@ -82,24 +116,31 @@ const Settings = ({ onUpgradePackage }) => {
         <>
           {editing && record.field !== "Membership Type" ? (
             <Form.Item
-              name={record.field}
+              name={record.name}
               style={{ margin: 0 }}
               rules={[
                 {
-                  required: true,
-                  message: `Please enter your ${record.field.toLowerCase()}`,
+                  required: record.name !== "password",
+                  message: `Please enter your ${record.name.toLowerCase()}`,
                 },
               ]}
             >
-              <Input
-                prefix={record.icon}
-                placeholder={`Enter your ${record.field.toLowerCase()}`}
-                defaultValue={record.value}
-              />
+              {record.name === "password" ? (
+                <Input.Password
+                  prefix={record.icon}
+                  placeholder="Enter new password"
+                  autoComplete="new-password"
+                />
+              ) : (
+                <Input
+                  prefix={record.icon}
+                  placeholder={`Enter your ${record.name.toLowerCase()}`}
+                />
+              )}
             </Form.Item>
           ) : (
             <>
-              {record.value}
+              {record.field === "Password" ? "••••••••" : record.value}
               {record.field === "Membership Type" && editing && (
                 <>
                   <br />
@@ -117,38 +158,51 @@ const Settings = ({ onUpgradePackage }) => {
     {
       key: "1",
       field: "Name",
+      name: "name",
       value: userData.name,
       icon: <UserOutlined />,
     },
     {
       key: "2",
       field: "Email",
+      name: "email",
       value: userData.email,
       icon: <MailOutlined />,
     },
     {
       key: "3",
       field: "Phone",
+      name: "phone",
       value: userData.phone,
       icon: <PhoneOutlined />,
     },
     {
       key: "4",
       field: "Age",
+      name: "age",
       value: userData.age,
       icon: <IdcardOutlined />,
     },
     {
       key: "5",
       field: "Address",
+      name: "address",
       value: userData.address,
       icon: <HomeOutlined />,
     },
     {
       key: "6",
       field: "Membership Type",
+      name: "membershipType",
       value: userData.membershipType,
       icon: <IdcardOutlined />,
+    },
+    {
+      key: "7",
+      field: "Password",
+      name: "password",
+      value: "",
+      icon: <LockOutlined />,
     },
   ];
 
@@ -162,7 +216,7 @@ const Settings = ({ onUpgradePackage }) => {
             <Tooltip title={editing ? "Cancel Edit" : "Edit"}>
               <Button
                 type="link"
-                icon={<EditOutlined style={{ fontSize: "24px" }} />} // Adjust the size here
+                icon={<EditOutlined style={{ fontSize: "24px" }} />}
                 onClick={() => setEditing(!editing)}
                 style={{
                   float: "right",
@@ -182,18 +236,23 @@ const Settings = ({ onUpgradePackage }) => {
           </div>
         ) : (
           <>
-            <Table
-              columns={columns}
-              dataSource={data}
-              pagination={false}
-              bordered
-              style={{ marginBottom: 20 }}
-            />
-            {editing && (
-              <Form form={form} onFinish={onFinish} layout="inline">
+            <Form form={form} onFinish={onFinish}>
+              <Table
+                columns={columns}
+                dataSource={data}
+                pagination={false}
+                bordered
+                style={{ marginBottom: 20 }}
+                rowKey="key" // Ensure each row has a unique key
+              />
+              {editing && (
                 <Form.Item>
                   <Space>
-                    <Button type="primary" htmlType="submit" loading={loading}>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={loading}
+                    >
                       Update
                     </Button>
                     <Button
@@ -207,8 +266,8 @@ const Settings = ({ onUpgradePackage }) => {
                     </Button>
                   </Space>
                 </Form.Item>
-              </Form>
-            )}
+              )}
+            </Form>
           </>
         )}
       </Card>
