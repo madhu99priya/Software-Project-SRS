@@ -53,6 +53,7 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
+    console.log("Update request body:", req.body); // Log request body
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, 10);
     }
@@ -61,11 +62,13 @@ export const updateUser = async (req, res) => {
       runValidators: true,
     });
     if (!user) {
-      return res.status(404).send();
+      return res.status(404).send({ error: "User not found" });
     }
+    console.log("Updated user:", user); // Log updated user
     res.status(200).send(user);
   } catch (error) {
-    res.status(400).send(error);
+    console.error("Update error:", error); // Log error details
+    res.status(400).send({ error: "Failed to update user" });
   }
 };
 

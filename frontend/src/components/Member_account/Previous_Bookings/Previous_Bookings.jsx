@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import Background from '../../../assets/prevv_bookings.jpg';
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import Background from "../../../assets/background_login.jpg";
+
 
 const PreviousBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +12,7 @@ const PreviousBookings = () => {
 
   useEffect(() => {
     const fetchUserId = () => {
-      const storedUserId = localStorage.getItem('userId');
+      const storedUserId = localStorage.getItem("userId");
       if (storedUserId) {
         setUserId(storedUserId);
       }
@@ -20,10 +22,12 @@ const PreviousBookings = () => {
       if (userId) {
         setLoading(true);
         try {
-          const response = await axios.get(`http://localhost:3000/api/bookings/user/${userId}/bookings`);
+          const response = await axios.get(
+            `http://localhost:3000/api/bookings/user/${userId}/bookings`
+          );
           setBookings(response.data);
         } catch (error) {
-          console.error('Error fetching bookings:', error);
+          console.error("Error fetching bookings:", error);
         } finally {
           setLoading(false);
         }
@@ -82,9 +86,9 @@ const Section = styled.section`
   color: black;
   background-image: url(${Background});
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh;
+  background-repeat: no-repeat;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,8 +100,8 @@ const Section = styled.section`
     align-items: center;
     width: 70vw;
     max-height: 80vh;
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
     padding: 2rem;
@@ -142,12 +146,8 @@ const Section = styled.section`
   td {
     padding: 0.8rem;
     border: 1px solid #ddd;
-    font-size : bold;
-
-}
-  
-
-
+    font-size: bold;
+  }
 
   thead th {
     position: sticky;

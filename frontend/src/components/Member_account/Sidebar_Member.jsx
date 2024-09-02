@@ -18,8 +18,11 @@ import animationBell from "../../assets/Animation_Bell.json";
 
 const { Sider } = Layout;
 
-const Sidebar_Member = ({ setActiveComponent }) => {
-  const [selectedKey, setSelectedKey] = useState("dashboard");
+const Sidebar_Member = ({
+  setActiveComponent,
+  selectedKey,
+  setSelectedKey,
+}) => {
   const [collapsed, setCollapsed] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
@@ -140,7 +143,15 @@ const Sidebar_Member = ({ setActiveComponent }) => {
         </Menu>
       </div>
       <div className="logout-wrapper">
-        <Menu mode="inline" theme="dark">
+        <Menu
+          mode="inline"
+          selectedKeys={[selectedKey]}
+          onClick={({ key }) => {
+            setSelectedKey(key);
+            setActiveComponent(key);
+          }}
+          theme="dark"
+        >
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             Settings
           </Menu.Item>
