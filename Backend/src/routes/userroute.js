@@ -1,3 +1,4 @@
+// userroute.js
 import express from "express";
 import {
   createUser,
@@ -6,7 +7,7 @@ import {
   updateUser,
   loginUser,
   deleteUser,
-  getUserByUserId, // Make sure this function is imported
+  getUserByUserId,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -15,12 +16,10 @@ router.post("/signup", createUser);
 router.post("/signin", loginUser);
 
 router.get("/", getAllUsers);
-
 router.get("/:id", getUserById);
+router.get("/userId/:userId", getUserByUserId); // Ensure this route is used correctly
 
-router.get("/userId/:userId", getUserByUserId); // Add this line
-
-router.put("/:id", updateUser);
+router.put("/:id", updateUser); // This should match the ID being used in frontend
 
 router.delete("/:id", deleteUser);
 

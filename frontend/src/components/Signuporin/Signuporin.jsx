@@ -46,7 +46,6 @@ const Signuporin = () => {
     const signinUrl = "http://localhost:3000/api/users/signin";
 
     try {
-
       if (isSignUp) {
         // Signup process
         await axios.post(signupUrl, formData);
@@ -83,7 +82,6 @@ const Signuporin = () => {
 
         navigate("/memberaccount");
       }
-
     } catch (error) {
       console.error(
         `Error ${isSignUp ? "creating user" : "signing in"}:`,
@@ -96,7 +94,6 @@ const Signuporin = () => {
     }
   };
 
-
   const toggleAuthMode = () => {
     setIsSignUp(!isSignUp);
   };
@@ -108,11 +105,13 @@ const Signuporin = () => {
   return (
     <div
       className="auth-wrapper"
-      style={{
-        backgroundImage: `url(${backgroundPattern}), linear-gradient(to right, #f8f9fa, #e9ecef)`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={
+        {
+          // backgroundImage: `url(${backgroundPattern}), linear-gradient(to right, #f8f9fa, #e9ecef)`,
+          // backgroundSize: "cover",
+          // backgroundRepeat: "no-repeat",
+        }
+      }
     >
       <div className="backbutton-container"></div>
       <div className="auth-container">
