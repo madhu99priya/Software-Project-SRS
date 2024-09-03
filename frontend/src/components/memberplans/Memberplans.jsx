@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Memberplans.css";
 import { plansData } from "../../../data/plansData.jsx";
 import whiteTick from "../../assets/whiteTick.png";
@@ -19,16 +19,63 @@ const Plans = () => {
   const confirmSubscription = async () => {
     try {
       const userId = localStorage.getItem("userId");
+      const currentDate = new Date();
+      let expiryDate;
+
+      if (selectedPlan.name === "Bronze") {
+        expiryDate = new Date(currentDate.getTime() + 6 * 7 * 24 * 60 * 60 * 1000); // 6 weeks
+      } else if (selectedPlan.name === "Silver") {
+        expiryDate = new Date(currentDate.setMonth(currentDate.getMonth() + 3)); // 3 months
+      } else if (selectedPlan.name === "Gold") {
+        expiryDate = new Date(currentDate.setMonth(currentDate.getMonth() + 6)); // 6 months
+      }
+
       await axios.put(`http://localhost:3000/api/users/userId/${userId}`, {
         membershipType: selectedPlan.name,
+        subscriptionStartDate: currentDate,
       });
 
-      setIsSubscribed(true); 
+      setIsSubscribed(true);
       setShowModal(false);
     } catch (error) {
       console.error("Error updating subscription:", error);
     }
   };
+
+  useEffect(() => {
+    const checkSubscriptionStatus = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        const response = await axios.get(`http://localhost:3000/api/users/userId/${userId}`);
+        const user = response.data;
+        const { membershipType, subscriptionStartDate } = user;
+
+        if (membershipType && subscriptionStartDate) {
+          const startDate = new Date(subscriptionStartDate);
+          let expiryDate;
+
+          if (membershipType === "Bronze") {
+            expiryDate = new Date(startDate.getTime() + 6 * 7 * 24 * 60 * 60 * 1000);
+          } else if (membershipType === "Silver") {
+            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 3));
+          } else if (membershipType === "Gold") {
+            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 6));
+          }
+
+          if (new Date() < expiryDate) {
+            setIsSubscribed(true);
+            setSelectedPlan(plansData.find(plan => plan.name === membershipType));
+          } else {
+            setIsSubscribed(false); // Subscription expired
+          }
+        }
+      } catch (error) {
+        console.error("Error checking subscription status:", error);
+      }
+    };
+
+    checkSubscriptionStatus();
+  }, []);
 
   return (
     <div className="plans-container-n">

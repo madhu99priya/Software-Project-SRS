@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null, // or default: "" if you prefer an empty string
   },
+  subscriptionStartDate: {
+    type: Date,
+    default: null,
+  },
   totalBookedHours: {
     type: Number,
     default: 0, // initialize to 0 for new users

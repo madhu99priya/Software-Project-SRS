@@ -20,10 +20,24 @@ const NewBookings = () => {
     timeSlot: null,
   });
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(null);
+  const [requiresPayment, setRequiresPayment] = useState(false);
 
   useEffect(() => {
+    fetchUserDetails();
     fetchBookings();
   }, [selectedDate]);
+
+  const fetchUserDetails = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const response = await axios.get(`http://localhost:3000/api/users/userId/${userId}`);
+      setUser(response.data);
+      setRequiresPayment(!response.data.membershipType); // Requires payment if membershipType is not set
+    } catch (error) {
+      console.error("Error fetching user details", error);
+    }
+  };
 
   const fetchBookings = async () => {
     try {
@@ -32,7 +46,6 @@ const NewBookings = () => {
         (booking) =>
           new Date(booking.date).toISOString().split("T")[0] === selectedDate
       );
-      console.log("Filtered bookings:", filteredBookings);
       setBookings(filteredBookings);
     } catch (error) {
       console.error("Error fetching bookings", error);
@@ -48,12 +61,10 @@ const NewBookings = () => {
     setShowModal(true);
   };
 
-  const storedUserId = localStorage.getItem("userId");
-
   const confirmBooking = async () => {
     try {
       const newBooking = {
-        user: storedUserId, // Ensure you pass the correct userId here
+        user: user.userId,
         facility: `Court ${confirmation.court}`,
         date: selectedDate,
         timeSlot: confirmation.timeSlot,
@@ -79,9 +90,9 @@ const NewBookings = () => {
 
   const renderSlots = () => {
     const timeSlots = [];
-    const now = new Date(); // Get the current date and time
-    const currentHour = now.getHours(); // Get the current hour
-    const currentMinutes = now.getMinutes(); // Get the current minutes
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
 
     for (let hour = 8; hour <= 20; hour++) {
       const timeSlot = `${hour}:00-${hour + 1}:00`;
@@ -96,25 +107,36 @@ const NewBookings = () => {
         <div className="time">{timeSlot}</div>
         {[1, 2, 3, 4].map((court) => {
           const isSlotCurrentlyBooked = isSlotBooked(court, timeSlot);
-          const isPastBooked = isSlotCurrentlyBooked && isPast; // Check if slot is both booked and past
-          const isDisabled = isPast || isSlotCurrentlyBooked; // Disable past or currently in-progress time slots
+          const isPastBooked = isSlotCurrentlyBooked && isPast;
+          const isDisabled = isPast || isSlotCurrentlyBooked;
 
           return (
             <div
               key={court}
               className={`court ${
-                isPastBooked ? "past-booked" : isSlotCurrentlyBooked ? "booked" : isPast ? "past" : "available"
+                isPastBooked
+                  ? "past-booked"
+                  : isSlotCurrentlyBooked
+                  ? "booked"
+                  : isPast
+                  ? "past"
+                  : "available"
               }`}
               onClick={() => !isDisabled && handleSlotClick(court, timeSlot)}
             >
-              {isPastBooked ? "Booked" : isSlotCurrentlyBooked ? "Booked" : isPast ? "Past" : "Available"}
+              {isPastBooked
+                ? "Booked"
+                : isSlotCurrentlyBooked
+                ? "Booked"
+                : isPast
+                ? "Past"
+                : "Available"}
             </div>
           );
         })}
       </div>
     ));
   };
-
 
   return (
     <div className="newBookings_background">
@@ -127,7 +149,7 @@ const NewBookings = () => {
           value={selectedDate}
           onChange={handleDateChange}
           className="date-selector"
-          min={getCurrentDate()} // Set minimum date to today
+          min={getCurrentDate()}
         />
         <div className="slots">
           <div className="slot-header">
@@ -141,16 +163,28 @@ const NewBookings = () => {
         </div>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <p>
-              Confirm booking for Court {confirmation.court} at{" "}
-              {confirmation.timeSlot}?
-            </p>
-            <Payment
-              setShowModal={() => {
-                setShowModal(false);
-              }}
-              confirmBooking={confirmBooking}
-            />
+            {requiresPayment ? (
+              <Payment
+                setShowModal={() => setShowModal(false)}
+                confirmBooking={confirmBooking}
+              />
+            ) : (
+              <div className="modal-content">
+                <p>
+                  Confirm booking for Court {confirmation.court} at{" "}
+                  {confirmation.timeSlot} on {selectedDate}?
+                </p>
+                <div className="modal-buttons">
+                  <button onClick={confirmBooking}>Confirm Booking</button>
+                  <button
+                    className="cancel"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </Modal>
         )}
       </div>

@@ -139,7 +139,7 @@ const OnlineReservations = () => {
         <Modal onClose={() => setShowModal(false)}>
           <p>
             Confirm booking for Court {confirmation.court} at{" "}
-            {confirmation.timeSlot}?
+            {confirmation.timeSlot} for Rs. 1000?
           </p>
           <Payment
             setShowModal={() => {
