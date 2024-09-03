@@ -17,11 +17,12 @@ import {
   UserOutlined,
   MailOutlined,
   PhoneOutlined,
-  HomeOutlined,
+  EnvironmentOutlined,
   IdcardOutlined,
   EditOutlined,
   LockOutlined,
   DeleteOutlined,
+  GiftOutlined,
 } from "@ant-design/icons";
 import ChangePasswordModal from "./ChangePasswordModal"; // Import the new component
 
@@ -137,14 +138,14 @@ const Settings = ({ onUpgradePackage }) => {
       field: "Address",
       name: "address",
       value: userData.address,
-      icon: <HomeOutlined />,
+      icon: <EnvironmentOutlined />,
     },
     {
       key: "6",
-      field: "Membership Type",
+      field: "Package Type",
       name: "membershipType",
       value: userData.membershipType,
-      icon: <IdcardOutlined />,
+      icon: <GiftOutlined />,
     },
   ];
 
@@ -235,7 +236,7 @@ const Settings = ({ onUpgradePackage }) => {
                     style={{
                       textAlign: "center",
                       marginTop: "20px",
-                      marginBottom: "-15px",
+                      marginBottom: "-30px",
                     }}
                   >
                     <Space>
@@ -274,26 +275,19 @@ const Settings = ({ onUpgradePackage }) => {
               <Spin size="large" />
             ) : (
               <div className="account-content">
-                {/* Change Password */}
                 <div className="account-item">
-                  <LockOutlined
-                    style={{ marginRight: "8px", color: "white" }}
-                  />
+                  <LockOutlined style={{ color: "white" }} />
                   <a
-                    style={{ fontSize: "1rem" }}
+                    className="change_p"
                     onClick={() => setIsPasswordModalVisible(true)}
                   >
                     Change Password
                   </a>
                 </div>
-
-                {/* Delete Account */}
                 <div className="account-item">
-                  <DeleteOutlined
-                    style={{ marginRight: "8px", color: "white" }}
-                  />
+                  <DeleteOutlined style={{ color: "red" }} />
                   <a
-                    style={{ fontSize: "1rem" }}
+                    className="delete_a"
                     onClick={() => setIsPasswordModalVisible(true)}
                   >
                     Delete Account

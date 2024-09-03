@@ -99,6 +99,7 @@ export const updateUserByUserId = async (req, res) => {
     res.status(500).json({ error: "Failed to update user" });
   }
 };
+
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
@@ -110,8 +111,6 @@ export const deleteUser = async (req, res) => {
     res.status(500).send(error);
   }
 };
-
-// userController.js
 
 export const getUserByUserId = async (req, res) => {
   // console.log("Received userId:", req.params.userId); // Debugging line
@@ -125,5 +124,49 @@ export const getUserByUserId = async (req, res) => {
   } catch (error) {
     // console.error("Error fetching user:", error); // Debugging line
     res.status(500).send(error);
+  }
+};
+
+export const verifyPassword = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { currentPassword } = req.body;
+
+    const user = await User.findOne({ userId });
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    // Verify the hashed password
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).send({ match: false });
+    }
+
+    res.status(200).send({ match: true });
+  } catch (error) {
+    console.error("Password verification error:", error);
+    res.status(500).send({ error: "Failed to verify password" });
+  }
+};
+
+export const changePassword = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { newPassword } = req.body;
+
+    const user = await User.findOne({ userId });
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    // Directly assign the new password; the pre-save hook will hash it
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).send({ message: "Password changed successfully" });
+  } catch (error) {
+    console.error("Password change error:", error);
+    res.status(500).send({ error: "Failed to change password" });
   }
 };

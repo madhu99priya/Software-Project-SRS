@@ -1,128 +1,177 @@
-/* Responsive Container Styling */
 .settings-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-image: url('../../assets/member_settings.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url("../../assets/member_settings.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 10px;
   }
-  
-  @media (max-width: 768px) {
-    .settings-container {
-      padding: 10px; /* Reduce padding on smaller screens */
-    }
-  }
-  
-  /* Responsive Card Styling */
+}
+
+.settings-card {
+  width: 50vw;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  min-height: 72vh;
+}
+
+@media (max-width: 768px) {
   .settings-card {
-    width: 50vw;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    min-height: 72vh;
+    width: 95vw;
+    padding: 15px;
   }
-  
-  @media (max-width: 768px) {
-    .settings-card {
-      width: 95vw;
-      padding: 15px; /* Adjust padding for smaller screens */
-    }
-  }
-  
-  /* Responsive Table Styling */
-  .settings-container .ant-table {
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 8px; /* Rounded corners for the table */
-  }
-  
+}
+
+.settings-container .ant-table {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+}
+
+.settings-container .ant-table-tbody > tr > td:nth-child(2),
+.settings-container .ant-table-thead > tr > th:nth-child(2) {
+  border-left: 1px solid white;
+  padding-left: 15px;
+}
+
+.settings-container .ant-table-thead > tr > th,
+.settings-container .ant-table-tbody > tr > td {
+  text-align: left;
+}
+
+.settings-container .ant-table-tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
   .settings-container .ant-table-thead > tr > th,
   .settings-container .ant-table-tbody > tr > td {
     text-align: left;
+    font-size: 0.875rem;
   }
-  
-  @media (max-width: 768px) {
-    .settings-container .ant-table-thead > tr > th,
-    .settings-container .ant-table-tbody > tr > td {
-      text-align: left;
-      font-size: 0.875rem; /* Adjust font size for smaller screens */
-    }
-  }
-  
- 
-  
-  @media (max-width: 768px) {
-    .custom-tabs {
-      .ant-tabs-left-bar {
-        display: none; /* Hide the left bar on small screens */
-      }
-  
-      .ant-tabs-tab {
-        width: 100%;
-        text-align: center; /* Center the tabs on small screens */
-        color:white;
-      }
-    }
-  }
+}
 
+@media (max-width: 768px) {
   .custom-tabs {
     .ant-tabs-left-bar {
-      display: none; /* Hide the left bar on small screens */
+      display: none;
     }
 
     .ant-tabs-tab {
       width: 100%;
-      text-align: center; /* Center the tabs on small screens */
-      color:white;
+      text-align: center;
+      color: white;
     }
   }
-  
-  /* General Content Responsiveness */
+}
+
+.custom-tabs {
+  .ant-tabs-left-bar {
+    display: none;
+  }
+
+  .ant-tabs-tab {
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+}
+
+.general-content {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 768px) {
   .general-content {
-    position: relative;
-    padding-bottom: 40px;
+    padding: 15px;
   }
-  
-  @media (max-width: 768px) {
-    .general-content {
-      padding: 15px; /* Adjust padding on smaller screens */
-    }
-  }
-  
-  /* Account Content Responsiveness */
+}
+
+.account-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
   .account-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    padding: 15px;
+    gap: 15px;
   }
-  
-  @media (max-width: 768px) {
-    .account-content {
-      padding: 15px; /* Adjust padding on smaller screens */
-      gap: 15px; /* Adjust gap on smaller screens */
-    }
-  }
-  
-  /* Responsive Edit Icon */
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #1890ff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
   .edit-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #1890ff;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    font-size: 20px;
   }
-  
-  @media (max-width: 768px) {
-    .edit-icon {
-      font-size: 20px; /* Adjust icon size for smaller screens */
-    }
-  }
-  
+}
+
+.settings-container .ant-table-tbody > tr > td:first-child {
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+
+.settings-container .ant-table-tbody > tr > td:nth-child(2) {
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  color: black;
+}
+
+.account-item .anticon {
+  margin-right: 16px;
+  color: inherit;
+}
+
+.change_p {
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.change_p:hover {
+  color: #adadad;
+  transform: scale(1.1);
+}
+
+.delete_a {
+  font-size: 1rem;
+  color: red;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delete_a:hover {
+  color: darkred;
+
+  transform: scale(1.1);
+}
+
+.account-item .anticon:hover {
+  color: #ddd;
+  transform: scale(1.2);
+}
