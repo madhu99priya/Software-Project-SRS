@@ -11,6 +11,7 @@ import {
   Form,
   Table,
   Tooltip,
+  Tabs,
 } from "antd";
 import {
   UserOutlined,
@@ -20,7 +21,11 @@ import {
   IdcardOutlined,
   EditOutlined,
   LockOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
+import ChangePasswordModal from "./ChangePasswordModal"; // Import the new component
+
+const { TabPane } = Tabs;
 
 const Settings = ({ onUpgradePackage }) => {
   const [form] = Form.useForm();
@@ -28,6 +33,7 @@ const Settings = ({ onUpgradePackage }) => {
   const [dataLoading, setDataLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [editing, setEditing] = useState(false);
+  const [isPasswordModalVisible, setIsPasswordModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -59,19 +65,16 @@ const Settings = ({ onUpgradePackage }) => {
   const onFinish = async (values) => {
     setLoading(true);
     const userId = localStorage.getItem("userId");
-    console.log("Updating user with userId:", userId);
-  
+
     try {
       const response = await axios.put(
         `http://localhost:3000/api/users/userId/${userId}`,
         values
       );
       message.success("Profile updated successfully");
-      
-      // Update local state with the response data
-      setUserData(response.data); 
-      
-      // Update form fields
+
+      setUserData(response.data);
+
       form.setFieldsValue({
         name: response.data.name,
         email: response.data.email,
@@ -80,15 +83,14 @@ const Settings = ({ onUpgradePackage }) => {
         address: response.data.address,
         membershipType: response.data.membershipType,
       });
-  
-      // Update localStorage with the new user data
+
       localStorage.setItem("userName", response.data.name);
       localStorage.setItem("userEmail", response.data.email);
       localStorage.setItem("userPhone", response.data.phone);
       localStorage.setItem("userAge", response.data.age);
       localStorage.setItem("userAddress", response.data.address);
       localStorage.setItem("userMembershipType", response.data.membershipType);
-  
+
       setEditing(false);
     } catch (error) {
       console.error(
@@ -100,61 +102,8 @@ const Settings = ({ onUpgradePackage }) => {
       setLoading(false);
     }
   };
-  
 
-  const columns = [
-    {
-      title: "Field",
-      dataIndex: "field",
-      key: "field",
-    },
-    {
-      title: "Value",
-      dataIndex: "value",
-      key: "value",
-      render: (_, record) => (
-        <>
-          {editing && record.field !== "Membership Type" ? (
-            <Form.Item
-              name={record.name}
-              style={{ margin: 0 }}
-              rules={[
-                {
-                  required: record.name !== "password",
-                  message: `Please enter your ${record.name.toLowerCase()}`,
-                },
-              ]}
-            >
-              {record.name === "password" ? (
-                <Input.Password
-                  prefix={record.icon}
-                  placeholder="Enter new password"
-                  autoComplete="new-password"
-                />
-              ) : (
-                <Input
-                  prefix={record.icon}
-                  placeholder={`Enter your ${record.name.toLowerCase()}`}
-                />
-              )}
-            </Form.Item>
-          ) : (
-            <>
-              {record.field === "Password" ? "••••••••" : record.value}
-              {record.field === "Membership Type" && editing && (
-                <>
-                  <br />
-                  <a onClick={() => onUpgradePackage()}>Upgrade Package</a>
-                </>
-              )}
-            </>
-          )}
-        </>
-      ),
-    },
-  ];
-
-  const data = [
+  const generalData = [
     {
       key: "1",
       field: "Name",
@@ -197,12 +146,49 @@ const Settings = ({ onUpgradePackage }) => {
       value: userData.membershipType,
       icon: <IdcardOutlined />,
     },
+  ];
+
+  const renderColumns = (data) => [
     {
-      key: "7",
-      field: "Password",
-      name: "password",
-      value: "",
-      icon: <LockOutlined />,
+      title: "Field",
+      dataIndex: "field",
+      key: "field",
+    },
+    {
+      title: "Value",
+      dataIndex: "value",
+      key: "value",
+      render: (_, record) => (
+        <>
+          {editing && record.field !== "Membership Type" ? (
+            <Form.Item
+              name={record.name}
+              style={{ margin: 0 }}
+              rules={[
+                {
+                  required: record.name !== "password",
+                  message: `Please enter your ${record.name.toLowerCase()}`,
+                },
+              ]}
+            >
+              <Input
+                prefix={record.icon}
+                placeholder={`Enter your ${record.name.toLowerCase()}`}
+              />
+            </Form.Item>
+          ) : (
+            <>
+              {record.value}
+              {record.field === "Membership Type" && editing && (
+                <>
+                  <br />
+                  <a onClick={() => onUpgradePackage()}>Upgrade Package</a>
+                </>
+              )}
+            </>
+          )}
+        </>
+      ),
     },
   ];
 
@@ -213,64 +199,116 @@ const Settings = ({ onUpgradePackage }) => {
         title={
           <>
             <span style={{ color: "white", fontSize: "2rem" }}>Settings</span>
-            <Tooltip title={editing ? "Cancel Edit" : "Edit"}>
-              <Button
-                type="link"
-                icon={<EditOutlined style={{ fontSize: "24px" }} />}
-                onClick={() => setEditing(!editing)}
-                style={{
-                  float: "right",
-                  alignItems: "center",
-                  marginTop: "10px",
-                  backgroundColor: "white",
-                }}
-              />
-            </Tooltip>
+            <Tooltip title={editing ? "Cancel Edit" : "Edit"}></Tooltip>
           </>
         }
-        bordered={false}
       >
-        {dataLoading ? (
-          <div style={{ textAlign: "center", padding: "20px" }}>
-            <Spin size="large" />
-          </div>
-        ) : (
-          <>
-            <Form form={form} onFinish={onFinish}>
-              <Table
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-                bordered
-                style={{ marginBottom: 20 }}
-                rowKey="key" // Ensure each row has a unique key
-              />
-              {editing && (
-                <Form.Item>
-                  <Space>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      loading={loading}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      htmlType="button"
-                      onClick={() => {
-                        form.resetFields();
-                        setEditing(false);
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                  </Space>
-                </Form.Item>
+        <Tabs tabPosition="left" className="custom-tabs">
+          <TabPane tab="General" key="1">
+            <div className="general-content">
+              <Form
+                layout="vertical"
+                form={form}
+                initialValues={{
+                  name: userData.name,
+                  email: userData.email,
+                  phone: userData.phone,
+                  age: userData.age,
+                  address: userData.address,
+                  membershipType: userData.membershipType,
+                }}
+                onFinish={onFinish}
+              >
+                {dataLoading ? (
+                  <Spin size="large" />
+                ) : (
+                  <Table
+                    dataSource={generalData}
+                    columns={renderColumns(generalData)}
+                    pagination={false}
+                    showHeader={false}
+                    rowKey="key"
+                  />
+                )}
+                {editing && (
+                  <Form.Item
+                    style={{
+                      textAlign: "center",
+                      marginTop: "20px",
+                      marginBottom: "-15px",
+                    }}
+                  >
+                    <Space>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={loading}
+                      >
+                        Save
+                      </Button>
+                      <Button onClick={() => setEditing(false)}>Cancel</Button>
+                    </Space>
+                  </Form.Item>
+                )}
+              </Form>
+
+              {!editing && (
+                <Tooltip title={editing ? "Cancel Edit" : "Edit"}>
+                  <Button
+                    type="link"
+                    icon={<EditOutlined style={{ fontSize: "24px" }} />}
+                    onClick={() => setEditing(!editing)}
+                    style={{
+                      float: "right",
+                      alignItems: "center",
+                      marginTop: "10px",
+                      backgroundColor: "white",
+                    }}
+                  />
+                </Tooltip>
               )}
-            </Form>
-          </>
-        )}
+            </div>
+          </TabPane>
+          <TabPane tab="Account" key="2">
+            {dataLoading ? (
+              <Spin size="large" />
+            ) : (
+              <div className="account-content">
+                {/* Change Password */}
+                <div className="account-item">
+                  <LockOutlined
+                    style={{ marginRight: "8px", color: "white" }}
+                  />
+                  <a
+                    style={{ fontSize: "1rem" }}
+                    onClick={() => setIsPasswordModalVisible(true)}
+                  >
+                    Change Password
+                  </a>
+                </div>
+
+                {/* Delete Account */}
+                <div className="account-item">
+                  <DeleteOutlined
+                    style={{ marginRight: "8px", color: "white" }}
+                  />
+                  <a
+                    style={{ fontSize: "1rem" }}
+                    onClick={() => setIsPasswordModalVisible(true)}
+                  >
+                    Delete Account
+                  </a>
+                </div>
+              </div>
+            )}
+          </TabPane>
+        </Tabs>
       </Card>
+
+      <ChangePasswordModal
+        isVisible={isPasswordModalVisible}
+        onClose={() => setIsPasswordModalVisible(false)}
+      />
     </div>
   );
 };
