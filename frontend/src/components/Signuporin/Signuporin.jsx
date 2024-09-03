@@ -18,16 +18,24 @@ const Signuporin = () => {
     phone: "",
     age: "",
     address: "",
-    membershipType: "BRONZE SHUTTLE",
   });
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    if (name === "phone" || name === "age") {
+      if (!/^\d*$/.test(value)) {
+        // Prevent non-numeric values
+        return;
+      }
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -129,21 +137,28 @@ const Signuporin = () => {
                 required
               />
               <input
-                type="text"
+                type="tel"
                 name="phone"
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={handleChange}
+                pattern="[0-9]{10}"
+                maxLength="10"
+                inputMode="numeric"
                 required
+                title="Please enter a 10-digit phone number"
               />
               <input
-                type="number"
+                type="text"
                 name="age"
                 placeholder="Age"
                 value={formData.age}
                 onChange={handleChange}
-                inputProps={{ min: 1 }}
+                pattern="\d*"
+                inputMode="numeric"
+                maxLength="2"
                 required
+                title="Please enter a valid age"
               />
               <input
                 type="text"
@@ -153,16 +168,6 @@ const Signuporin = () => {
                 onChange={handleChange}
                 required
               />
-              <select
-                name="membershipType"
-                value={formData.membershipType}
-                onChange={handleChange}
-                required
-              >
-                <option value="BRONZE SHUTTLE">BRONZE SHUTTLE</option>
-                <option value="SILVER SHUTTLE">SILVER SHUTTLE</option>
-                <option value="GOLD SHUTTLE">GOLD SHUTTLE</option>
-              </select>
             </>
           )}
           <input

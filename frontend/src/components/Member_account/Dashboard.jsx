@@ -40,14 +40,16 @@ const Dashboard = () => {
           setMembershipType(user.membershipType);
           setTotalBookedHours(user.totalBookedHours);
 
-          const allowedHours = membershipAllowableHours[user.membershipType];
-          setAllowableHours(allowedHours);
+          if (user.membershipType) {
+            const allowedHours = membershipAllowableHours[user.membershipType];
+            setAllowableHours(allowedHours);
 
-          const remaining = allowedHours - user.totalBookedHours;
-          setRemainingHours(remaining > 0 ? remaining : 0);
+            const remaining = allowedHours - user.totalBookedHours;
+            setRemainingHours(remaining > 0 ? remaining : 0);
 
-          const percent = (remaining / allowedHours) * 100;
-          setPercentage(percent.toFixed(2)); // To limit to 2 decimal points
+            const percent = (remaining / allowedHours) * 100;
+            setPercentage(percent.toFixed(2)); // To limit to 2 decimal points
+          }
         })
         .catch((error) => {
           console.error("There was an error fetching the user data!", error);
@@ -136,35 +138,56 @@ const Dashboard = () => {
         <div className="memberdash_userinfo">
           <Card className="package-card">
             <h2>Your Package</h2>
-            <p style={{ color: "red" }}>{membershipType}!</p>
-            <p>Allowable Total Hours: {allowableHours} hours</p>
-            <Lottie options={defaultOptionsPackage} height={120} width={120} />
+            {membershipType ? (
+              <>
+                <p style={{ color: "red" }}>{membershipType}!</p>
+                <p>Allowable Total Hours: {allowableHours} hours</p>
+                <Lottie
+                  options={defaultOptionsPackage}
+                  height={120}
+                  width={120}
+                />
+              </>
+            ) : (
+              <>
+                <p style={{ color: "red" }}>
+                  You don't have a membership yet...
+                </p>
+                <p>
+                  Choose a package to unlock exclusive benefits and enhance your
+                  experience!
+                </p>
+                <Lottie
+                  options={defaultOptionsPackage}
+                  height={120}
+                  width={120}
+                />
+              </>
+            )}
           </Card>
-          {/* <Card className="hours-card">
-          <h2>Total Booked Hours</h2>
-          <p>{totalBookedHours} hours</p>
-        </Card> */}
-          <Card className="remaining-hours-card">
-            <h2>Remaining Hours</h2>
-            <div className="progress-container">
-              <Progress
-                type="circle"
-                percent={percentage}
-                format={() => (
-                  <>
-                    {`${remainingHours}/${allowableHours}`}
-                    <br />
-                    hrs
-                  </>
-                )}
-                width={120}
-                strokeColor={{
-                  "0%": "red", // Start color (e.g., red)
-                  "100%": "blue", // End color (e.g., green)
-                }}
-              />
-            </div>
-          </Card>
+          {membershipType && (
+            <Card className="remaining-hours-card">
+              <h2>Remaining Hours</h2>
+              <div className="progress-container">
+                <Progress
+                  type="circle"
+                  percent={percentage}
+                  format={() => (
+                    <>
+                      {`${remainingHours}/${allowableHours}`}
+                      <br />
+                      hrs
+                    </>
+                  )}
+                  width={120}
+                  strokeColor={{
+                    "0%": "red", // Start color (e.g., red)
+                    "100%": "blue", // End color (e.g., green)
+                  }}
+                />
+              </div>
+            </Card>
+          )}
         </div>
         <div className="memberdash_calendar">
           <Card className="calendar-card">

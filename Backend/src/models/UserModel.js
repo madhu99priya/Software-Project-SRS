@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   },
   membershipType: {
     type: String,
-    required: true,
+    default: null, // or default: "" if you prefer an empty string
   },
   totalBookedHours: {
     type: Number,

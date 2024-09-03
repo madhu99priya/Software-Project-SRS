@@ -98,3 +98,16 @@
 
 }
 
+.subscribed-button {
+    background-color: gray;
+    cursor: not-allowed;
+    padding: 0.3rem;
+    font-weight: bold;
+    font-size: 18px;
+    border: 3.5px solid transparent;
+    transition: 300ms all;
+    text-align: center;
+    border-radius: 0.7rem;
+
+  }
+  
