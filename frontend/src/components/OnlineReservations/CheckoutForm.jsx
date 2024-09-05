@@ -4,6 +4,7 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import { enqueueSnackbar, useSnackbar } from "notistack";
 
 // eslint-disable-next-line react/prop-types
 export default function CheckoutForm({ setShowModal, confirmBooking }) {
@@ -12,6 +13,7 @@ export default function CheckoutForm({ setShowModal, confirmBooking }) {
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,11 @@ export default function CheckoutForm({ setShowModal, confirmBooking }) {
     } else {
       confirmBooking();
       setMessage("Payment successful!");
-      alert("Payment successful!");
+      // alert("Payment successful!");
+      enqueueSnackbar("Payment successful!", {
+        variant: "success",
+        autoHideDuration: 1000,
+      });
       setShowModal(false);
     }
 

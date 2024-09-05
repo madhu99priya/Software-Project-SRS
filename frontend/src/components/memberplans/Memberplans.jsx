@@ -10,6 +10,7 @@ const Plans = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [subscriptionExpiryDate, setSubscriptionExpiryDate] = useState(null);
 
   const handleSubscribeClick = (plan) => {
     setSelectedPlan(plan);
@@ -22,11 +23,12 @@ const Plans = () => {
       const currentDate = new Date();
       let expiryDate;
 
-      if (selectedPlan.name === "Bronze") {
+      
+      if (selectedPlan.name === "BRONZE SHUTTLE") {
         expiryDate = new Date(currentDate.getTime() + 6 * 7 * 24 * 60 * 60 * 1000); // 6 weeks
-      } else if (selectedPlan.name === "Silver") {
+      } else if (selectedPlan.name === "SILVER SHUTTLE") {
         expiryDate = new Date(currentDate.setMonth(currentDate.getMonth() + 3)); // 3 months
-      } else if (selectedPlan.name === "Gold") {
+      } else if (selectedPlan.name === "GOLD SHUTTLE") {
         expiryDate = new Date(currentDate.setMonth(currentDate.getMonth() + 6)); // 6 months
       }
 
@@ -35,7 +37,9 @@ const Plans = () => {
         subscriptionStartDate: currentDate,
       });
 
+     
       setIsSubscribed(true);
+      setSubscriptionExpiryDate(expiryDate);
       setShowModal(false);
     } catch (error) {
       console.error("Error updating subscription:", error);
@@ -54,16 +58,18 @@ const Plans = () => {
           const startDate = new Date(subscriptionStartDate);
           let expiryDate;
 
-          if (membershipType === "Bronze") {
-            expiryDate = new Date(startDate.getTime() + 6 * 7 * 24 * 60 * 60 * 1000);
-          } else if (membershipType === "Silver") {
-            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 3));
-          } else if (membershipType === "Gold") {
-            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 6));
+          
+          if (membershipType === "BRONZE SHUTTLE") {
+            expiryDate = new Date(startDate.getTime() + 6 * 7 * 24 * 60 * 60 * 1000); // 6 weeks
+          } else if (membershipType === "SILVER SHUTTLE") {
+            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 3)); // 3 months
+          } else if (membershipType === "GOLD SHUTTLE") {
+            expiryDate = new Date(startDate.setMonth(startDate.getMonth() + 6)); // 6 months
           }
 
           if (new Date() < expiryDate) {
             setIsSubscribed(true);
+            setSubscriptionExpiryDate(expiryDate);
             setSelectedPlan(plansData.find(plan => plan.name === membershipType));
           } else {
             setIsSubscribed(false); // Subscription expired
@@ -101,6 +107,7 @@ const Plans = () => {
                 </div>
               ))}
             </div>
+
             {isSubscribed && selectedPlan?.id === plan.id ? (
               <button className="subscribed-button">Subscribed</button>
             ) : (
