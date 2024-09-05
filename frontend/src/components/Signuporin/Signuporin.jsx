@@ -55,27 +55,24 @@ const Signuporin = () => {
 
     try {
       if (isSignUp) {
-        // Signup process
         await axios.post(signupUrl, formData);
         enqueueSnackbar("You have signed up successfully.", {
           variant: "success",
           autoHideDuration: 1000,
         });
 
-        // Sign in automatically after signup
         const signinResponse = await axios.post(signinUrl, {
           email: formData.email,
           password: formData.password,
         });
 
-        // Save token, userName, and userId in local storage
         localStorage.setItem("token", signinResponse.data.token);
         localStorage.setItem("userName", signinResponse.data.user.name);
         localStorage.setItem("userId", signinResponse.data.user.userId);
 
         navigate("/memberaccount");
       } else {
-        // Sign in process
+  
         const signinResponse = await axios.post(signinUrl, formData);
 
         enqueueSnackbar("You have signed in successfully.", {
@@ -83,7 +80,7 @@ const Signuporin = () => {
           autoHideDuration: 1000,
         });
 
-        // Save token, userName, and userId in local storage
+       
         localStorage.setItem("token", signinResponse.data.token);
         localStorage.setItem("userName", signinResponse.data.user.name);
         localStorage.setItem("userId", signinResponse.data.user.userId);

@@ -71,9 +71,9 @@ const Navbar = () => {
           <a href="/memberlogin" className="nav-item">
             Member's Area
           </a>
-          <a href="/adminpanel" className="admin">
+          {/* <a href="/adminpanel" className="admin">
             <MdAdminPanelSettings size={33} color="black" />{" "}
-          </a>
+          </a> */}
         </div>
       </div>
     </nav>
