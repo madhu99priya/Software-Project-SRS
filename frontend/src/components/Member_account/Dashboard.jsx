@@ -181,8 +181,8 @@ const Dashboard = () => {
                   )}
                   width={120}
                   strokeColor={{
-                    "0%": "red", // Start color (e.g., red)
-                    "100%": "blue", // End color (e.g., green)
+                    "0%": "red", 
+                    "100%": "blue", 
                   }}
                 />
               </div>
