@@ -24,7 +24,8 @@ import {
   DeleteOutlined,
   GiftOutlined,
 } from "@ant-design/icons";
-import ChangePasswordModal from "./ChangePasswordModal"; // Import the new component
+import ChangePasswordModal from "./ChangePasswordModal";
+import DeleteAccountModal from "./DeleteAccountModal";
 
 const { TabPane } = Tabs;
 
@@ -35,6 +36,7 @@ const Settings = ({ onUpgradePackage }) => {
   const [userData, setUserData] = useState({});
   const [editing, setEditing] = useState(false);
   const [isPasswordModalVisible, setIsPasswordModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false); // State for delete account modal
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -161,7 +163,7 @@ const Settings = ({ onUpgradePackage }) => {
       key: "value",
       render: (_, record) => (
         <>
-          {editing && record.field !== "Membership Type" ? (
+          {editing && record.field !== "Package Type" ? (
             <Form.Item
               name={record.name}
               style={{ margin: 0 }}
@@ -180,7 +182,7 @@ const Settings = ({ onUpgradePackage }) => {
           ) : (
             <>
               {record.value}
-              {record.field === "Membership Type" && editing && (
+              {record.field === "Package Type" && editing && (
                 <>
                   <br />
                   <a onClick={() => onUpgradePackage()}>Upgrade Package</a>
@@ -288,7 +290,7 @@ const Settings = ({ onUpgradePackage }) => {
                   <DeleteOutlined style={{ color: "red" }} />
                   <a
                     className="delete_a"
-                    onClick={() => setIsPasswordModalVisible(true)}
+                    onClick={() => setIsDeleteModalVisible(true)}
                   >
                     Delete Account
                   </a>
@@ -302,6 +304,10 @@ const Settings = ({ onUpgradePackage }) => {
       <ChangePasswordModal
         isVisible={isPasswordModalVisible}
         onClose={() => setIsPasswordModalVisible(false)}
+      />
+      <DeleteAccountModal
+        isVisible={isDeleteModalVisible}
+        onClose={() => setIsDeleteModalVisible(false)}
       />
     </div>
   );
