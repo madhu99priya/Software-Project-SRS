@@ -8,7 +8,7 @@ const DeleteAccountModal = ({ isVisible, onClose }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const handleDeleteAccount = async () => {
     const userId = localStorage.getItem("userId");
@@ -21,22 +21,19 @@ const DeleteAccountModal = ({ isVisible, onClose }) => {
     try {
       setLoading(true);
 
-      // Verify password
       const verifyResponse = await axios.post(
         `http://localhost:3000/api/users/userId/${userId}/verify-password`,
-        { password }
+        { currentPassword: password }
       );
 
-      if (verifyResponse.data.success) {
-        // Password is correct, delete the account
+      if (verifyResponse.data.match) {
         await axios.delete(`http://localhost:3000/api/users/userId/${userId}`);
         message.success("Account deleted successfully");
 
-        // Clear local storage and navigate to home
         localStorage.clear();
-        navigate("/"); // Use navigate instead of history.push
+        navigate("/");
 
-        onClose(); // Close the modal
+        onClose();
       } else {
         message.error("Incorrect password");
       }
