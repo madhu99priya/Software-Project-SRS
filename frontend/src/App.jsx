@@ -17,8 +17,6 @@ import Plans from "./components/Plans/Plans.jsx";
 // import Memberplans from './components/memberplans/Memberplans.jsx';
 // import Member_reservation from './components/Memberreservation/Member_reservation.jsx'
 
-
-
 const App = () => {
   const location = useLocation();
 
@@ -27,6 +25,7 @@ const App = () => {
     "/online-reservations",
     "/memberaccount",
     "/packages",
+    "/adminpanel",
   ];
 
   return (
@@ -43,7 +42,6 @@ const App = () => {
         <Route path="/packages" element={<Plans />} />
         {/* <Route path='/online-reservations' element = {<Member_reservation/>} />
         <Route path='/packages' element = {<Memberplans />} /> */}
-
       </Routes>
     </div>
   );
