@@ -1,49 +1,44 @@
 .branding-container {
-    background-image: url('../../assets/Background1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 105vh;
-    width: 100vw; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-
-  .brand-text{
-    display: flex;
-    flex-direction: column;
-    gap: 0.8 rem;
-    text-transform: uppercase;
-    font-size: 3.5rem;
-    font-weight: bold;
-    text-overflow: inherit;
-    text-align: left;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    position: absolute;
-  bottom: 2rem; /* Adjust the value as needed */
-  left: 2rem; /* Adjust the value as needed */
-
+  background-image: url('../../assets/Background1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 105vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.brand-text>div:nth-of-type(2){
-    font-size: 4.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    width: 80%;
-    color: red;
-    text-align: left;
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-overflow: inherit;
+  text-align: left;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
 }
 
-
+.brand-text > div:nth-of-type(2) {
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 80%;
+  color: red;
+  text-align: left;
+}
 
 .brand-text div {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-
