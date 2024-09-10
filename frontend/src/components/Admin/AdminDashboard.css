@@ -1,0 +1,154 @@
+.adminDashboard-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.numerical-data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* To handle small screens */
+}
+
+.numerical-card {
+  text-align: center;
+  margin: 20px 20px;
+  width: 20vw;
+  height: 20vh;
+}
+
+.pie-chart-container {
+  height: 300px;
+  margin-top: -50px;
+}
+
+.pie-chart {
+  height: 45vh;
+  padding-top: -20px;
+  width: 30vw;
+  margin-left: 40px;
+  margin-top: 40px;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  margin: 20px 20px;
+}
+
+.adminDashboard-card {
+  width: 28vw;
+  margin-left: 20px;
+  height: 71vh;
+}
+
+.chart-container {
+  height: 40vh;
+  width: 40vw;
+}
+
+.court-bookings-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* To allow content to wrap on small screens */
+  margin: 20px 0;
+}
+
+.court-progress {
+  text-align: center;
+}
+
+.tabs-container {
+  width: 45vw;
+}
+
+@media (max-width: 1200px) {
+  .numerical-card {
+    width: 40vw;
+    height: 15vh;
+  }
+
+  .pie-chart {
+    width: 40vw;
+    height: 35vh;
+    margin-left: 0;
+  }
+
+  .adminDashboard-card {
+    width: 40vw;
+    height: auto;
+  }
+
+  .chart-container {
+    width: 50vw;
+    height: 30vh;
+  }
+
+  .tabs-container {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .numerical-data {
+    flex-direction: column; /* Stack the cards vertically */
+  }
+
+  .numerical-card {
+    width: 90%;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .adminDashboard-card {
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .pie-chart {
+    width: 90%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .tabs-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .numerical-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .progress-container {
+    flex-direction: column;
+  }
+
+  .adminDashboard-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .chart-container,
+  .pie-chart {
+    width: 100%;
+    height: auto;
+  }
+
+  .tabs-container {
+    width: 100%;
+  }
+}

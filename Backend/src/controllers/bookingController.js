@@ -50,15 +50,14 @@ export const getAllBookingsForUser = async (req, res) => {
     const { userId } = req.params;
     const bookings = await Booking.find({ user: userId })
 
-      .select("facility date timeSlot createdAt _id") 
-      .sort({ date: -1 }); 
+      .select("facility date timeSlot createdAt _id")
+      .sort({ date: -1 });
 
     res.status(200).send(bookings);
   } catch (error) {
     res.status(500).send(error);
   }
 };
-
 
 // Get a booking by ID
 export const getBookingById = async (req, res) => {
@@ -117,5 +116,44 @@ export const getTotalBookedHours = async (req, res) => {
     res.status(200).send({ totalHours });
   } catch (error) {
     res.status(500).send({ error: "Error calculating total booked hours" });
+  }
+};
+
+export const getCourtBookingCount = async (req, res) => {
+  try {
+    const bookings = await Booking.aggregate([
+      { $group: { _id: "$facility", count: { $sum: 1 } } },
+    ]);
+
+    res.status(200).send(bookings);
+  } catch (error) {
+    res.status(500).send({ error: "Error fetching court booking data" });
+  }
+};
+
+// Get total bookings by time slot
+export const getBookingsByTimeSlot = async (req, res) => {
+  try {
+    const bookings = await Booking.aggregate([
+      { $group: { _id: "$timeSlot", count: { $sum: 1 } } }, // Group by timeSlot and count
+    ]);
+    res.status(200).send(bookings);
+  } catch (error) {
+    res.status(500).send({ error: "Error fetching time slot bookings data" });
+  }
+};
+
+export const getBookingsByTimeSlotForCourt = async (req, res) => {
+  try {
+    const { courtName } = req.params;
+    const bookings = await Booking.aggregate([
+      { $match: { facility: courtName } },
+      { $group: { _id: "$timeSlot", count: { $sum: 1 } } },
+    ]);
+    res.status(200).send(bookings);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Error fetching bookings by time slot for court" });
   }
 };

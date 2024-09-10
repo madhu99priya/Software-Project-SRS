@@ -175,3 +175,36 @@ export const changePassword = async (req, res) => {
     res.status(500).send({ error: "Failed to change password" });
   }
 };
+
+export const getMembershipCount = async (req, res) => {
+  try {
+    const membershipCount = await User.countDocuments({
+      membershipType: { $ne: null },
+    });
+    res.status(200).send({ count: membershipCount });
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch membership count" });
+  }
+};
+
+export const getMembershipBreakdown = async (req, res) => {
+  try {
+    const bronzeCount = await User.countDocuments({
+      membershipType: "BRONZE SHUTTLE",
+    });
+    const silverCount = await User.countDocuments({
+      membershipType: "SILVER SHUTTLE",
+    });
+    const goldCount = await User.countDocuments({
+      membershipType: "GOLD SHUTTLE",
+    });
+
+    res.status(200).send({
+      bronze: bronzeCount,
+      silver: silverCount,
+      gold: goldCount,
+    });
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch membership breakdown" });
+  }
+};
