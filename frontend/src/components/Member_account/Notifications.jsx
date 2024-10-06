@@ -66,7 +66,7 @@ function Notifications() {
   return (
     <Row gutter={16} className="notifications-container">
       {/* Reminders Section */}
-      <Col span={12}>
+      <Col span={27}>
         <Card title="Reminders 🔔" className="card">
           {bookings.length > 0 ? (
             <div className="booking-card-grid">
@@ -96,14 +96,13 @@ function Notifications() {
         </Card>
       </Col>
       {/* System Notifications Section */}
-      <Col span={12}>
+     {/* <Col span={12}>
         <Card title="System Notifications 🗣📢" className="card">
-          {/* Add your system notifications here */}
           <Card className="not-card">
             <p>No new notifications</p>
           </Card>
         </Card>
-      </Col>
+      </Col> */}
     </Row>
   );
 }

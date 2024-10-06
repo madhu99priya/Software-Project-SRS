@@ -17,6 +17,7 @@
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
     "antd": "^5.20.3",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "emailjs-com": "^3.2.0",

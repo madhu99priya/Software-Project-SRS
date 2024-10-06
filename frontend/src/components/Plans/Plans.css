@@ -1,95 +1,93 @@
-.plans-container{
-    margin-top: 0;
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    background-color: #111;
-    /* z-index: -1; */
+.plans-container {
+  margin-top: 0;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  background-color: #111;
 }
 
-.plans{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
+.plans {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
 }
 
-.plan{
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(102, 100, 100, 0.7);
-    gap: 2rem;
-    padding: 1.5rem;
-    width: 18rem;
-    border-radius: 1rem;
-
+.plan {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(102, 100, 100, 0.7);
+  gap: 2rem;
+  padding: 1.5rem;
+  width: 18rem;
+  border-radius: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
-.plan:nth-child(2){
-    transform: scale(1.1);
-    background: linear-gradient(to bottom right, #ef6767, red);
-   
+/* Default scaling for the middle card */
+.plan:nth-child(2) {
+  transform: scale(1.1); /* Slightly larger scale for the middle plan */
 }
 
-.plan>:nth-child(2){
-    font-size: 1rem;
-    font-weight: bold;
-
+/* Optional: Add hover effects */
+.plan:hover {
+  transform: scale(1.05);
 }
 
-.plan>:nth-child(3)
-{
-    font-size: 2.8rem;
-    font-weight: bold;
-
+.plan:nth-child(2):hover {
+  transform: scale(1.1);
 }
 
-/* .plan>:nth-child(5){
-    font-size: 0.8rem;
-
-} */
-
-.features{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+/* Plan text and features styling */
+.plan > :nth-child(2) {
+  font-size: 1rem;
+  font-weight: bold;
 }
 
-.feature{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.plan > :nth-child(3) {
+  font-size: 2.8rem;
+  font-weight: bold;
 }
 
-.feature>:nth-child(1){
-    width: 1.5rem;
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.programs_header{
-    text-align: center;
-    font-size: 4rem;
-    font-weight: bold;
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.stroke-text{
-    color: red;
+.feature > :nth-child(1) {
+  width: 1.5rem;
 }
 
-
-.button{
-    background-color: white;
-    color: black;
-    padding: 0.3rem;
-    font-weight: bold;
-    font-size: 18px;
-    border: 3.5px solid transparent;
-    transition: 300ms all;
-    text-align: center;
-    border-radius: 0.7rem;
+.programs_header {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
 }
 
+.stroke-text {
+  color: red;
+}
 
-.feature.tic-img{
-    width: 0.8px;
+.button {
+  background-color: white;
+  color: black;
+  padding: 0.3rem;
+  font-weight: bold;
+  font-size: 18px;
+  border: 3.5px solid transparent;
+  transition: 300ms all;
+  text-align: center;
+  border-radius: 0.7rem;
+}
+
+.feature.tic-img {
+  width: 0.8px;
 }
