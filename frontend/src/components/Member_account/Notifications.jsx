@@ -25,20 +25,20 @@ async function getBookings() {
     const storedUserId = localStorage.getItem("userId");
     const response = await fetch(
       `http://localhost:3000/api/bookings/user/${storedUserId}/bookings`
-    ); // Replace with your actual API endpoint
-    const text = await response.text(); // Get the response as text
-    console.log("Raw response:", text); // Log the raw response
+    ); 
+    const text = await response.text(); 
+    console.log("Raw response:", text); 
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
-    // Try to parse the text as JSON
+
     const data = JSON.parse(text);
     return { data };
   } catch (error) {
     console.error("Error fetching bookings:", error);
-    return { data: [] }; // Return an empty array or handle error accordingly
+    return { data: [] }; 
   }
 }
 
