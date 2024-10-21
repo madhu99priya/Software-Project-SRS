@@ -10,12 +10,18 @@ import {
   verifyPassword,
   changePassword,
   deleteUserByUserId,
+  getMembershipCount,
+  getMembershipBreakdown,
+  getTotalCountForMembership,
 } from "../controllers/userController.js";
 
 const router = express.Router();
 
 router.post("/signup", createUser);
 router.post("/signin", loginUser);
+
+router.get("/membership-count", getMembershipCount);
+router.get("/membership-breakdown", getMembershipBreakdown);
 
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
@@ -28,5 +34,8 @@ router.post("/userId/:userId/verify-password", verifyPassword);
 router.put("/userId/:userId/change-password", changePassword);
 
 router.delete("/userId/:userId", deleteUserByUserId);
+
+// Get total Member count for a specific Membership Type
+router.get("/membership/:membershipType/total", getTotalCountForMembership);
 
 export default router;

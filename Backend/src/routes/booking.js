@@ -7,6 +7,10 @@ import {
   deleteBooking,
   getTotalBookedHours,
   getAllBookingsForUser,
+  getCourtBookingCount,
+  getBookingsByTimeSlot,
+  getBookingsByTimeSlotForCourt,
+  getCourtBookingCountByTimeSlot,
 } from "../controllers/bookingController.js";
 
 const router = express.Router();
@@ -16,6 +20,17 @@ router.post("/", createBooking);
 
 // Get all bookings
 router.get("/", getAllBookings);
+
+// In bookingRoutes.js
+router.get("/court-bookings", getCourtBookingCount);
+
+router.get("/time-slot-bookings", getBookingsByTimeSlot);
+
+// In bookingRoutes.js
+router.get(
+  "/court/:courtName/time-slot-bookings",
+  getBookingsByTimeSlotForCourt
+);
 
 // Get a booking by ID
 router.get("/:id", getBookingById);
@@ -30,5 +45,7 @@ router.delete("/:id", deleteBooking);
 router.get("/totalHours/:userId", getTotalBookedHours);
 
 router.get("/user/:userId/bookings", getAllBookingsForUser);
+
+router.get("/court/count-by-timeslot/:court", getCourtBookingCountByTimeSlot);
 
 export default router;

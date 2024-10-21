@@ -16,11 +16,7 @@ import animationBell from "../../assets/Animation_Bell.json";
 
 const { Sider } = Layout;
 
-const Sidebar_Member = ({
-  setActiveComponent,
-  selectedKey,
-  setSelectedKey,
-}) => {
+const Sidebar_Admin = ({ setActiveComponent, selectedKey, setSelectedKey }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
@@ -79,6 +75,43 @@ const Sidebar_Member = ({
     setActiveComponent("notifications");
   };
 
+  const menuItems = [
+    {
+      key: "dashboard",
+      icon: <AppstoreOutlined />,
+      label: "Dashboard",
+    },
+    {
+      key: "members",
+      icon: <UserOutlined />,
+      label: "Members",
+    },
+    {
+      key: "announcements",
+      icon: <NotificationOutlined />,
+      label: "Announcements",
+    },
+    {
+      key: "messages",
+      icon: <MessageOutlined />,
+      label: "Messages",
+    },
+    {
+      key: "notifications",
+      icon: hasUnreadNotifications ? (
+        <Lottie
+          animationData={animationBell}
+          loop={true}
+          style={{ width: 30, height: 30, marginLeft: "-8px" }}
+        />
+      ) : (
+        <NotificationOutlined />
+      ),
+      label: "Notifications",
+      onClick: handleNotificationClick,
+    },
+  ];
+
   return (
     <Sider
       collapsible
@@ -104,56 +137,10 @@ const Sidebar_Member = ({
             setActiveComponent(key);
           }}
           theme="dark"
-        >
-          <Menu.Item key="dashboard" icon={<AppstoreOutlined />}>
-            Dashboard
-          </Menu.Item>
-
-          <Menu.Item key="members" icon={<UserOutlined />}>
-            Members
-          </Menu.Item>
-
-          <Menu.Item key="announcements" icon={<NotificationOutlined />}>
-            Announcements
-          </Menu.Item>
-
-          <Menu.Item key="messages" icon={<MessageOutlined />}>
-            Messages
-          </Menu.Item>
-
-          {/* <Menu.Item
-            key="notifications"
-            icon={
-              hasUnreadNotifications ? (
-                <Lottie
-                  animationData={animationBell}
-                  loop={true}
-                  style={{ width: 30, height: 30, marginLeft: "-8px" }}
-                />
-              ) : (
-                <NotificationOutlined />
-              )
-            }
-            onClick={handleNotificationClick}
-          >
-            Notifications
-          </Menu.Item> */}
-        </Menu>
+          items={menuItems}
+        />
       </div>
       <div className="logout-wrapper">
-        <Menu
-          mode="inline"
-          selectedKeys={[selectedKey]}
-          onClick={({ key }) => {
-            setSelectedKey(key);
-            setActiveComponent(key);
-          }}
-          theme="dark"
-        >
-          {/* <Menu.Item key="settings" icon={<SettingOutlined />}>
-            Settings
-          </Menu.Item> */}
-        </Menu>
         <div className="logout-button-wrapper">
           <button onClick={handleLogout} className="logout-button">
             <span className="icon">
@@ -173,4 +160,4 @@ const Sidebar_Member = ({
   );
 };
 
-export default Sidebar_Member;
+export default Sidebar_Admin;
