@@ -235,7 +235,20 @@ const AdminDashboard = () => {
           bordered={true}
           className="numerical-card"
         >
-          {loading ? <Spin /> : <p>{membershipCount}</p>}
+          {loading ? (
+            <Spin />
+          ) : (
+            <p
+              style={{
+                fontSize: "3rem",
+                fontWeight: "bold",
+                marginTop: "0",
+                marginBottom: "0",
+              }}
+            >
+              {membershipCount}
+            </p>
+          )}
         </Card>
         <Card title="Total Revenue" bordered={true} className="numerical-card">
           <p>Total revenue</p>

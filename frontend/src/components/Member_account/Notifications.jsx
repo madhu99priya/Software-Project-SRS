@@ -11,7 +11,6 @@ function formatDate(dateString) {
 function calculateRemainingDays(dateString) {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Reset today's time to 00:00:00 to compare only dates
-  // today.getDate();
   const bookingDate = new Date(dateString);
   bookingDate.setHours(0, 0, 0, 0); // Reset booking time to 00:00:00 to compare only dates
   const differenceInTime = bookingDate - today;
@@ -25,25 +24,36 @@ async function getBookings() {
     const storedUserId = localStorage.getItem("userId");
     const response = await fetch(
       `http://localhost:3000/api/bookings/user/${storedUserId}/bookings`
-    ); 
-    const text = await response.text(); 
-    console.log("Raw response:", text); 
-
+    ); // Replace with your actual API endpoint
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-
-
-    const data = JSON.parse(text);
+    const data = await response.json(); // Parse the response as JSON
     return { data };
   } catch (error) {
     console.error("Error fetching bookings:", error);
-    return { data: [] }; 
+    return { data: [] }; // Return an empty array or handle error accordingly
+  }
+}
+
+// Define the getAnnouncements function here
+async function getAnnouncements() {
+  try {
+    const response = await fetch("http://localhost:3000/api/announcements"); // Replace with your actual API endpoint
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json(); // Parse the response as JSON
+    return data.announcements; // Assuming the API returns an object with an 'announcements' array
+  } catch (error) {
+    console.error("Error fetching announcements:", error);
+    return []; // Return an empty array or handle error accordingly
   }
 }
 
 function Notifications() {
   const [bookings, setBookings] = useState([]);
+  const [announcements, setAnnouncements] = useState([]); // State for announcements
 
   useEffect(() => {
     async function fetchBookings() {
@@ -60,13 +70,20 @@ function Notifications() {
 
       setBookings(upcomingBookings);
     }
+
+    async function fetchAnnouncements() {
+      const fetchedAnnouncements = await getAnnouncements();
+      setAnnouncements(fetchedAnnouncements); // Set the fetched announcements
+    }
+
     fetchBookings();
+    fetchAnnouncements(); // Call fetch announcements
   }, []);
 
   return (
     <Row gutter={16} className="notifications-container">
       {/* Reminders Section */}
-      <Col span={27}>
+      <Col span={12}>
         <Card title="Reminders 🔔" className="card">
           {bookings.length > 0 ? (
             <div className="booking-card-grid">
@@ -96,13 +113,29 @@ function Notifications() {
         </Card>
       </Col>
       {/* System Notifications Section */}
-     {/* <Col span={12}>
+      <Col span={12}>
         <Card title="System Notifications 🗣📢" className="card">
-          <Card className="not-card">
-            <p>No new notifications</p>
-          </Card>
+          {announcements.length > 0 ? (
+            <div className="announcement-list">
+              {announcements.map((announcement, index) => (
+                <Card key={index} className="announcement-card">
+                  <p>
+                    <strong>Message:</strong> {announcement.message}
+                  </p>
+                  <p>
+                    <strong>Published Date:</strong>{" "}
+                    {formatDate(announcement.createdAt)}
+                  </p>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Card className="not-card">
+              <p>No new notifications</p>
+            </Card>
+          )}
         </Card>
-      </Col> */}
+      </Col>
     </Row>
   );
 }
