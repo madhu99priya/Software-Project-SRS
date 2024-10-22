@@ -26,6 +26,8 @@ const Sidebar_Member = ({
   const [collapsed, setCollapsed] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+  const [hasUnreadSystemNotifications, setHasUnreadSystemNotifications] =
+    useState(false); // State for system notifications
 
   const navigate = useNavigate();
 
@@ -33,17 +35,16 @@ const Sidebar_Member = ({
     async function checkNotifications() {
       try {
         const storedUserId = localStorage.getItem("userId");
-        const response = await fetch(
+
+        // Fetch upcoming bookings
+        const bookingResponse = await fetch(
           `http://localhost:3000/api/bookings/user/${storedUserId}/bookings`
         );
-        const text = await response.text();
-
-        if (!response.ok) {
+        if (!bookingResponse.ok) {
           throw new Error("Network response was not ok");
         }
-
-        const data = JSON.parse(text);
-        const upcomingBookings = data.filter((booking) => {
+        const bookingData = await bookingResponse.json();
+        const upcomingBookings = bookingData.filter((booking) => {
           const today = new Date();
           const bookingDate = new Date(booking.date);
           const differenceInTime = bookingDate - today;
@@ -53,6 +54,21 @@ const Sidebar_Member = ({
           return daysRemaining >= 0 && daysRemaining <= 4;
         });
         setHasUnreadNotifications(upcomingBookings.length > 0);
+
+        // Fetch active announcements for notifications
+        const announcementResponse = await fetch(
+          `http://localhost:3000/api/announcements` // Updated to fetch announcements
+        );
+        if (!announcementResponse.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const announcementData = await announcementResponse.json();
+
+        // Assuming announcementData.announcements is the array of announcements
+        const unreadSystemNotifications = announcementData.announcements.filter(
+          (announcement) => new Date(announcement.endDate) >= new Date() // Example logic to check if the announcement is still active
+        );
+        setHasUnreadSystemNotifications(unreadSystemNotifications.length > 0);
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
@@ -77,6 +93,7 @@ const Sidebar_Member = ({
 
   const handleNotificationClick = () => {
     setHasUnreadNotifications(false); // Mark notifications as read
+    setHasUnreadSystemNotifications(false); // Mark system notifications as read
     setSelectedKey("notifications");
     setActiveComponent("notifications");
   };
@@ -126,7 +143,7 @@ const Sidebar_Member = ({
           <Menu.Item
             key="notifications"
             icon={
-              hasUnreadNotifications ? (
+              hasUnreadNotifications || hasUnreadSystemNotifications ? (
                 <Lottie
                   animationData={animationBell}
                   loop={true}

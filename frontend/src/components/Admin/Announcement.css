@@ -1,0 +1,130 @@
+/* AddAnnouncement Component Styles */
+
+/* General Container Styling */
+.announcement-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Tabs Styling */
+.ant-tabs-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-tabs-tab {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Form and Input Fields Styling */
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+.ant-form-item-label {
+  font-weight: bold;
+}
+
+.ant-input-textarea {
+  font-size: 14px;
+}
+
+/* Button Styles */
+.ant-btn-primary {
+  background-color: #1890ff; /* Blue button color */
+  border-color: #1890ff;
+  color: white;
+}
+
+.ant-btn-primary:hover {
+  background-color: #0056b3; /* Dark blue on hover */
+  border-color: #0056b3;
+}
+
+.ant-btn-danger {
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
+  color: white;
+}
+
+.ant-btn-danger:hover {
+  background-color: #d11a1c;
+  border-color: #d11a1c;
+}
+
+/* List Styling */
+.ant-list-item {
+  padding: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.ant-list-item-meta-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.ant-list-item-meta-description {
+  font-size: 14px;
+  color: #777;
+}
+
+.ant-list-item-actions > li > .ant-btn {
+  margin-right: 10px;
+}
+
+/* Modal Styling */
+.ant-modal {
+  border-radius: 10px;
+}
+
+.ant-modal-title {
+  font-weight: bold;
+}
+
+.ant-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Optional - Adjust form input size in modal */
+.ant-modal .ant-form-item {
+  margin-bottom: 15px;
+}
+
+/* Default style for date input field */
+.ant-input[type="date"] {
+  border-radius: 4px;
+  color: #333; /* Dark text color */
+  background-color: #fff; /* White background color */
+}
+
+/* Custom hover effect for the date input field */
+.ant-input[type="date"]:hover {
+  border-color: #4f7f9d;
+  box-shadow: 0 0 0 2px rgba(79, 127, 157, 0.2);
+  color: #333; /* Ensure text color remains dark */
+  background-color: #fff; /* Ensure background remains white */
+}
+
+/* Custom focus effect for the date input field */
+.ant-input[type="date"]:focus {
+  border-color: #4f7f9d;
+  box-shadow: 0 0 0 2px rgba(79, 127, 157, 0.2);
+  color: #333; /* Ensure text color remains dark */
+  background-color: #fff; /* Ensure background remains white */
+}
