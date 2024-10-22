@@ -237,8 +237,12 @@ const AdminDashboard = () => {
         >
           {loading ? <Spin /> : <p>{membershipCount}</p>}
         </Card>
-        <Card title="Total Revenue" bordered={true} className="numerical-card">
-          <p>Total revenue</p>
+        <Card
+          title="Membership Breakdown"
+          bordered={true}
+          className="pie-chart"
+        >
+          <div ref={membershipChartRef} className="pie-chart-container" />
         </Card>
       </div>
       <div className="progress-container">
@@ -306,13 +310,13 @@ const AdminDashboard = () => {
         </Card>
       </div>
       <div>
-        <Card
+        {/* <Card
           title="Membership Breakdown"
           bordered={true}
           className="pie-chart"
         >
           <div ref={membershipChartRef} className="pie-chart-container" />
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
