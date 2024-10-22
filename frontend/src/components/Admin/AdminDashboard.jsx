@@ -68,9 +68,9 @@ const AdminDashboard = () => {
 
         setMembershipCount(membershipCountRes.data.count);
         setMembershipData([
-          { type: "BRONZE SHUTTLE", value: membershipBreakdownRes.data.bronze },
-          { type: "SILVER SHUTTLE", value: membershipBreakdownRes.data.silver },
-          { type: "GOLD SHUTTLE", value: membershipBreakdownRes.data.gold },
+          { type: "BRONZE", value: membershipBreakdownRes.data.bronze },
+          { type: "SILVER", value: membershipBreakdownRes.data.silver },
+          { type: "GOLD", value: membershipBreakdownRes.data.gold },
         ]);
         setCourtBookings(courtBookingsRes.data);
         setTimeSlotBookings(timeSlotBookingsRes.data);

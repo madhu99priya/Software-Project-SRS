@@ -114,8 +114,7 @@ const Reservations = () => {
                     {filteredReservations[date].map((reservation, index) => (
                       <tr key={reservation._id}>
                         <td>{index + 1}</td>
-                        {/* Display user's name instead of userId */}
-                        <td>{users[reservation.user] || "Unknown User"}</td>
+                        <td>{users[reservation.user] || "Guest User"}</td>
                         <td>{reservation.facility}</td>
                         <td>{reservation.timeSlot}</td>
                       </tr>
