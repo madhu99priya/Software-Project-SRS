@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-// import Background from "../../../assets/members_background.jpeg"; // replace with your own background image
 
 const Members = () => {
   const [members, setMembers] = useState([]);
@@ -108,12 +107,12 @@ const Section = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70vw;
-    max-height: 80vh;
-    background-color: rgba(255, 255, 255, 0.7);
+    width: 80vw;
+    max-height: 85vh;
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    border-radius: 1rem;
+    border-radius: 10px;
     padding: 2rem;
     overflow-y: auto;
   }
@@ -121,12 +120,12 @@ const Section = styled.section`
   .table_header {
     width: 100%;
     padding-bottom: 1rem;
-    text-align: left;
+    text-align: center;
     border-bottom: 2px solid #ccc;
   }
 
   .table_header h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     margin: 0;
   }
@@ -136,7 +135,7 @@ const Section = styled.section`
   }
 
   .table_header h1 .list {
-    color: red;
+    color: #ff5733;
   }
 
   .table_body {
@@ -156,7 +155,6 @@ const Section = styled.section`
   td {
     padding: 0.8rem;
     border: 1px solid #ddd;
-    font-weight: bold;
   }
 
   thead th {
@@ -170,16 +168,23 @@ const Section = styled.section`
   }
 
   tbody tr:nth-child(even) {
-    background-color: rgba(248, 249, 250, 0.7);
+    background-color: rgba(248, 249, 250, 0.8);
   }
 
   tbody tr:hover {
     background-color: #e9ecef;
+    cursor: pointer;
   }
 
   tbody td {
     border-bottom: 1px solid #ddd;
-    border-top: 1px solid #ddd;
+  }
+
+  /* Style for a specific column, like Membership Type */
+  tbody td:nth-child(8) {
+    background-color: #dff0d8;
+    color: #3c763d;
+    text-align: center;
   }
 
   .table_body p {
@@ -194,30 +199,46 @@ const Section = styled.section`
   }
 
   .table_body::-webkit-scrollbar-thumb {
-    background-color: #ced4da;
+    background-color: #adb5bd;
     border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .table-container {
+      width: 95vw;
+    }
+
+    .table_header h1 {
+      font-size: 1.5rem;
+    }
+
+    .table_body table {
+      font-size: 0.9rem;
+    }
   }
 `;
 
 const SearchInput = styled.input`
-  width: 100%;
+  width: 80%;
   padding: 0.8rem;
   margin-top: 1rem;
-  border: 1px solid #ccc; /* Light gray border */
+  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: #f1f3f5; /* Light gray background */
-  color: #495057; /* Dark gray text */
+  background-color: #f1f3f5;
+  color: #495057;
   outline: none;
 
   &:focus {
-    border-color: #adb5bd; /* Darker gray on focus */
-    background-color: #e9ecef; /* Slightly darker background on focus */
+    border-color: #adb5bd;
+    background-color: #e9ecef;
   }
 
   &::placeholder {
-    color: #868e96; /* Lighter gray for placeholder text */
+    color: #868e96;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
-
-

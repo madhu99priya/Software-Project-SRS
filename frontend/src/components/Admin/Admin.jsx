@@ -4,7 +4,7 @@ import Sidebar_Admin from "./Sidebar_Admin.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
 import Members from "./Members.jsx";
 import Announcements from "./Announcements.jsx";
-import Messages from "./Messages.jsx";
+import Reservations from "./Reservations.jsx";
 // import Memberplans from "../../components/memberplans/Memberplans.jsx";
 // import Previous_Bookings from "./Previous_Bookings/Previous_Bookings.jsx";
 
@@ -27,8 +27,8 @@ const Admin = () => {
         return <Members />;
       case "announcements":
         return <Announcements />;
-      case "messages":
-        return <Messages />;
+      case "reservations":
+        return <Reservations />;
       //   case "notifications":
       //     return <Notifications />;
       //   case "settings":

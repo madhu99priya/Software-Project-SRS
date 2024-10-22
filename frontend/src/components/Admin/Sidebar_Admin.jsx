@@ -8,7 +8,7 @@ import {
   AppstoreOutlined,
   UserOutlined,
   NotificationOutlined,
-  MessageOutlined,
+  BookOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 import Lottie from "lottie-react";
@@ -92,9 +92,9 @@ const Sidebar_Admin = ({ setActiveComponent, selectedKey, setSelectedKey }) => {
       label: "Announcements",
     },
     {
-      key: "messages",
-      icon: <MessageOutlined />,
-      label: "Messages",
+      key: "reservations",
+      icon: <BookOutlined />,
+      label: "Reservations",
     },
     {
       key: "notifications",
