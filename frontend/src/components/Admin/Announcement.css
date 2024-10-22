@@ -1,6 +1,13 @@
-/* AddAnnouncement Component Styles */
+.admin-announcement-container {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/admin_announcements.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-/* General Container Styling */
 .announcement-container {
   max-width: 800px;
   margin: 3rem auto;
@@ -8,6 +15,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .announcement-title {

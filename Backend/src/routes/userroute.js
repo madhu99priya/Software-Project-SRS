@@ -13,12 +13,15 @@ import {
   getMembershipCount,
   getMembershipBreakdown,
   getTotalCountForMembership,
+  getUsersByIds,
 } from "../controllers/userController.js";
 
 const router = express.Router();
 
 router.post("/signup", createUser);
 router.post("/signin", loginUser);
+
+router.post("/bulk", getUsersByIds);
 
 router.get("/membership-count", getMembershipCount);
 router.get("/membership-breakdown", getMembershipBreakdown);
