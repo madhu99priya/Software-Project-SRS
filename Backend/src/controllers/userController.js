@@ -222,3 +222,15 @@ export const getTotalCountForMembership = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const getUsersByIds = async (req, res) => {
+  try {
+    const { userIds } = req.body;
+    const users = await User.find({ userId: { $in: userIds } }).select(
+      "userId name"
+    );
+    res.status(200).send(users);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch users" });
+  }
+};

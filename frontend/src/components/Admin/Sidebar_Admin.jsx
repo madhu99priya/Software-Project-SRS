@@ -96,20 +96,6 @@ const Sidebar_Admin = ({ setActiveComponent, selectedKey, setSelectedKey }) => {
       icon: <BookOutlined />,
       label: "Reservations",
     },
-    {
-      key: "notifications",
-      icon: hasUnreadNotifications ? (
-        <Lottie
-          animationData={animationBell}
-          loop={true}
-          style={{ width: 30, height: 30, marginLeft: "-8px" }}
-        />
-      ) : (
-        <NotificationOutlined />
-      ),
-      label: "Notifications",
-      onClick: handleNotificationClick,
-    },
   ];
 
   return (

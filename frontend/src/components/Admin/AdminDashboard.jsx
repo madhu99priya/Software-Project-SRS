@@ -259,8 +259,7 @@ const AdminDashboard = () => {
         </Card>
       </div>
       <div className="progress-container">
-        {/* Time Slot Bookings by Court */}
-        <Card>
+        <Card style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
           <Tabs
             defaultActiveKey="1"
             className="tabs-container"

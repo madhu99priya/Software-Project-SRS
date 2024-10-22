@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import adminReservation from "../../assets/admin_reservations.jpg";
 
 const Reservations = () => {
   const [reservations, setReservations] = useState([]);
+  const [users, setUsers] = useState({});
   const [loading, setLoading] = useState(false);
   const [searchDate, setSearchDate] = useState("");
 
@@ -13,8 +15,23 @@ const Reservations = () => {
       try {
         const response = await axios.get("http://localhost:3000/api/bookings"); // Adjust API route
         setReservations(response.data);
+
+        // Fetch all user IDs from reservations
+        const userIds = [...new Set(response.data.map((res) => res.user))];
+
+        // Fetch user details for each unique user ID
+        const usersResponse = await axios.post(
+          "http://localhost:3000/api/users/bulk",
+          { userIds }
+        );
+        const usersData = usersResponse.data.reduce((acc, user) => {
+          acc[user.userId] = user.name; // Map userId to user name
+          return acc;
+        }, {});
+
+        setUsers(usersData);
       } catch (error) {
-        console.error("Error fetching reservations:", error);
+        console.error("Error fetching reservations or users:", error);
       } finally {
         setLoading(false);
       }
@@ -27,8 +44,8 @@ const Reservations = () => {
   const formatDate = (date) => {
     const d = new Date(date);
     const year = d.getFullYear();
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -49,7 +66,9 @@ const Reservations = () => {
 
   // Filtered reservations based on search date
   const filteredReservations = searchDate
-    ? groupedByDate[searchDate] ? { [searchDate]: groupedByDate[searchDate] } : {}
+    ? groupedByDate[searchDate]
+      ? { [searchDate]: groupedByDate[searchDate] }
+      : {}
     : groupedByDate;
 
   return (
@@ -72,37 +91,39 @@ const Reservations = () => {
         <section className="table_body">
           {loading ? (
             <p>Loading...</p>
+          ) : Object.keys(filteredReservations).length === 0 ? (
+            <p>No reservations found for the selected date.</p>
           ) : (
-            Object.keys(filteredReservations).length === 0 ? (
-              <p>No reservations found for the selected date.</p>
-            ) : (
-              Object.keys(filteredReservations).map((date) => (
-                <div key={date} className="date-section">
-                  <h2>{date}</h2>
-                  <p>Total Booked Hours: {calculateTotalBookedHours(filteredReservations[date])}</p>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>User</th>
-                        <th>Facility</th>
-                        <th>Time Slot</th>
+            Object.keys(filteredReservations).map((date) => (
+              <div key={date} className="date-section">
+                <h2>{date}</h2>
+                <p>
+                  Total Booked Hours:{" "}
+                  {calculateTotalBookedHours(filteredReservations[date])}
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>User</th>
+                      <th>Facility</th>
+                      <th>Time Slot</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredReservations[date].map((reservation, index) => (
+                      <tr key={reservation._id}>
+                        <td>{index + 1}</td>
+                        {/* Display user's name instead of userId */}
+                        <td>{users[reservation.user] || "Unknown User"}</td>
+                        <td>{reservation.facility}</td>
+                        <td>{reservation.timeSlot}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {filteredReservations[date].map((reservation, index) => (
-                        <tr key={reservation._id}>
-                          <td>{index + 1}</td>
-                          <td>{reservation.user}</td>
-                          <td>{reservation.facility}</td>
-                          <td>{reservation.timeSlot}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ))
-            )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
           )}
         </section>
       </div>
@@ -114,6 +135,10 @@ export default Reservations;
 
 const Section = styled.section`
   color: black;
+  background-image: url(${adminReservation});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -126,7 +151,7 @@ const Section = styled.section`
     align-items: center;
     width: 80vw;
     max-height: 80vh;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(250, 250, 250, 0.7);
     backdrop-filter: blur(5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
@@ -207,7 +232,7 @@ const Section = styled.section`
     font-size: 1.2rem;
     text-align: center;
     margin-top: 2rem;
-    color: #495057;
+    color: black;
   }
 
   .date-section {

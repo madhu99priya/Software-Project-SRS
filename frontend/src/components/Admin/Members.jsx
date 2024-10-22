@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import adminMembers from "../../assets/admin_members.jpg";
 
 const Members = () => {
   const [members, setMembers] = useState([]);
@@ -94,6 +95,7 @@ export default Members;
 
 const Section = styled.section`
   color: black;
+  background-image: url(${adminMembers});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -109,7 +111,7 @@ const Section = styled.section`
     align-items: center;
     width: 80vw;
     max-height: 85vh;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     border-radius: 10px;

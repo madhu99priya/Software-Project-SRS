@@ -109,10 +109,78 @@ const AddAnnouncement = () => {
   };
 
   return (
-    <div className="announcement-container">
-      <h2 className="announcement-title">Announcements</h2>
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="Add Announcement" key="1">
+    <div className="admin-announcement-container">
+      <div className="announcement-container">
+        <h2 className="announcement-title" style={{ fontSize: "2rem" }}>
+          Announcements
+        </h2>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="Add Announcement" key="1">
+            <Form form={form} onFinish={handleSubmit} layout="vertical">
+              <Form.Item
+                label="Message"
+                name="message"
+                rules={[
+                  { required: true, message: "Please input your message!" },
+                ]}
+              >
+                <Input.TextArea style={{ height: "10rem" }} required />
+              </Form.Item>
+              <Form.Item
+                label="End Date"
+                style={{ width: "10rem" }}
+                name="endDate"
+                rules={[
+                  { required: true, message: "Please select an end date!" },
+                ]}
+              >
+                <Input type="date" required />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  {editId ? "Update Announcement" : "Add Announcement"}
+                </Button>
+              </Form.Item>
+            </Form>
+          </TabPane>
+
+          <TabPane tab="Previous Announcements" key="2">
+            <List
+              itemLayout="horizontal"
+              dataSource={previousAnnouncements}
+              renderItem={(announcement) => (
+                <List.Item
+                  actions={[
+                    <Button key="edit" onClick={() => handleEdit(announcement)}>
+                      Edit
+                    </Button>,
+                    <Button
+                      key="delete"
+                      danger
+                      onClick={() => showDeleteConfirm(announcement._id)}
+                      icon={<DeleteOutlined />}
+                    />,
+                  ]}
+                >
+                  <List.Item.Meta
+                    title={announcement.message}
+                    description={`Ends on: ${new Date(
+                      announcement.endDate
+                    ).toLocaleDateString()}`}
+                  />
+                </List.Item>
+              )}
+            />
+          </TabPane>
+        </Tabs>
+
+        {/* Modal for Editing Announcement */}
+        <Modal
+          title="Edit Announcement"
+          visible={isModalVisible}
+          onCancel={handleModalCancel}
+          footer={null} // We will use custom footer with form
+        >
           <Form form={form} onFinish={handleSubmit} layout="vertical">
             <Form.Item
               label="Message"
@@ -135,75 +203,18 @@ const AddAnnouncement = () => {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                {editId ? "Update Announcement" : "Add Announcement"}
+                Update Announcement
+              </Button>
+              <Button
+                style={{ marginLeft: "10px" }}
+                onClick={handleModalCancel}
+              >
+                Cancel
               </Button>
             </Form.Item>
           </Form>
-        </TabPane>
-
-        <TabPane tab="Previous Announcements" key="2">
-          <List
-            itemLayout="horizontal"
-            dataSource={previousAnnouncements}
-            renderItem={(announcement) => (
-              <List.Item
-                actions={[
-                  <Button key="edit" onClick={() => handleEdit(announcement)}>
-                    Edit
-                  </Button>,
-                  <Button
-                    key="delete"
-                    danger
-                    onClick={() => showDeleteConfirm(announcement._id)}
-                    icon={<DeleteOutlined />}
-                  />,
-                ]}
-              >
-                <List.Item.Meta
-                  title={announcement.message}
-                  description={`Ends on: ${new Date(
-                    announcement.endDate
-                  ).toLocaleDateString()}`}
-                />
-              </List.Item>
-            )}
-          />
-        </TabPane>
-      </Tabs>
-
-      {/* Modal for Editing Announcement */}
-      <Modal
-        title="Edit Announcement"
-        visible={isModalVisible}
-        onCancel={handleModalCancel}
-        footer={null} // We will use custom footer with form
-      >
-        <Form form={form} onFinish={handleSubmit} layout="vertical">
-          <Form.Item
-            label="Message"
-            name="message"
-            rules={[{ required: true, message: "Please input your message!" }]}
-          >
-            <Input.TextArea style={{ height: "10rem" }} required />
-          </Form.Item>
-          <Form.Item
-            label="End Date"
-            style={{ width: "10rem" }}
-            name="endDate"
-            rules={[{ required: true, message: "Please select an end date!" }]}
-          >
-            <Input type="date" required />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Update Announcement
-            </Button>
-            <Button style={{ marginLeft: "10px" }} onClick={handleModalCancel}>
-              Cancel
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
+        </Modal>
+      </div>
     </div>
   );
 };
