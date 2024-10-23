@@ -16,6 +16,12 @@ app.use(express.json());
 app.use(express.static("frontend"));
 app.use("/api/stripe", stripeRoutes);
 
+
+app.use("/" , (req,res) =>{
+
+  res.send("Server is running");
+});
+
 mongoose
   .connect("mongodb://localhost:27017/sports-complex")
   .then(() => {
