@@ -28,6 +28,7 @@ app.use("/", (req, res) => {
 });
 
 
+console.log(process.env.MONGODB_URI);
 
 // MongoDB Connection
 mongoose
