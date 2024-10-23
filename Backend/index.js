@@ -23,7 +23,7 @@ app.use("/" , (req,res) =>{
 });
 
 mongoose
-  .connect("mongodb://localhost:27017/sports-complex")
+  .connect("mongodb+srv://madhushapriyanjanassck:<db_password>@srsbadminton.igrtl.mongodb.net/?retryWrites=true&w=majority&appName=srsbadminton")
   .then(() => {
     console.log("Connected to MongoDB");
   })
