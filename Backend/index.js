@@ -8,22 +8,33 @@ import dotenv from "dotenv";
 import stripeRoutes from "./src/routes/stripe.js";
 import announcementRoutes from "./src/routes/announcement.js";
 
-dotenv.config();
+dotenv.config(); 
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static("frontend"));
+
+// Define routes
 app.use("/api/stripe", stripeRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/announcements", announcementRoutes);
 
-
-app.use("/" , (req,res) =>{
-
+app.use("/", (req, res) => {
   res.send("Server is running");
 });
 
+
+
+// MongoDB Connection
 mongoose
-  .connect("mongodb+srv://madhushapriyanjanassck:Madhusha@1999@srsbadminton.igrtl.mongodb.net/?retryWrites=true&w=majority&appName=srsbadminton")
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true, // Options to avoid deprecation warnings
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -31,11 +42,7 @@ mongoose
     console.log("Error connecting to MongoDB:", error);
   });
 
-app.use("/api/bookings", bookingRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/announcements", announcementRoutes);
-
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
